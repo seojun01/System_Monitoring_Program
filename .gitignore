@@ -1,0 +1,42 @@
+#dependencies
+client/node_modules
+client/yarn.lock
+
+#dependencies
+server/node_modules
+
+# tests
+server/yarn.lock
+server/test
+server/benchmarks/memory
+server/coverage
+server/.nyc_output
+server/packages/graphql
+server/benchmarks/memory
+serverbuild/config\.gypi
+
+# bundle
+server/packages/**/*.d.ts
+server/packages/**/*.js
+
+# IDE
+server/.idea
+server/.awcache
+server/.vscode
+server/.devcontainer
+server/*.code-workspace
+
+# misc
+server/.DS_Store
+server/lerna-debug.log
+server/npm-debug.log
+server/yarn-error.log
+server/**/npm-debug.log
+server/packages/**/.npmignore
+server/packages/**/LICENSE
+server/*.tsbuildinfo
+
+#example
+server/quick-start
+server/example_dist
+server/example
