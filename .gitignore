@@ -2,6 +2,8 @@
 client/node_modules
 client/yarn.lock
 
+client/.env
+
 #dependencies
 server/node_modules
 
@@ -40,3 +42,5 @@ server/*.tsbuildinfo
 server/quick-start
 server/example_dist
 server/example
+
+server/.env
