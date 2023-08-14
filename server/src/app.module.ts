@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { UserEntity } from './user/entities/user.entity';
+import { SysinfoModule } from './sysinfo/sysinfo.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { UserEntity } from './user/entities/user.entity';
     }),
     AuthModule,
     UserModule,
+    SysinfoModule,
   ],
   controllers: [AppController],
   providers: [AppService],

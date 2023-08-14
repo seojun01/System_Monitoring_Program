@@ -13,7 +13,7 @@ import { ConfigModule } from '@nestjs/config';
     UserModule,
     JwtModule.register({
       secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: process.env.JWT_EXPIRE_TIME },
+      signOptions: { expiresIn: '300s' },
     }),
     PassportModule,
   ],
