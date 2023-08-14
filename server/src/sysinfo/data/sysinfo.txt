@@ -1,0 +1,10 @@
+{
+        "Host Name": "raspberrypi"
+        "Kernel Version": "6.1.41-v8+"
+        "Memory Usage(%)": "13.6685"
+        "Memory Available(%)": "86.3315"
+        "CPU Usage(%): "3.4"
+        "CPU temp(C)": "47.2"
+        "Total Disk Size(GB)": "462.315 GB"
+        "DISK Usage(%)": "4.04536"
+}

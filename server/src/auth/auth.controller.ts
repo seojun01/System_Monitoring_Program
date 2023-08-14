@@ -14,6 +14,7 @@ import * as bcrypt from 'bcrypt';
 import { AuthDTO } from './dto/authDto';
 import { UserService } from 'src/user/user.service';
 import { AuthService } from './auth.service';
+import * as fs from 'fs';
 
 @Controller()
 export class AuthController {

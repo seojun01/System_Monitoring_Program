@@ -4,9 +4,4 @@ import { AppService } from './app.service';
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
-
-  @Get('/api')
-  getAPI(): boolean {
-    return this.appService.getAPI();
-  }
 }
