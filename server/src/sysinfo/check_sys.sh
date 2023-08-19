@@ -9,6 +9,10 @@ echo "\t\"Host Name\"": \"${hName}\"
 KVersion=`uname -r`
 echo "\t\"Kernel Version\"": \"${KVersion}\"
 
+#Server Uptime
+upTime=`uptime -p`
+echo "\t\"Server Uptime\"": \"${upTime}\"
+
 #Memory usage
 memUsage=`free | awk '{if($1 == "Mem:") print(($2-$7)/$2*100)}'`
 memAvail=`free | awk '{if($1 == "Mem:") print($7/$2*100)}'`
