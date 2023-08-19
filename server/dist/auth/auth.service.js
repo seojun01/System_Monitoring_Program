@@ -19,12 +19,12 @@ let AuthService = exports.AuthService = class AuthService {
     getCookieWithJwtToken(userId) {
         const payload = { userId };
         const token = this.jwtModule.sign(payload);
-        const maxAge = process.env.JWT_EXPIRE_TIM;
-        return `Authentication=${token}; HttpOnly; Path=/; Max-Age=300s`;
+        const maxAge = process.env.JWT_EXPIRE_TIME;
+        return `Authentication=${token}; HttpOnly; Path=/; Max-Age=${maxAge}`;
     }
     getCookieForLogOut() {
         const maxAge = process.env.JWT_EXPIRE_TIME;
-        return `Authentication=; HttpOnly; Path=/; Max-Age=300s`;
+        return `Authentication=; HttpOnly; Path=/; Max-Age=${maxAge}`;
     }
 };
 exports.AuthService = AuthService = __decorate([
