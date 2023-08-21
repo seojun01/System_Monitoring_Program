@@ -4,6 +4,8 @@ import Menu from './components/Menu';
 import Logs from './pages/Logs';
 import Details from './pages/Details';
 import Cpu from './pages/Cpu';
+import SignUpForm from './pages/SignUpForm';
+import LoginForm from './pages/LoginForm';
 
 function App(): JSX.Element {
     return (
@@ -35,6 +37,13 @@ function App(): JSX.Element {
             <Routes>
                 <Route path="/cpu" element={<Cpu />} />
             </Routes>
+            <Routes>
+                <Route path="/signup" element={<SignUpForm/>} />
+            </Routes>
+            <Routes>
+                <Route path="/login" element={<LoginForm/>} />
+            </Routes>
+
         </Router>
     );
 }
