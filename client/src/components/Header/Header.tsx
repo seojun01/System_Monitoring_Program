@@ -13,11 +13,7 @@ function Header(): JSX.Element {
             <a className="navbar-brand ps-3" href="/">
                 Log-Program-Test
             </a>
-            <a
-                className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
-                id="sidebarToggle"
-                onClick={handleSideBarToggle}
-            >
+            <a className="order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" onClick={handleSideBarToggle}>
                 <i className="fas fa-bars"></i>
             </a>
             <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
