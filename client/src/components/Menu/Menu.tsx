@@ -1,3 +1,5 @@
+import './Menu.css';
+
 function Menu(): JSX.Element {
     return (
         <div id="layoutSidenav">

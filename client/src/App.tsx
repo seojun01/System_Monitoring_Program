@@ -1,9 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Menu from './components/Menu';
+import Header from './components/Header/Header';
+import Menu from './components/Menu/Menu';
 import Logs from './pages/Logs';
 import Details from './pages/Details';
 import Cpu from './pages/Cpu';
+import SignUpForm from './pages/SignUpForm';
+import LoginForm from './pages/LoginForm';
+import './App.css';
 
 function App(): JSX.Element {
     return (
@@ -34,6 +37,12 @@ function App(): JSX.Element {
             </Routes>
             <Routes>
                 <Route path="/cpu" element={<Cpu />} />
+            </Routes>
+            <Routes>
+                <Route path="/signup" element={<SignUpForm />} />
+            </Routes>
+            <Routes>
+                <Route path="/login" element={<LoginForm />} />
             </Routes>
         </Router>
     );

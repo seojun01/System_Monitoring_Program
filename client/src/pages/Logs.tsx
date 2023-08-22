@@ -1,3 +1,5 @@
+import './pages.css';
+
 function Logs(): JSX.Element {
     return (
         <div id="layoutSidenav">

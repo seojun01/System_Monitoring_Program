@@ -1,3 +1,5 @@
+import './pages.css';
+
 function Cpu(): JSX.Element {
     return (
         <div id="layoutSidenav">
