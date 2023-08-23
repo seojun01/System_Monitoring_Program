@@ -12,20 +12,20 @@ function Menu(): JSX.Element {
                                 <div className="sb-nav-link-icon">
                                     <i className="fas fa-tachometer-alt"></i>
                                 </div>
-                                Logs
+                                Packet
                             </a>
-                            <a className="nav-link" href="/details">
+                            <a className="nav-link" href="/live">
                                 <div className="sb-nav-link-icon">
                                     <i className="fa-solid fa-circle-info"></i>
                                 </div>
-                                Details
+                                Live
                             </a>
                             <div className="sb-sidenav-menu-heading">mantle</div>
-                            <a className="nav-link" href="/cpu">
+                            <a className="nav-link" href="/system_info">
                                 <div className="sb-nav-link-icon">
                                     <i className="fa-solid fa-microchip"></i>
                                 </div>
-                                Cpu
+                                System_Info
                             </a>
                         </div>
                     </div>

@@ -1,12 +1,12 @@
 import './pages.css';
 
-function Details(): JSX.Element {
+function System_Info(): JSX.Element {
     return (
         <div id="layoutSidenav">
             <div id="layoutSidenav_content">
                 <main>
                     <div className="container-fluid px-4">
-                        <h1 className="mt-4">Details</h1>
+                        <h1 className="mt-4">System_Info</h1>
                         <ol className="breadcrumb mb-4">
                             <li className="breadcrumb-item active">GRAPH</li>
                         </ol>
@@ -17,4 +17,4 @@ function Details(): JSX.Element {
     );
 }
 
-export default Details;
+export default System_Info;

@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
-import Logs from './pages/Logs';
-import Details from './pages/Details';
-import Cpu from './pages/Cpu';
-import SignUpForm from './pages/SignUpForm';
-import LoginForm from './pages/LoginForm';
+import Packet from './pages/Menupages/Packet';
+import Live from './pages/Menupages/Live';
+import System_Info from './pages/Menupages/System_Info';
+import SignUpForm from './pages/Loginpages/SignUpForm';
+import LoginForm from './pages/Loginpages/LoginForm';
 import './App.css';
 
 function App(): JSX.Element {
@@ -18,25 +18,25 @@ function App(): JSX.Element {
                 <Route path="/" element={<Menu />} />
             </Routes>
             <Routes>
-                <Route path="/" element={<Logs />} />
+                <Route path="/" element={<Packet />} />
             </Routes>
             <Routes>
-                <Route path="/details" element={<Header />} />
+                <Route path="/live" element={<Header />} />
             </Routes>
             <Routes>
-                <Route path="/details" element={<Menu />} />
+                <Route path="/live" element={<Menu />} />
             </Routes>
             <Routes>
-                <Route path="/details" element={<Details />} />
+                <Route path="/live" element={<Live />} />
             </Routes>
             <Routes>
-                <Route path="/cpu" element={<Header />} />
+                <Route path="/system_info" element={<Header />} />
             </Routes>
             <Routes>
-                <Route path="/cpu" element={<Menu />} />
+                <Route path="/system_info" element={<Menu />} />
             </Routes>
             <Routes>
-                <Route path="/cpu" element={<Cpu />} />
+                <Route path="/system_info" element={<System_Info />} />
             </Routes>
             <Routes>
                 <Route path="/signup" element={<SignUpForm />} />
