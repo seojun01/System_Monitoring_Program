@@ -1,0 +1,7 @@
+{
+  "name": "System_Monitoring_Program",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:seojun01/System_Monitoring_Program.git",
+  "license": "MIT"
+}
