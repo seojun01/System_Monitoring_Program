@@ -131,30 +131,31 @@ ul ol {
     }
 }
 
+#chart-container {
+    width: 100%;
+    height: auto;
+}
+
 @media (min-width: 768px) {
-    #chart2 {
-        width: 100%;
-        float: center;
+    #memory1 {
+        width: 50%;
+        float: left;
+        height: 100%;
+    }
+    #memory2 {
+        width: 50%;
+        float: right;
     }
 }
 
 @media (min-width: 992px) {
-    #chart2 {
-        width: 100%;
-        float: center;
+    #memory1 {
+        width: 50%;
+        float: left;
+        height: 100%;
     }
-}
-
-@media (min-width: 768px) {
-    #chart3 {
-        width: 100%;
-        float: center;
-    }
-}
-
-@media (min-width: 992px) {
-    #chart3 {
-        width: 100%;
-        float: center;
+    #memory2 {
+        width: 50%;
+        float: right;
     }
 }

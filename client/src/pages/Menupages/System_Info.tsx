@@ -179,7 +179,9 @@ function Cpu(): any {
                         <div id="chart1">
                             <ReactApexChart options={chart1.options} series={chart1.series} type="area" height={280} />
                         </div>
-                        <div id="chart2">
+                    </div>
+                    <div id="chart-container">
+                        <div id="memory1">
                             <ReactApexChart
                                 options={chart2.options}
                                 series={chart2.series}
@@ -187,7 +189,7 @@ function Cpu(): any {
                                 height={350}
                             />
                         </div>
-                        <div id="chart3">
+                        <div id="memory2">
                             <ReactApexChart
                                 options={chart3.options}
                                 series={chart3.series}
