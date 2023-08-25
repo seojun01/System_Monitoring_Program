@@ -111,3 +111,50 @@ ul ol {
     padding-left: 225px;
     top: 56px;
 }
+
+#chart {
+    width: 100%;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    #chart1 {
+        width: 100%;
+        float: left;
+    }
+}
+
+@media (min-width: 992px) {
+    #chart1 {
+        width: 100%;
+        float: left;
+    }
+}
+
+@media (min-width: 768px) {
+    #chart2 {
+        width: 100%;
+        float: center;
+    }
+}
+
+@media (min-width: 992px) {
+    #chart2 {
+        width: 100%;
+        float: center;
+    }
+}
+
+@media (min-width: 768px) {
+    #chart3 {
+        width: 100%;
+        float: center;
+    }
+}
+
+@media (min-width: 992px) {
+    #chart3 {
+        width: 100%;
+        float: center;
+    }
+}
