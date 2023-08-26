@@ -78,7 +78,7 @@ function Cpu(): any {
             chart: {
                 height: 350,
                 type: 'radialBar',
-                offsetY: 10,
+                offsetY: -20,
             },
             plotOptions: {
                 radialBar: {
@@ -125,7 +125,7 @@ function Cpu(): any {
             chart: {
                 height: 350,
                 type: 'radialBar',
-                offsetY: 10,
+                offsetY: -20,
             },
             plotOptions: {
                 radialBar: {
@@ -165,6 +165,70 @@ function Cpu(): any {
             labels: ['메모리 잔여량'],
         },
     };
+
+    const chart4: any = {
+        series: [76, 67, 61],
+        options: {
+            chart: {
+                height: 390,
+                type: 'radialBar',
+            },
+            plotOptions: {
+                radialBar: {
+                    offsetY: 0,
+                    startAngle: 0,
+                    endAngle: 270,
+                    hollow: {
+                        margin: 5,
+                        size: '30%',
+                        background: 'transparent',
+                        image: undefined,
+                    },
+                    dataLabels: {
+                        name: {
+                            show: false,
+                        },
+                        value: {
+                            show: false,
+                        },
+                    },
+                },
+            },
+            colors: ['#1ab7ea', '#0084ff', '#39539E'],
+            labels: ['Vimeo', 'Messenger', 'Facebook'],
+            legend: {
+                show: true,
+                floating: true,
+                fontSize: '16px',
+                position: 'left',
+                offsetX: 40,
+                offsetY: 15,
+                labels: {
+                    useSeriesColors: true,
+                },
+                markers: {
+                    size: 0,
+                },
+                formatter: function (seriesName: string, opts: any) {
+                    return seriesName + ':  ' + opts.w.globals.series[opts.seriesIndex];
+                },
+                itemMargin: {
+                    vertical: 3,
+                },
+            },
+            responsive: [
+                {
+                    breakpoint: 48,
+                    options: {
+                        legend: {
+                            show: false,
+                        },
+                    },
+                },
+            ],
+        },
+    };
+
     return (
         <div id="layoutSidenav">
             <div id="layoutSidenav_content">
@@ -196,6 +260,34 @@ function Cpu(): any {
                                 type="radialBar"
                                 height={350}
                             />
+                        </div>
+                        <div id="memory2">
+                            <ReactApexChart
+                                options={chart4.options}
+                                series={chart4.series}
+                                type="radialBar"
+                                height={chart4.options.chart.height}
+                            />
+                        </div>
+                        <div id="memory1">
+                            <table className="type04">
+                                <tr>
+                                    <th scope="row">Host</th>
+                                    <td>info</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">OS</th>
+                                    <td>info</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Kernel</th>
+                                    <td>info</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Uptime</th>
+                                    <td>info</td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </main>
