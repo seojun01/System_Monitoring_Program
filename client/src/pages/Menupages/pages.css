@@ -112,9 +112,22 @@ ul ol {
     top: 56px;
 }
 
-#chart {
-    width: 100%;
+#chart,
+#chart-container {
+    width: 95%;
     margin: 0 auto;
+}
+
+#chart1,
+#memory1,
+#memory2,
+#disk,
+#table {
+    border-style: solid;
+    border-width: 2px;
+    border-color: #000;
+    border-radius: 13px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2); /* 아래로 4픽셀 내리는 그림자, 6픽셀의 흐림 정도, 투명한 검은색 그림자 */
 }
 
 @media (min-width: 768px) {
@@ -131,30 +144,29 @@ ul ol {
     }
 }
 
-#chart-container {
-    width: 100%;
-    height: auto;
-}
-
 @media (min-width: 768px) {
-    #memory1 {
+    #memory1,
+    #table {
         width: 50%;
         float: left;
         height: 100%;
     }
-    #memory2 {
+    #memory2,
+    #disk {
         width: 50%;
         float: right;
     }
 }
 
 @media (min-width: 992px) {
-    #memory1 {
+    #memory1,
+    #table {
         width: 50%;
         float: left;
         height: 100%;
     }
-    #memory2 {
+    #memory2,
+    #disk {
         width: 50%;
         float: right;
     }

@@ -32,107 +32,111 @@ function Live(): JSX.Element {
                                             <th>Time</th>
                                             <th>Name</th>
                                             <th>Src</th>
-                                            <th>Danger</th>
+                                            <th>Dst</th>
+                                            <th>Port</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>No.</th>
-                                            <th>Date</th>
                                             <th>Time</th>
+                                            <th>Date</th>
                                             <th>Name</th>
                                             <th>Src</th>
-                                            <th>Danger</th>
+                                            <th>Dst</th>
+                                            <th>Port</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td>2023/08/23</td>
-                                            <td>22:56</td>
+                                            <td>23/08/22</td>
+                                            <td>22:50</td>
                                             <td>Dos</td>
                                             <td>xxx.xxx.xxx.xx</td>
-                                            <td>3</td>
+                                            <td>xxx.xxx.xxx.xx</td>
+                                            <td>TCP</td>
                                         </tr>
                                         <tr>
                                             <td>1</td>
-                                            <td>2023/08/23</td>
-                                            <td>22:56</td>
+                                            <td>23/08/22</td>
+                                            <td>22:50</td>
                                             <td>Dos</td>
                                             <td>xxx.xxx.xxx.xx</td>
-                                            <td>3</td>
+                                            <td>xxx.xxx.xxx.xx</td>
+                                            <td>TCP</td>
                                         </tr>
                                         <tr>
                                             <td>1</td>
-                                            <td>2023/08/23</td>
-                                            <td>22:56</td>
+                                            <td>23/08/22</td>
+                                            <td>22:50</td>
                                             <td>Dos</td>
                                             <td>xxx.xxx.xxx.xx</td>
-                                            <td>3</td>
+                                            <td>xxx.xxx.xxx.xx</td>
+                                            <td>TCP</td>
                                         </tr>
                                         <tr>
                                             <td>1</td>
-                                            <td>2023/08/23</td>
-                                            <td>22:56</td>
+                                            <td>23/08/22</td>
+                                            <td>22:50</td>
                                             <td>Dos</td>
                                             <td>xxx.xxx.xxx.xx</td>
-                                            <td>3</td>
+                                            <td>xxx.xxx.xxx.xx</td>
+                                            <td>TCP</td>
                                         </tr>
                                         <tr>
                                             <td>1</td>
-                                            <td>2023/08/23</td>
-                                            <td>22:56</td>
+                                            <td>23/08/22</td>
+                                            <td>22:50</td>
                                             <td>Dos</td>
                                             <td>xxx.xxx.xxx.xx</td>
-                                            <td>3</td>
+                                            <td>xxx.xxx.xxx.xx</td>
+                                            <td>TCP</td>
                                         </tr>
                                         <tr>
                                             <td>1</td>
-                                            <td>2023/08/23</td>
-                                            <td>22:56</td>
+                                            <td>23/08/22</td>
+                                            <td>22:50</td>
                                             <td>Dos</td>
                                             <td>xxx.xxx.xxx.xx</td>
-                                            <td>3</td>
+                                            <td>xxx.xxx.xxx.xx</td>
+                                            <td>TCP</td>
                                         </tr>
                                         <tr>
                                             <td>1</td>
-                                            <td>2023/08/23</td>
-                                            <td>22:56</td>
+                                            <td>23/08/22</td>
+                                            <td>22:50</td>
                                             <td>Dos</td>
                                             <td>xxx.xxx.xxx.xx</td>
-                                            <td>3</td>
+                                            <td>xxx.xxx.xxx.xx</td>
+                                            <td>TCP</td>
                                         </tr>
                                         <tr>
                                             <td>1</td>
-                                            <td>2023/08/23</td>
-                                            <td>22:56</td>
+                                            <td>23/08/22</td>
+                                            <td>22:50</td>
                                             <td>Dos</td>
                                             <td>xxx.xxx.xxx.xx</td>
-                                            <td>3</td>
+                                            <td>xxx.xxx.xxx.xx</td>
+                                            <td>TCP</td>
                                         </tr>
                                         <tr>
                                             <td>1</td>
-                                            <td>2023/08/23</td>
-                                            <td>22:56</td>
+                                            <td>23/08/22</td>
+                                            <td>22:50</td>
                                             <td>Dos</td>
                                             <td>xxx.xxx.xxx.xx</td>
-                                            <td>3</td>
+                                            <td>xxx.xxx.xxx.xx</td>
+                                            <td>TCP</td>
                                         </tr>
                                         <tr>
                                             <td>1</td>
-                                            <td>2023/08/23</td>
-                                            <td>22:56</td>
+                                            <td>23/08/22</td>
+                                            <td>22:50</td>
                                             <td>Dos</td>
                                             <td>xxx.xxx.xxx.xx</td>
-                                            <td>3</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>2023/08/23</td>
-                                            <td>22:56</td>
-                                            <td>Dos</td>
                                             <td>xxx.xxx.xxx.xx</td>
-                                            <td>3</td>
+                                            <td>TCP</td>
                                         </tr>
                                     </tbody>
                                 </table>

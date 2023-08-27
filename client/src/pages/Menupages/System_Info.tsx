@@ -261,7 +261,7 @@ function Cpu(): any {
                                 height={350}
                             />
                         </div>
-                        <div id="memory2">
+                        <div id="disk">
                             <ReactApexChart
                                 options={chart4.options}
                                 series={chart4.series}
@@ -269,7 +269,7 @@ function Cpu(): any {
                                 height={chart4.options.chart.height}
                             />
                         </div>
-                        <div id="memory1">
+                        <div id="table">
                             <table className="type04">
                                 <tr>
                                     <th scope="row">Host</th>
