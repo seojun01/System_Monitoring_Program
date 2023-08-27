@@ -11,7 +11,7 @@ function Packet(): JSX.Element {
                         <h1 className="mt-4">Dashboard</h1>
                         <ol className="breadcrumb mb-4">
                             <li className="breadcrumb-item active"></li>
-                            <div style={{ width: '1000%', height: '90%' }}>
+                            <div style={{ width: '1000%', height: '10%' }}>
                                         <ApexCharts
                                             type="area"
                                             series={[
@@ -22,8 +22,8 @@ function Packet(): JSX.Element {
                                             ]}
                                             options={{
                                                 chart : {
-                                                    height: '10%',
-                                                    width: 900
+                                                    height: '20%',
+                                                    width: 900,
                                                 },
                                                 title: {
                                                     text: 'Packet',
