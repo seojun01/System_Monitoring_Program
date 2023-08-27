@@ -111,3 +111,85 @@ ul ol {
     padding-left: 225px;
     top: 56px;
 }
+
+#chart,
+#chart-container {
+    width: 95%;
+    margin: 0 auto;
+}
+
+#chart1,
+#memory1,
+#memory2,
+#disk,
+#table {
+    border-style: solid;
+    border-width: 2px;
+    border-color: #000;
+    border-radius: 13px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2); /* 아래로 4픽셀 내리는 그림자, 6픽셀의 흐림 정도, 투명한 검은색 그림자 */
+}
+
+@media (min-width: 768px) {
+    #chart1 {
+        width: 100%;
+        float: left;
+    }
+}
+
+@media (min-width: 992px) {
+    #chart1 {
+        width: 100%;
+        float: left;
+    }
+}
+
+@media (min-width: 768px) {
+    #memory1,
+    #table {
+        width: 50%;
+        float: left;
+        height: 100%;
+    }
+    #memory2,
+    #disk {
+        width: 50%;
+        float: right;
+    }
+}
+
+@media (min-width: 992px) {
+    #memory1,
+    #table {
+        width: 50%;
+        float: left;
+        height: 100%;
+    }
+    #memory2,
+    #disk {
+        width: 50%;
+        float: right;
+    }
+}
+
+table.type04 {
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: center;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    margin: 10% 30%;
+}
+table.type04 th {
+    width: 200px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+table.type04 td {
+    width: 100px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
