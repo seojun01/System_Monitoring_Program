@@ -123,11 +123,7 @@ ul ol {
 #memory2,
 #disk,
 #table {
-    border-style: solid;
-    border-width: 2px;
-    border-color: #000;
-    border-radius: 13px;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2); /* 아래로 4픽셀 내리는 그림자, 6픽셀의 흐림 정도, 투명한 검은색 그림자 */
+    box-shadow: 11px -16px 10px rgba(0, 0, 0, 0.1); /* 아래로 4픽셀 내리는 그림자, 6픽셀의 흐림 정도, 투명한 검은색 그림자 */
 }
 
 @media (min-width: 768px) {

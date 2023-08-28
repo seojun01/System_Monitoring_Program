@@ -234,10 +234,18 @@ function Cpu(): any {
             <div id="layoutSidenav_content">
                 <main>
                     <div className="container-fluid px-4">
-                        <h1 className="mt-4">System_Info</h1>
-                        <ol className="breadcrumb mb-4">
-                            <li className="breadcrumb-item active">GRAPH</li>
-                        </ol>
+                        <h1
+                            className="mt-4"
+                            style={{
+                                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                                fontFamily: 'Arial, sans-serif',
+                                fontWeight: 'bold',
+                                fontSize: '2rem',
+                                color: '#333',
+                            }}
+                        >
+                            System_Info
+                        </h1>
                     </div>
                     <div id="chart">
                         <div id="chart1">
