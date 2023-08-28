@@ -142,7 +142,7 @@ function Packet(): JSX.Element {
 
     return (
         <div id="layoutSidenav">
-            <div id="layoutSidenav_content" style={{ backgroundColor: '#f2f2f2', height: '169vh', }}>
+            <div id="layoutSidenav_content" style={{ backgroundColor: '#f2f2f2', height: '167vh', }}>
                 <main>
                     <div className="container-fluid px-4">
                         <h1 className="mt-4" style={{
@@ -158,28 +158,28 @@ function Packet(): JSX.Element {
                     </div>
                     <div id="Packet-chart-container">
                         <div id="chart">
-                            <div id="network" style={{ width: '1175px', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
+                            <div id="network" style={{ width: '100%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
                                 <ReactApexChart
                                     options={chart1.options}
                                     series={chart1.series}
                                     type="area"
                                     height={280} />
                             </div>
-                            <div id="at_types" style={{ width: '570px', marginTop: '15px', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
+                            <div id="at_types" style={{ width: '48.7%', marginTop: '1%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
                                 <ReactApexChart
                                     options={chart2.options}
                                     series={chart2.series}
                                     type="radar"
                                     height={350} />
                             </div>
-                            <div id="at_risk" style={{ width: '570px', marginTop: '-366px', marginLeft: '604px', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
+                            <div id="at_risk" style={{ width: '48.7%', marginTop: '-31.1%', marginLeft: '51.3%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
                                 <ReactApexChart
                                     options={chart3.options}
                                     series={chart3.series}
                                     type="pie"
                                     height={350} />
                             </div>
-                            <div id="at_count" style={{ width: '1175px', marginTop: '30px', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
+                            <div id="at_count" style={{ width: '100%', marginTop: '2.2%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
                                 <ReactApexChart
                                     options={chart4.options}
                                     series={chart4.series}
