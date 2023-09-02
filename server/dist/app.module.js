@@ -32,7 +32,7 @@ exports.AppModule = AppModule = __decorate([
                 password: process.env.DB_PASSWORD,
                 database: 'monitoring',
                 entities: [`${__dirname}/**/entities/*.entity.{ts,js}`],
-                synchronize: true,
+                synchronize: Boolean(process.env.DB_SYNC),
             }),
             auth_module_1.AuthModule,
             user_module_1.UserModule,
