@@ -1,11 +1,67 @@
+import React, { useEffect, useState } from 'react';
 import './pages.css';
 import ReactApexChart from 'react-apexcharts';
 
 function Cpu(): any {
+    const [systemInfo, setSystemInfo] = useState(null);
+    const [cpuInfo, setCpuInfo] = useState({ cpuUsage: 0, cpuTemp: 0 });
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('../server/src/sysinfo/cpuInfo.sh'); // 백엔드 API 엔드포인트 설정 필요
+                if (!response.ok) {
+                    throw new Error('데이터 가져오기 실패');
+                }
+                const data = await response.json();
+                setCpuInfo(data);
+            } catch (error) {
+                console.error('데이터 가져오기 에러:', error);
+            }
+        };
+
+        fetchData();
+
+        const interval = setInterval(fetchData, 1000);
+
+        return () => clearInterval(interval);
+    }, []);
+    /*사용 방법: cpuInfo.cpuUsage, cpuInfo.cpuTemp*/
+
+    useEffect(() => {
+        const fetchData = () => {
+            fetch('../server/src/sysinfo/serverInfo.sh')
+                .then((response) => response.json())
+                .then((data) => {
+                    setSystemInfo(data);
+                })
+                .catch((error) => {
+                    console.error('데이터 가져오기 에러:', error);
+                });
+        };
+
+        fetchData();
+
+        const intervalId = setInterval(fetchData, 1000);
+
+        return () => clearInterval(intervalId);
+    }, []);
+    /*
+	사용방법: 
+	systemInfo.hostName, systemInfo.OSRelease,
+    systemInfo.kernelVersion, systemInfo.serverUptime,
+    systemInfo.memoryUsage, systemInfo.memoryAvailable,
+    systemInfo.totalDiskSize, systemInfo.diskUsage
+    */
+
+    if (systemInfo === null) {
+        return null;
+    }
+
     const chart1: any = {
         options: {
             chart: {
-                height: 350,
+                height: 280,
                 type: 'area',
                 zoom: {
                     enabled: false,
@@ -20,23 +76,6 @@ function Cpu(): any {
             title: {
                 text: 'CPU',
                 align: 'left',
-            },
-            xaxis: {
-                type: 'datetime',
-                categories: [
-                    '2018-09-19T00:00:00.000Z',
-                    '2018-09-19T01:00:00.000Z',
-                    '2018-09-19T02:00:00.000Z',
-                    '2018-09-19T03:00:00.000Z',
-                    '2018-09-19T04:00:00.000Z',
-                    '2018-09-19T05:00:00.000Z',
-                    '2018-09-19T06:00:00.000Z',
-                ],
-            },
-            tooltip: {
-                x: {
-                    format: 'dd/MM/yy HH:mm',
-                },
             },
             yaxis: [
                 {
@@ -63,17 +102,17 @@ function Cpu(): any {
         series: [
             {
                 name: 'USAGE',
-                data: [31, 40, 28, 51, 42, 90, 70],
+                data: [31, 40, 28, 51, 42, 90, 70] /*cpuInfo.cpuUsage*/,
             },
             {
                 name: 'TEMP',
-                data: [60, 65, 64, 60, 67, 70, 68],
+                data: [60, 65, 64, 60, 67, 70, 68] /*cpuInfo.cpuTemp*/,
             },
         ],
     };
 
     const chart2: any = {
-        series: [67],
+        series: systemInfo.memoryUsage,
         options: {
             chart: {
                 height: 350,
@@ -120,7 +159,7 @@ function Cpu(): any {
     };
 
     const chart3: any = {
-        series: [33],
+        series: systemInfo.memoryAvailable,
         options: {
             chart: {
                 height: 350,
@@ -167,7 +206,7 @@ function Cpu(): any {
     };
 
     const chart4: any = {
-        series: [76, 67, 61],
+        series: [systemInfo.totalDiskSize, systemInfo.diskUsage],
         options: {
             chart: {
                 height: 390,
@@ -194,8 +233,8 @@ function Cpu(): any {
                     },
                 },
             },
-            colors: ['#1ab7ea', '#0084ff', '#39539E'],
-            labels: ['Vimeo', 'Messenger', 'Facebook'],
+            colors: ['#1ab7ea', '#0084ff'],
+            labels: ['디스크 총 용량', '디스크 사용량'],
             legend: {
                 show: true,
                 floating: true,
@@ -249,7 +288,12 @@ function Cpu(): any {
                     </div>
                     <div id="chart">
                         <div id="chart1">
-                            <ReactApexChart options={chart1.options} series={chart1.series} type="area" height={280} />
+                            <ReactApexChart
+                                options={chart1.options}
+                                series={chart1.series}
+                                type="area"
+                                height={chart1.options.chart.height}
+                            />
                         </div>
                     </div>
                     <div id="chart-container">
@@ -258,7 +302,7 @@ function Cpu(): any {
                                 options={chart2.options}
                                 series={chart2.series}
                                 type="radialBar"
-                                height={350}
+                                height={chart2.options.chart.height}
                             />
                         </div>
                         <div id="memory2">
@@ -266,7 +310,7 @@ function Cpu(): any {
                                 options={chart3.options}
                                 series={chart3.series}
                                 type="radialBar"
-                                height={350}
+                                height={chart3.options.chart.height}
                             />
                         </div>
                         <div id="disk">
@@ -281,19 +325,19 @@ function Cpu(): any {
                             <table className="type04">
                                 <tr>
                                     <th scope="row">Host</th>
-                                    <td>info</td>
+                                    <td>{systemInfo.hostName}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">OS</th>
-                                    <td>info</td>
+                                    <td>{systemInfo.OSRelease}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Kernel</th>
-                                    <td>info</td>
+                                    <td>{systemInfo.kernelVersion}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Uptime</th>
-                                    <td>info</td>
+                                    <td>{systemInfo.serverUptime}</td>
                                 </tr>
                             </table>
                         </div>

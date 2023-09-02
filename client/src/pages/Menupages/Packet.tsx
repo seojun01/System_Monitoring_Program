@@ -38,7 +38,7 @@ function Packet(): JSX.Element {
             {
                 name: '3',
                 data: [10, 23, 40, 9, 30],
-            }
+            },
         ],
     };
 
@@ -142,49 +142,83 @@ function Packet(): JSX.Element {
 
     return (
         <div id="layoutSidenav">
-            <div id="layoutSidenav_content" style={{ backgroundColor: '#f2f2f2', height: '167vh', }}>
+            <div id="layoutSidenav_content" style={{ backgroundColor: '#f2f2f2', height: '167vh' }}>
                 <main>
                     <div className="container-fluid px-4">
-                        <h1 className="mt-4" style={{
-                            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-                            fontFamily: 'Arial, sans-serif',
-                            fontWeight: 'bold',
-                            fontSize: '2rem',
-                            color: '#333'
-                        }}>Dashboard</h1>
+                        <h1
+                            className="mt-4"
+                            style={{
+                                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                                fontFamily: 'Arial, sans-serif',
+                                fontWeight: 'bold',
+                                fontSize: '2rem',
+                                color: '#333',
+                            }}
+                        >
+                            Dashboard
+                        </h1>
                         <ol className="breadcrumb mb-4">
                             <li className="breadcrumb-item active"></li>
                         </ol>
                     </div>
                     <div id="Packet-chart-container">
                         <div id="chart">
-                            <div id="network" style={{ width: '100%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
+                            <div
+                                id="network"
+                                style={{ width: '100%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}
+                            >
                                 <ReactApexChart
                                     options={chart1.options}
                                     series={chart1.series}
                                     type="area"
-                                    height={280} />
+                                    height={280}
+                                />
                             </div>
-                            <div id="at_types" style={{ width: '49%', marginTop: '1%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
+                            <div
+                                id="at_types"
+                                style={{
+                                    width: '49%',
+                                    marginTop: '1%',
+                                    boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)',
+                                }}
+                            >
                                 <ReactApexChart
                                     options={chart2.options}
                                     series={chart2.series}
                                     type="radar"
-                                    height={350} />
+                                    height={350}
+                                />
                             </div>
-                            <div id="at_risk" style={{ width: '49%', marginTop: '-31.1%', marginLeft: '51%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
+                            <div
+                                id="at_risk"
+                                style={{
+                                    width: '49%',
+                                    marginTop: '-31.1%',
+                                    marginLeft: '51%',
+                                    boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)',
+                                }}
+                            >
                                 <ReactApexChart
                                     options={chart3.options}
                                     series={chart3.series}
                                     type="pie"
-                                    height={350} />
+                                    height={350}
+                                />
                             </div>
-                            <div id="at_count" style={{ width: '100%', marginTop: '2.2%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
+                            <div
+                                id="at_count"
+                                style={{
+                                    width: '100%',
+                                    marginTop: '2.2%',
+                                    boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)',
+                                }}
+                            >
                                 <ReactApexChart
                                     options={chart4.options}
                                     series={chart4.series}
                                     type="bar"
-                                    height={380} />
+                                    height={380}
+                                />
                             </div>
                         </div>
                     </div>

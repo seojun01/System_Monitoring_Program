@@ -41,21 +41,21 @@ function Live(): JSX.Element {
                                             <th>No.</th>
                                             <th>Date</th>
                                             <th>Time</th>
-                                            <th>Name</th>
+                                            <th>Info</th>
                                             <th>Src</th>
                                             <th>Dst</th>
-                                            <th>Port</th>
+                                            <th>Protocol</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>No.</th>
-                                            <th>Time</th>
                                             <th>Date</th>
-                                            <th>Name</th>
+                                            <th>Time</th>
+                                            <th>Info</th>
                                             <th>Src</th>
                                             <th>Dst</th>
-                                            <th>Port</th>
+                                            <th>Protocol</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
