@@ -9,7 +9,7 @@ function Cpu(): any {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('../server/src/sysinfo/cpuInfo.sh'); // 백엔드 API 엔드포인트 설정 필요
+                const response = await fetch(''); // 백엔드 API 엔드포인트 설정 필요
                 if (!response.ok) {
                     throw new Error('데이터 가져오기 실패');
                 }
@@ -30,7 +30,7 @@ function Cpu(): any {
 
     useEffect(() => {
         const fetchData = () => {
-            fetch('../server/src/sysinfo/serverInfo.sh')
+            fetch('')
                 .then((response) => response.json())
                 .then((data) => {
                     setSystemInfo(data);
