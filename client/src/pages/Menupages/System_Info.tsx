@@ -3,13 +3,14 @@ import './pages.css';
 import ReactApexChart from 'react-apexcharts';
 
 function Cpu(): any {
-    const [systemInfo, setSystemInfo] = useState(null);
-    const [cpuInfo, setCpuInfo] = useState({ cpuUsage: 0, cpuTemp: 0 });
+    /* <<제거    const [cpuInfo, setCpuInfo] = useState(null);
+    const [fixedInfo, setFixedInfo] = useState(null);
+    const [varInfo, setVarInfo] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(''); // 백엔드 API 엔드포인트 설정 필요
+                const response = await fetch('118.44.23.195:3001/cpuinfo'); // 백엔드 API 엔드포인트 설정 필요
                 if (!response.ok) {
                     throw new Error('데이터 가져오기 실패');
                 }
@@ -28,16 +29,18 @@ function Cpu(): any {
     }, []);
     /*사용 방법: cpuInfo.cpuUsage, cpuInfo.cpuTemp*/
 
-    useEffect(() => {
-        const fetchData = () => {
-            fetch('')
-                .then((response) => response.json())
-                .then((data) => {
-                    setSystemInfo(data);
-                })
-                .catch((error) => {
-                    console.error('데이터 가져오기 에러:', error);
-                });
+    /* <<제거    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('118.44.23.195:3001/fixedinfo');
+                if (!response.ok) {
+                    throw new Error('데이터 가져오기 실패');
+                }
+                const data = await response.json();
+                setFixedInfo(data);
+            } catch (error) {
+                console.error('데이터 가져오기 에러: ', error);
+            }
         };
 
         fetchData();
@@ -46,18 +49,39 @@ function Cpu(): any {
 
         return () => clearInterval(intervalId);
     }, []);
-    /*
-	사용방법: 
-	systemInfo.hostName, systemInfo.OSRelease,
-    systemInfo.kernelVersion, systemInfo.serverUptime,
-    systemInfo.memoryUsage, systemInfo.memoryAvailable,
-    systemInfo.totalDiskSize, systemInfo.diskUsage
-    */
 
-    if (systemInfo === null) {
+    if (fixedInfo === null) {
         return null;
     }
 
+    /*사용 방법: fixedInfo. */
+
+    /* <<제거    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('118.44.23.195:3001/varinfo');
+                if (!response.ok) {
+                    throw new Error('데이터 가져오기 실패');
+                }
+                const data = await response.json();
+                setVarInfo(data);
+            } catch (error) {
+                console.error('데이터 가져오기 에러: ', error);
+            }
+        };
+
+        fetchData();
+
+        const intervalId = setInterval(fetchData, 1000);
+
+        return () => clearInterval(intervalId);
+    }, []);
+
+    if (varInfo === null) {
+        return null;
+    }
+
+    /*사용 방법: varInfo. */
     const chart1: any = {
         options: {
             chart: {
@@ -72,6 +96,23 @@ function Cpu(): any {
             },
             stroke: {
                 curve: 'smooth',
+            },
+            xaxis: {
+                type: 'datetime',
+                categories: [
+                    '2018-09-19T01:00:00.000Z',
+                    '2018-09-19T02:00:00.000Z',
+                    '2018-09-19T03:00:00.000Z',
+                    '2018-09-19T04:00:00.000Z',
+                    '2018-09-19T05:00:00.000Z',
+                    '2018-09-19T06:00:00.000Z',
+                    '2018-09-19T06:30:00.000Z',
+                ],
+            },
+            tooltip: {
+                x: {
+                    format: 'dd/MM/yy HH:mm',
+                },
             },
             title: {
                 text: 'CPU',
@@ -102,17 +143,17 @@ function Cpu(): any {
         series: [
             {
                 name: 'USAGE',
-                data: [31, 40, 28, 51, 42, 90, 70] /*cpuInfo.cpuUsage*/,
+                data: [50, 40, 28, 51, 42, 90, 70] /*cpuInfo. */,
             },
             {
                 name: 'TEMP',
-                data: [60, 65, 64, 60, 67, 70, 68] /*cpuInfo.cpuTemp*/,
+                data: [60, 65, 64, 60, 67, 70, 68] /*cpuInfo. */,
             },
         ],
     };
 
     const chart2: any = {
-        series: systemInfo.memoryUsage,
+        series: [66] /*varInfo. */,
         options: {
             chart: {
                 height: 350,
@@ -159,7 +200,7 @@ function Cpu(): any {
     };
 
     const chart3: any = {
-        series: systemInfo.memoryAvailable,
+        series: [33] /*varInfo. */,
         options: {
             chart: {
                 height: 350,
@@ -206,7 +247,7 @@ function Cpu(): any {
     };
 
     const chart4: any = {
-        series: [systemInfo.totalDiskSize, systemInfo.diskUsage],
+        series: [1000 /*fixedinfo. */, 334 /*varinfo. */],
         options: {
             chart: {
                 height: 390,
@@ -325,19 +366,19 @@ function Cpu(): any {
                             <table className="type04">
                                 <tr>
                                     <th scope="row">Host</th>
-                                    <td>{systemInfo.hostName}</td>
+                                    <td>NA</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">OS</th>
-                                    <td>{systemInfo.OSRelease}</td>
+                                    <td>NA</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Kernel</th>
-                                    <td>{systemInfo.kernelVersion}</td>
+                                    <td>NA</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Uptime</th>
-                                    <td>{systemInfo.serverUptime}</td>
+                                    <td>NA</td>
                                 </tr>
                             </table>
                         </div>
