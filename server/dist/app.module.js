@@ -14,7 +14,10 @@ const typeorm_1 = require("@nestjs/typeorm");
 const config_1 = require("@nestjs/config");
 const auth_module_1 = require("./auth/auth.module");
 const user_module_1 = require("./user/user.module");
-const sysinfo_module_1 = require("./sysinfo/sysinfo.module");
+const packetinfo_module_1 = require("./packetinfo/packetinfo.module");
+const cpuinfo_module_1 = require("./cpuinfo/cpuinfo.module");
+const fixedinfo_module_1 = require("./fixedinfo/fixedinfo.module");
+const varinfo_module_1 = require("./varinfo/varinfo.module");
 let AppModule = exports.AppModule = class AppModule {
 };
 exports.AppModule = AppModule = __decorate([
@@ -27,13 +30,16 @@ exports.AppModule = AppModule = __decorate([
                 port: Number(process.env.DB_PORT),
                 username: process.env.DB_USERNAME,
                 password: process.env.DB_PASSWORD,
-                database: process.env.DB_NAME,
+                database: 'monitoring',
                 entities: [`${__dirname}/**/entities/*.entity.{ts,js}`],
                 synchronize: Boolean(process.env.DB_SYNC),
             }),
             auth_module_1.AuthModule,
             user_module_1.UserModule,
-            sysinfo_module_1.SysinfoModule,
+            packetinfo_module_1.PacketinfoModule,
+            cpuinfo_module_1.CpuinfoModule,
+            fixedinfo_module_1.FixedinfoModule,
+            varinfo_module_1.VarinfoModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
