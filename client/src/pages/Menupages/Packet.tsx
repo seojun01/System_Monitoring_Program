@@ -1,8 +1,26 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import ReactApexChart from 'react-apexcharts';
 import './pages.css';
 
 function Packet(): JSX.Element {
+    const [trafficData, setTrafficData] = useState([]);
+
+    useEffect(() => {
+        fetch('118.44.23.195:3001/packetinfo')
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((data) => {
+                setTrafficData(data);
+            })
+            .catch((error) => {
+                console.error('Error fetching data:', error);
+            });
+    }, []);
+    
     const chart1: any = {
         options: {
             chart: {
@@ -28,17 +46,17 @@ function Packet(): JSX.Element {
 
         series: [
             {
-                name: '1',
-                data: [16, 20, 10, 9, 20],
+                name: 'reception',
+                data: [],
             },
             {
-                name: '2',
+                name: 'send',
                 data: [19, 25, 20, 9, 2],
             },
             {
-                name: '3',
+                name: 'conn',
                 data: [10, 23, 40, 9, 30],
-            },
+            }
         ],
     };
 
@@ -142,100 +160,53 @@ function Packet(): JSX.Element {
 
     return (
         <div id="layoutSidenav">
-<<<<<<< HEAD
             <div id="layoutSidenav_content" style={{ backgroundColor: '#f2f2f2', height: '167vh', }}>
-=======
-            <div id="layoutSidenav_content" style={{ backgroundColor: '#f2f2f2', height: '169vh' }}>
->>>>>>> c68ee191fab937500c45a081c3b8efa0bd2f8e43
                 <main>
                     <div className="container-fluid px-4">
-                        <h1
-                            className="mt-4"
-                            style={{
-                                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-                                fontFamily: 'Arial, sans-serif',
-                                fontWeight: 'bold',
-                                fontSize: '2rem',
-                                color: '#333',
-                            }}
-                        >
-                            Dashboard
-                        </h1>
+                        <h1 className="mt-4" style={{
+                            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                            fontFamily: 'Arial, sans-serif',
+                            fontWeight: 'bold',
+                            fontSize: '2rem',
+                            color: '#333'
+                        }}>Dashboard</h1>
+                        <ol className="breadcrumb mb-4">
+                            <li className="breadcrumb-item active"></li>
+                        </ol>
                     </div>
                     <div id="Packet-chart-container">
                         <div id="chart">
-<<<<<<< HEAD
                             <div id="network" style={{ width: '100%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
-=======
-                            <div
-                                id="network"
-                                style={{ width: '1175px', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}
-                            >
->>>>>>> c68ee191fab937500c45a081c3b8efa0bd2f8e43
                                 <ReactApexChart
                                     options={chart1.options}
                                     series={chart1.series}
                                     type="area"
-                                    height={280}
-                                />
+                                    height={280} />
                             </div>
-<<<<<<< HEAD
-                            <div id="at_types" style={{ width: '48.7%', marginTop: '1%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
-=======
-                            <div
-                                id="at_types"
-                                style={{
-                                    width: '570px',
-                                    marginTop: '15px',
-                                    boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)',
-                                }}
-                            >
->>>>>>> c68ee191fab937500c45a081c3b8efa0bd2f8e43
-                                <ReactApexChart
-                                    options={chart2.options}
-                                    series={chart2.series}
-                                    type="radar"
-                                    height={350}
-                                />
+                            <div id="at_types_and_risk" style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1%' }}>
+                                <div id="at_types" style={{ width: '49%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
+                                    <ReactApexChart
+                                        options={chart2.options}
+                                        series={chart2.series}
+                                        type="radar"
+                                        height={350}
+                                    />
+                                </div>
+                                <div id="at_risk" style={{ width: '49%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
+                                    <ReactApexChart
+                                        options={chart3.options}
+                                        series={chart3.series}
+                                        type="pie"
+                                        height={350}
+                                    />
+                                </div>
                             </div>
-<<<<<<< HEAD
-                            <div id="at_risk" style={{ width: '48.7%', marginTop: '-31.1%', marginLeft: '51.3%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
-=======
-                            <div
-                                id="at_risk"
-                                style={{
-                                    width: '570px',
-                                    marginTop: '-366px',
-                                    marginLeft: '604px',
-                                    boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)',
-                                }}
-                            >
->>>>>>> c68ee191fab937500c45a081c3b8efa0bd2f8e43
-                                <ReactApexChart
-                                    options={chart3.options}
-                                    series={chart3.series}
-                                    type="pie"
-                                    height={350}
-                                />
-                            </div>
-<<<<<<< HEAD
                             <div id="at_count" style={{ width: '100%', marginTop: '2.2%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
-=======
-                            <div
-                                id="at_count"
-                                style={{
-                                    width: '1175px',
-                                    marginTop: '30px',
-                                    boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)',
-                                }}
-                            >
->>>>>>> c68ee191fab937500c45a081c3b8efa0bd2f8e43
                                 <ReactApexChart
                                     options={chart4.options}
                                     series={chart4.series}
                                     type="bar"
-                                    height={380}
-                                />
+                                    height={380} />
                             </div>
                         </div>
                     </div>
