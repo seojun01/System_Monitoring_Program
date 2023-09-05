@@ -4,10 +4,10 @@ import ReactApexChart from 'react-apexcharts';
 
 function Cpu(): any {
     interface Data {
-        diskusage: any;
-        memavail: any;
-        memusage: any;
-        uptime: any;
+        diskusage: any[];
+        memavail: any[];
+        memusage: any[];
+        uptime: any[];
     }
     const [cpuInfo, setCpuInfo] = useState(null);
     const [fixedInfo, setFixedInfo] = useState({ totaldisk: [], host: [], osver: [], kernelver: [] });
@@ -36,45 +36,47 @@ function Cpu(): any {
     /*사용 방법: cpuInfo.cpuUsage, cpuInfo.cpuTemp*/
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('118.44.23.195:3001/fixedinfo');
-                if (!response.ok) {
-                    throw new Error('데이터 가져오기 실패');
-                }
-                const data = await response.json();
-                setFixedInfo(data);
-            } catch (error) {
-                console.error('데이터 가져오기 에러: ', error);
-            }
+        const fetchData = () => {
+            fetch('http://118.44.23.195:3001/fixedinfo')
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    setFixedInfo(data);
+                })
+                .catch((error) => {
+                    console.error('Error fetching data:', error);
+                });
         };
-    }, []);
+        const interval = setInterval(fetchData, 1000);
 
-    if (fixedInfo === null) {
-        return null;
-    }
+        return () => clearInterval(interval);
+    }, []);
 
     /*사용 방법: fixedInfo.host, fixedInfo.osver, fixedInfo.kernelver, fixedInfo.totaldisk */
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('118.44.23.195:3001/varinfo');
-                if (!response.ok) {
-                    throw new Error('데이터 가져오기 실패');
-                }
-                const data = await response.json();
-                setVarInfo(data);
-            } catch (error) {
-                console.error('데이터 가져오기 에러: ', error);
-            }
+        const fetchData = () => {
+            fetch('http://118.44.23.195:3001/varinfo')
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    setVarInfo(data);
+                })
+                .catch((error) => {
+                    console.error('Error fetching data:', error);
+                });
         };
+        const interval = setInterval(fetchData, 1000);
 
-        fetchData();
-
-        const intervalId = setInterval(fetchData, 1000);
-
-        return () => clearInterval(intervalId);
+        return () => clearInterval(interval);
     }, []);
 
     if (varInfo === null) {
