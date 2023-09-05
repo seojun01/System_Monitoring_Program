@@ -29,11 +29,14 @@ p {
 }
 h4 {
   font-weight: 600;
+  color : white;
+  font: caption;
 }
 h6 span{
   padding: 0 20px;
   text-transform: uppercase;
   font-weight: 700;
+  color : white;
 }
 .section{
   position: relative;
@@ -135,7 +138,7 @@ h6 span{
   width: 100%;
   padding: 0 35px;
   top: 47%;
-  left: 580%;
+  left: 505%;
   transform: translate3d(-500%, -50%, 35px) perspective(100px);
   z-index: 20;
   display: block;
@@ -152,7 +155,7 @@ h6 span{
   padding: 13px 20px;
   padding-left: 55px;
   height: 48px;
-  width: 55%;
+  width: 75%;
   font-weight: 500;
   border-radius: 4px;
   font-size: 14px;
@@ -285,4 +288,4 @@ h6 span{
   height: 26px;
   width: auto;
   display: block;
-}
+} 

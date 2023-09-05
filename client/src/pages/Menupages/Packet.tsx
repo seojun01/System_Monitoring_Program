@@ -3,10 +3,17 @@ import ReactApexChart from 'react-apexcharts';
 import './pages.css';
 
 function Packet(): JSX.Element {
-    const [trafficData, setTrafficData] = useState([]);
-
+    interface TrafficData {
+        reception: any[];
+        send: any[];
+        _time: any[];
+        conn: any[];
+      }
+      const [trafficData, setTrafficData] = useState<TrafficData>({ reception: [1,2,3,4,5], send: [1,10,3,4,5,1,5], _time: ['1','2','3','4','5','6','7'],conn: [1,10,3,4,5,1,5] });
+      
     useEffect(() => {
-        fetch('118.44.23.195:3001/packetinfo')
+        const fetchData = () => {
+        fetch('http://118.44.23.195:3001/packetinfo')
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -19,8 +26,28 @@ function Packet(): JSX.Element {
             .catch((error) => {
                 console.error('Error fetching data:', error);
             });
-    }, []);
+        };
+            const interval = setInterval(fetchData, 1000);
+
+            return () => clearInterval(interval);
+    }, [trafficData]);
     
+    function lentime() {
+        var time: any [] = [];
+        for(var i = 5; i >= 1; i--) {
+            time.push(trafficData._time[trafficData._time.length-i])
+        }
+        return time;
+    }
+
+    function lenreception() {
+        var reception: any [] = [];
+        for(var i = 5; i >= 1; i--) {
+            reception.push(trafficData.reception[trafficData.reception.length-i])
+        }
+        return reception;
+    }
+
     const chart1: any = {
         options: {
             chart: {
@@ -40,22 +67,22 @@ function Packet(): JSX.Element {
                 },
             },
             xaxis: {
-                categories: ['12:39', '12:40', '12:41', '12:42', '12:43'],
+                categories: trafficData._time.slice(-5),
             },
         },
 
         series: [
             {
                 name: 'reception',
-                data: [],
+                data: trafficData.reception.slice(-5),
             },
             {
                 name: 'send',
-                data: [19, 25, 20, 9, 2],
+                data: trafficData.send.slice(-5),
             },
             {
                 name: 'conn',
-                data: [10, 23, 40, 9, 30],
+                data: trafficData.conn.slice(-5),
             }
         ],
     };
@@ -160,7 +187,6 @@ function Packet(): JSX.Element {
 
     return (
         <div id="layoutSidenav">
-<<<<<<< HEAD
             <div id="layoutSidenav_content" style={{ backgroundColor: '#f2f2f2', height: '167vh', }}>
                 <main>
                     <div className="container-fluid px-4">
@@ -171,44 +197,19 @@ function Packet(): JSX.Element {
                             fontSize: '2rem',
                             color: '#333'
                         }}>Dashboard</h1>
-=======
-            <div id="layoutSidenav_content" style={{ backgroundColor: '#f2f2f2', height: '167vh' }}>
-                <main>
-                    <div className="container-fluid px-4">
-                        <h1
-                            className="mt-4"
-                            style={{
-                                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-                                fontFamily: 'Arial, sans-serif',
-                                fontWeight: 'bold',
-                                fontSize: '2rem',
-                                color: '#333',
-                            }}
-                        >
-                            Dashboard
-                        </h1>
->>>>>>> 032501015b2367dae487aaed28247df7a47a19ce
                         <ol className="breadcrumb mb-4">
                             <li className="breadcrumb-item active"></li>
                         </ol>
                     </div>
                     <div id="Packet-chart-container">
                         <div id="chart">
-<<<<<<< HEAD
                             <div id="network" style={{ width: '100%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
-=======
-                            <div
-                                id="network"
-                                style={{ width: '100%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}
-                            >
->>>>>>> 032501015b2367dae487aaed28247df7a47a19ce
                                 <ReactApexChart
                                     options={chart1.options}
                                     series={chart1.series}
                                     type="area"
                                     height={280} />
                             </div>
-<<<<<<< HEAD
                             <div id="at_types_and_risk" style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1%' }}>
                                 <div id="at_types" style={{ width: '49%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
                                     <ReactApexChart
@@ -228,47 +229,6 @@ function Packet(): JSX.Element {
                                 </div>
                             </div>
                             <div id="at_count" style={{ width: '100%', marginTop: '2.2%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
-=======
-                            <div
-                                id="at_types"
-                                style={{
-                                    width: '49%',
-                                    marginTop: '1%',
-                                    boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)',
-                                }}
-                            >
-                                <ReactApexChart
-                                    options={chart2.options}
-                                    series={chart2.series}
-                                    type="radar"
-                                    height={350}
-                                />
-                            </div>
-                            <div
-                                id="at_risk"
-                                style={{
-                                    width: '49%',
-                                    marginTop: '-31.1%',
-                                    marginLeft: '51%',
-                                    boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)',
-                                }}
-                            >
-                                <ReactApexChart
-                                    options={chart3.options}
-                                    series={chart3.series}
-                                    type="pie"
-                                    height={350}
-                                />
-                            </div>
-                            <div
-                                id="at_count"
-                                style={{
-                                    width: '100%',
-                                    marginTop: '2.2%',
-                                    boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)',
-                                }}
-                            >
->>>>>>> 032501015b2367dae487aaed28247df7a47a19ce
                                 <ReactApexChart
                                     options={chart4.options}
                                     series={chart4.series}
