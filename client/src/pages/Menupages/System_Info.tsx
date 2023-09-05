@@ -9,6 +9,7 @@ function Cpu(): any {
         memusage: any[];
         uptime: any[];
     }
+
     const [cpuInfo, setCpuInfo] = useState(null);
     const [fixedInfo, setFixedInfo] = useState({ totaldisk: [], host: [], osver: [], kernelver: [] });
     const [varInfo, setVarInfo] = useState<Data>({ memusage: [], memavail: [], diskusage: [], uptime: [] });
@@ -51,9 +52,6 @@ function Cpu(): any {
                     console.error('Error fetching data:', error);
                 });
         };
-        const interval = setInterval(fetchData, 1000);
-
-        return () => clearInterval(interval);
     }, []);
 
     /*사용 방법: fixedInfo.host, fixedInfo.osver, fixedInfo.kernelver, fixedInfo.totaldisk */
@@ -89,6 +87,9 @@ function Cpu(): any {
             chart: {
                 height: 280,
                 type: 'area',
+                toolbar: {
+                    show: false,
+                },
                 zoom: {
                     enabled: false,
                 },
@@ -102,13 +103,13 @@ function Cpu(): any {
             xaxis: {
                 type: 'datetime',
                 categories: [
-                    '2018-09-19T01:00:00.000Z',
-                    '2018-09-19T02:00:00.000Z',
-                    '2018-09-19T03:00:00.000Z',
-                    '2018-09-19T04:00:00.000Z',
-                    '2018-09-19T05:00:00.000Z',
-                    '2018-09-19T06:00:00.000Z',
-                    '2018-09-19T06:30:00.000Z',
+                    '2023-09-5T01:00:00.000Z',
+                    '2023-09-5T02:00:00.000Z',
+                    '2023-09-5T03:00:00.000Z',
+                    '2023-09-5T04:00:00.000Z',
+                    '2023-09-5T05:00:00.000Z',
+                    '2023-09-5T06:00:00.000Z',
+                    '2023-09-5T07:00:00.000Z',
                 ],
             },
             tooltip: {
@@ -328,6 +329,7 @@ function Cpu(): any {
                         >
                             System_Info
                         </h1>
+                        <ol className="breadcrumb mb-4"></ol>
                     </div>
                     <div id="chart">
                         <div id="chart1">

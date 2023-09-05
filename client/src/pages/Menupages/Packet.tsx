@@ -207,9 +207,7 @@ function Packet(): JSX.Element {
                         >
                             Dashboard
                         </h1>
-                        <ol className="breadcrumb mb-4">
-                            <li className="breadcrumb-item active"></li>
-                        </ol>
+                        <ol className="breadcrumb mb-4"></ol>
                     </div>
                     <div id="Packet-chart-container">
                         <div id="chart">
