@@ -4,10 +4,10 @@ import ReactApexChart from 'react-apexcharts';
 
 function Cpu(): any {
     interface Data {
-        diskusage: any[];
-        memavail: any[];
-        memusage: any[];
-        uptime: any[];
+        diskusage: number[];
+        memavail: number[];
+        memusage: number[];
+        uptime: string[];
     }
 
     const [cpuInfo, setCpuInfo] = useState(null);
