@@ -3,11 +3,17 @@ import './pages.css';
 import ReactApexChart from 'react-apexcharts';
 
 function Cpu(): any {
-    /* <<제거    const [cpuInfo, setCpuInfo] = useState(null);
-    const [fixedInfo, setFixedInfo] = useState(null);
-    const [varInfo, setVarInfo] = useState(null);
+    interface Data {
+        diskusage: any;
+        memavail: any;
+        memusage: any;
+        uptime: any;
+    }
+    const [cpuInfo, setCpuInfo] = useState(null);
+    const [fixedInfo, setFixedInfo] = useState({ totaldisk: [], host: [], osver: [], kernelver: [] });
+    const [varInfo, setVarInfo] = useState<Data>({ memusage: [], memavail: [], diskusage: [], uptime: [] });
 
-    useEffect(() => {
+    /* <<제거    useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await fetch('118.44.23.195:3001/cpuinfo'); // 백엔드 API 엔드포인트 설정 필요
@@ -29,7 +35,7 @@ function Cpu(): any {
     }, []);
     /*사용 방법: cpuInfo.cpuUsage, cpuInfo.cpuTemp*/
 
-    /* <<제거    useEffect(() => {
+    useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await fetch('118.44.23.195:3001/fixedinfo');
@@ -42,21 +48,15 @@ function Cpu(): any {
                 console.error('데이터 가져오기 에러: ', error);
             }
         };
-
-        fetchData();
-
-        const intervalId = setInterval(fetchData, 1000);
-
-        return () => clearInterval(intervalId);
     }, []);
 
     if (fixedInfo === null) {
         return null;
     }
 
-    /*사용 방법: fixedInfo. */
+    /*사용 방법: fixedInfo.host, fixedInfo.osver, fixedInfo.kernelver, fixedInfo.totaldisk */
 
-    /* <<제거    useEffect(() => {
+    useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await fetch('118.44.23.195:3001/varinfo');
@@ -81,7 +81,7 @@ function Cpu(): any {
         return null;
     }
 
-    /*사용 방법: varInfo. */
+    /*사용 방법: varInfo.memusage, varInfo.memavail, varInfo.diskuasge, varInfo.uptime */
     const chart1: any = {
         options: {
             chart: {
@@ -153,7 +153,7 @@ function Cpu(): any {
     };
 
     const chart2: any = {
-        series: [66] /*varInfo. */,
+        series: varInfo.memusage,
         options: {
             chart: {
                 height: 350,
@@ -200,7 +200,7 @@ function Cpu(): any {
     };
 
     const chart3: any = {
-        series: [33] /*varInfo. */,
+        series: varInfo.memavail,
         options: {
             chart: {
                 height: 350,
@@ -247,7 +247,7 @@ function Cpu(): any {
     };
 
     const chart4: any = {
-        series: [1000 /*fixedinfo. */, 334 /*varinfo. */],
+        series: [fixedInfo.totaldisk, varInfo.diskusage],
         options: {
             chart: {
                 height: 390,
@@ -365,19 +365,19 @@ function Cpu(): any {
                         <div id="table">
                             <table className="type04">
                                 <tr>
-                                    <th scope="row">Host</th>
+                                    <th scope="row">{fixedInfo.host}</th>
                                     <td>NA</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">OS</th>
+                                    <th scope="row">{fixedInfo.osver}</th>
                                     <td>NA</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Kernel</th>
+                                    <th scope="row">{fixedInfo.kernelver}</th>
                                     <td>NA</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Uptime</th>
+                                    <th scope="row">{varInfo.uptime}</th>
                                     <td>NA</td>
                                 </tr>
                             </table>
