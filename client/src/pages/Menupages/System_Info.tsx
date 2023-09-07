@@ -3,20 +3,28 @@ import './pages.css';
 import ReactApexChart from 'react-apexcharts';
 
 function Cpu(): any {
-    interface Data {
-        diskusage: any;
-        memavail: any;
-        memusage: any;
-        uptime: any;
+    interface fixedData {
+        diskusage: number[];
+        memavail: number[];
+        memusage: number[];
+        uptime: string[];
     }
+
+    interface varData {
+        totaldisk: number[];
+        host: string[];
+        osver: string[];
+        kernelver: string[];
+    }
+
     const [cpuInfo, setCpuInfo] = useState(null);
-    const [fixedInfo, setFixedInfo] = useState({ totaldisk: [], host: [], osver: [], kernelver: [] });
-    const [varInfo, setVarInfo] = useState<Data>({ memusage: [], memavail: [], diskusage: [], uptime: [] });
+    const [fixedInfo, setFixedInfo] = useState<varData>({ totaldisk: [], host: [], osver: [], kernelver: [] });
+    const [varInfo, setVarInfo] = useState<fixedData>({ memusage: [], memavail: [], diskusage: [], uptime: [] });
 
     /* <<제거    useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('118.44.23.195:3001/cpuinfo'); // 백엔드 API 엔드포인트 설정 필요
+                const response = await fetch('/cpuinfo'); // 백엔드 API 엔드포인트 설정 필요
                 if (!response.ok) {
                     throw new Error('데이터 가져오기 실패');
                 }
@@ -36,45 +44,44 @@ function Cpu(): any {
     /*사용 방법: cpuInfo.cpuUsage, cpuInfo.cpuTemp*/
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('118.44.23.195:3001/fixedinfo');
-                if (!response.ok) {
-                    throw new Error('데이터 가져오기 실패');
-                }
-                const data = await response.json();
-                setFixedInfo(data);
-            } catch (error) {
-                console.error('데이터 가져오기 에러: ', error);
-            }
+        const fetchData = () => {
+            fetch('/fixedinfo')
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    setFixedInfo(data);
+                })
+                .catch((error) => {
+                    console.error('Error fetching data:', error);
+                });
         };
     }, []);
-
-    if (fixedInfo === null) {
-        return null;
-    }
 
     /*사용 방법: fixedInfo.host, fixedInfo.osver, fixedInfo.kernelver, fixedInfo.totaldisk */
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('118.44.23.195:3001/varinfo');
-                if (!response.ok) {
-                    throw new Error('데이터 가져오기 실패');
-                }
-                const data = await response.json();
-                setVarInfo(data);
-            } catch (error) {
-                console.error('데이터 가져오기 에러: ', error);
-            }
+        const fetchData = () => {
+            fetch('/varinfo')
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    setVarInfo(data);
+                })
+                .catch((error) => {
+                    console.error('Error fetching data:', error);
+                });
         };
+        const interval = setInterval(fetchData, 1000);
 
-        fetchData();
-
-        const intervalId = setInterval(fetchData, 1000);
-
-        return () => clearInterval(intervalId);
+        return () => clearInterval(interval);
     }, []);
 
     if (varInfo === null) {
@@ -87,6 +94,9 @@ function Cpu(): any {
             chart: {
                 height: 280,
                 type: 'area',
+                toolbar: {
+                    show: false,
+                },
                 zoom: {
                     enabled: false,
                 },
@@ -100,13 +110,13 @@ function Cpu(): any {
             xaxis: {
                 type: 'datetime',
                 categories: [
-                    '2018-09-19T01:00:00.000Z',
-                    '2018-09-19T02:00:00.000Z',
-                    '2018-09-19T03:00:00.000Z',
-                    '2018-09-19T04:00:00.000Z',
-                    '2018-09-19T05:00:00.000Z',
-                    '2018-09-19T06:00:00.000Z',
-                    '2018-09-19T06:30:00.000Z',
+                    '2023-09-5T01:00:00.000Z',
+                    '2023-09-5T02:00:00.000Z',
+                    '2023-09-5T03:00:00.000Z',
+                    '2023-09-5T04:00:00.000Z',
+                    '2023-09-5T05:00:00.000Z',
+                    '2023-09-5T06:00:00.000Z',
+                    '2023-09-5T07:00:00.000Z',
                 ],
             },
             tooltip: {
@@ -153,7 +163,7 @@ function Cpu(): any {
     };
 
     const chart2: any = {
-        series: varInfo.memusage,
+        series: [varInfo.memusage],
         options: {
             chart: {
                 height: 350,
@@ -200,7 +210,7 @@ function Cpu(): any {
     };
 
     const chart3: any = {
-        series: varInfo.memavail,
+        series: [varInfo.memavail],
         options: {
             chart: {
                 height: 350,
@@ -326,6 +336,7 @@ function Cpu(): any {
                         >
                             System_Info
                         </h1>
+                        <ol className="breadcrumb mb-4"></ol>
                     </div>
                     <div id="chart">
                         <div id="chart1">
