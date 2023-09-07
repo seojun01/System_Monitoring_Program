@@ -4,16 +4,16 @@ import './pages.css';
 
 function Packet(): JSX.Element {
     interface TrafficData {
-        reception: any[];
-        send: any[];
-        _time: any[];
-        conn: any[];
-      }
-      const [trafficData, setTrafficData] = useState<TrafficData>({ reception: [1,2,3,4,5], send: [1,10,3,4,5,1,5], _time: ['1','2','3','4','5','6','7'],conn: [1,10,3,4,5,1,5] });
+        reception: number[];
+        send: number[];
+        _time: Date[];
+        conn: number[];
+      } 
+      const [trafficData, setTrafficData] = useState<TrafficData>({ reception: [1,2,3,4,5], send: [1,10,3,4,5,1,5], _time: [],conn: [1,10,3,4,5,1,5] });
       
     useEffect(() => {
         const fetchData = () => {
-        fetch('http://118.44.23.195:3001/packetinfo')
+        fetch('/packetinfo')
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -27,10 +27,15 @@ function Packet(): JSX.Element {
                 console.error('Error fetching data:', error);
             });
         };
-            const interval = setInterval(fetchData, 1000);
+            const interval = setInterval(fetchData, 10000);
 
             return () => clearInterval(interval);
     }, [trafficData]);
+    let result3 = [];
+
+    
+
+
     
     function lentime() {
         var time: any [] = [];
@@ -187,7 +192,7 @@ function Packet(): JSX.Element {
 
     return (
         <div id="layoutSidenav">
-            <div id="layoutSidenav_content" style={{ backgroundColor: '#f2f2f2', height: '167vh', }}>
+            <div id="layoutSidenav_content" style={{ backgroundColor: '#F3E8EB', height: '100%', }}>
                 <main>
                     <div className="container-fluid px-4">
                         <h1 className="mt-4" style={{
@@ -203,7 +208,7 @@ function Packet(): JSX.Element {
                     </div>
                     <div id="Packet-chart-container">
                         <div id="chart">
-                            <div id="network" style={{ width: '100%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
+                            <div id="network" style={{ width: '99.99%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
                                 <ReactApexChart
                                     options={chart1.options}
                                     series={chart1.series}
