@@ -192,7 +192,7 @@ function Packet(): JSX.Element {
 
     return (
         <div id="layoutSidenav">
-            <div id="layoutSidenav_content" style={{ backgroundColor: '#f2f2f2', height: '167vh' }}>
+            <div id="layoutSidenav_content" style={{ backgroundColor: '#fff0f5', height: '100%' }}>
                 <main>
                     <div className="container-fluid px-4">
                         <h1
