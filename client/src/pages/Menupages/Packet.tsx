@@ -4,41 +4,15 @@ import './pages.css';
 
 function Packet(): JSX.Element {
     interface TrafficData {
-<<<<<<< HEAD
         reception: number[];
         send: number[];
-        _time: Date[];
+        _time: string[];
         conn: number[];
-      } 
-      const [trafficData, setTrafficData] = useState<TrafficData>({ reception: [1,2,3,4,5], send: [1,10,3,4,5,1,5], _time: [],conn: [1,10,3,4,5,1,5] });
-      
-    useEffect(() => {
-        const fetchData = () => {
-        fetch('/packetinfo')
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then((data) => {
-                setTrafficData(data);
-            })
-            .catch((error) => {
-                console.error('Error fetching data:', error);
-            });
-        };
-            const interval = setInterval(fetchData, 10000);
-=======
-        reception: any[];
-        send: any[];
-        _time: any[];
-        conn: any[];
     }
     const [trafficData, setTrafficData] = useState<TrafficData>({
         reception: [1, 2, 3, 4, 5],
         send: [1, 10, 3, 4, 5, 1, 5],
-        _time: ['1', '2', '3', '4', '5', '6', '7'],
+        _time: ['1', '2', '3', '4', '5', '6', '7', '8'],
         conn: [1, 10, 3, 4, 5, 1, 5],
     });
 
@@ -59,20 +33,10 @@ function Packet(): JSX.Element {
                 });
         };
         const interval = setInterval(fetchData, 1000);
->>>>>>> 7e4a7c8d224c1ded1c4fa7b7c1c3ffcddd90281d
 
         return () => clearInterval(interval);
     }, [trafficData]);
-<<<<<<< HEAD
-    let result3 = [];
 
-    
-
-
-    
-=======
-
->>>>>>> 7e4a7c8d224c1ded1c4fa7b7c1c3ffcddd90281d
     function lentime() {
         var time: any[] = [];
         for (var i = 5; i >= 1; i--) {
@@ -228,11 +192,7 @@ function Packet(): JSX.Element {
 
     return (
         <div id="layoutSidenav">
-<<<<<<< HEAD
-            <div id="layoutSidenav_content" style={{ backgroundColor: '#F3E8EB', height: '100%', }}>
-=======
-            <div id="layoutSidenav_content" style={{ backgroundColor: '#fff0f5', height: '100%' }}>
->>>>>>> 7e4a7c8d224c1ded1c4fa7b7c1c3ffcddd90281d
+            <div id="layoutSidenav_content" style={{ backgroundColor: '#f2f2f2', height: '100%' }}>
                 <main>
                     <div className="container-fluid px-4">
                         <h1
@@ -247,18 +207,16 @@ function Packet(): JSX.Element {
                         >
                             Dashboard
                         </h1>
-                        <ol className="breadcrumb mb-4"></ol>
+                        <ol className="breadcrumb mb-4">
+                            <li className="breadcrumb-item active"></li>
+                        </ol>
                     </div>
                     <div id="Packet-chart-container">
                         <div id="chart">
-<<<<<<< HEAD
-                            <div id="network" style={{ width: '99.99%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
-=======
                             <div
                                 id="network"
-                                style={{ width: '100%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}
+                                style={{ width: '99.99%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}
                             >
->>>>>>> 7e4a7c8d224c1ded1c4fa7b7c1c3ffcddd90281d
                                 <ReactApexChart
                                     options={chart1.options}
                                     series={chart1.series}
