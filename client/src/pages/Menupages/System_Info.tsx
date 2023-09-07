@@ -338,7 +338,7 @@ function Cpu(): any {
                         </h1>
                         <ol className="breadcrumb mb-4"></ol>
                     </div>
-                    <div id="chart">
+                    <div id="chart-container">
                         <div id="chart1">
                             <ReactApexChart
                                 options={chart1.options}
@@ -347,8 +347,6 @@ function Cpu(): any {
                                 height={chart1.options.chart.height}
                             />
                         </div>
-                    </div>
-                    <div id="chart-container">
                         <div id="memory1">
                             <ReactApexChart
                                 options={chart2.options}
