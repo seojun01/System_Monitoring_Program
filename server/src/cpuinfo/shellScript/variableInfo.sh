@@ -11,8 +11,6 @@ memAvail=`free | awk '{if($1 == "Mem:") print($7/$2*100)}'`
 diskUsage=$(df --total | awk '/total/' | awk '{print $2, $3}' | awk '{print $2 / $1 * 100}')
 
 mySQL=${which mysql}
-query="INSERT INTO variableInfo (uptime, memusage, memavail, diskusage) VALUES (${upTime}, ${memUsage}, ${memAvail}, ${diskUsage})"
+query="INSERT INTO monitoring.variableInfo (uptime, memusage, memavail, diskusage) VALUES (${upTime}, ${memUsage}, ${memAvail}, ${diskUsage})"
 
-${mySQL} -u root << EOF
-    ${query}
-EOF
+${mySQL} --login-path=root -e "${query}"

@@ -10,11 +10,9 @@ osRelease=`cat /etc/os-release | grep VERSION=`
 KVersion=`uname -r`
 
 #Disk Total
-diskTotal=`df -P | grep -v ^Filesystem | awk '{sum += $2} END {print sum/1024/1024" GB"}'`
+diskTotal=`df -P | grep -v ^Filesystem | awk '{sum += $2} END {print sum/1024/1024" "}'`
 
 mySQL=${which mysql}
-query="INSERT INTO fixedInfo (host, osver, kernelver, totaldisk) VALUES (${hName}, ${osRelease}, ${KVersion}, ${diskTotal})"
+query="INSERT INTO monitoring.fixedInfo (host, osver, kernelver, totaldisk) VALUES (${hName}, ${osRelease}, ${KVersion}, ${diskTotal})"
 
-${mySQL} - u root << EOF
-    ${query}
-EOF
+${mySQL} --login-path=root -e "${query}"

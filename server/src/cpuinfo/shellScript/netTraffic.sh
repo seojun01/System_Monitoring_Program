@@ -15,8 +15,6 @@ tx3=$((($tx2-$tx1)*8/1024/$delay))
 #echo "`date '+%k:%M:%S'` : $rx3 / $tx3        $conn"
 
 mySQL=${which mysql}
-query="INSERT INTO traffic (_time, reception, send, conn) VALUES (curtime(), ${rx3}, ${tx3}, ${conn})"
+query="INSERT INTO monitoring.traffic (_time, reception, send, conn) VALUES (curtime(), ${rx3}, ${tx3}, ${conn})"
 
-${mySQL} -u root << EOF
-    ${query}
-EOF
+${mySQL} --login-path=root -e "${query}"
