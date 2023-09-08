@@ -18,7 +18,7 @@ function Packet(): JSX.Element {
 
     useEffect(() => {
         const fetchData = () => {
-            fetch('http://118.44.23.195:3001/packetinfo')
+            fetch('/packetinfo/1')
                 .then((response) => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -26,6 +26,7 @@ function Packet(): JSX.Element {
                     return response.json();
                 })
                 .then((data) => {
+                    console.log(data);
                     setTrafficData(data);
                 })
                 .catch((error) => {

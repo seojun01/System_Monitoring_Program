@@ -53,6 +53,7 @@ function Cpu(): any {
                     return response.json();
                 })
                 .then((data) => {
+                    console.log(data);
                     setFixedInfo(data);
                 })
                 .catch((error) => {

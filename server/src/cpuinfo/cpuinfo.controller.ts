@@ -18,7 +18,7 @@ import { CpuEntity } from './entities/cpuinfo.entity';
 export class CpuinfoController {
   constructor(private readonly cpuinfoService: CpuinfoService) {}
 
-  @Get()
+  @Get('/1')
   async findAll(): Promise<CpuEntity[]> {
     return this.cpuinfoService.findAll();
   }

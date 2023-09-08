@@ -16,7 +16,7 @@ import { VarEntity } from './entities/varinfo.entity';
 export class VarinfoController {
   constructor(private readonly varinfoService: VarinfoService) {}
 
-  @Get()
+  @Get('/1')
   async findAll(): Promise<VarEntity[]> {
     return this.varinfoService.findAll();
   }

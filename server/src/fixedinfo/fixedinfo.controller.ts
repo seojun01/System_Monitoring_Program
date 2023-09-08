@@ -16,7 +16,7 @@ import { FixedEntity } from './entities/fixedinfo.entity';
 export class FixedinfoController {
   constructor(private readonly fixedinfoService: FixedinfoService) {}
 
-  @Get()
+  @Get('/1')
   async findAll(): Promise<FixedEntity[]> {
     return this.fixedinfoService.findAll();
   }

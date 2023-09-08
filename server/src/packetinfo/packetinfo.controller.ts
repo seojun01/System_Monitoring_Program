@@ -16,7 +16,7 @@ import { PacketEntity } from './entities/packetinfo.entity';
 export class PacketinfoController {
   constructor(private readonly packetinfoService: PacketinfoService) {}
 
-  @Get()
+  @Get('/1')
   async findAll(): Promise<PacketEntity[]> {
     return this.packetinfoService.findAll();
   }
