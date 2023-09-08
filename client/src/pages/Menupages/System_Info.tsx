@@ -3,24 +3,22 @@ import './pages.css';
 import ReactApexChart from 'react-apexcharts';
 
 function Cpu(): any {
-    interface fixedData {
-        diskusage: number[];
-        memavail: number[];
-        memusage: number[];
-        uptime: string[];
-    }
-
-    interface varData {
+    interface FixedInfo {
+        host: string;
+        osver: string;
+        kernelver: string;
         totaldisk: number[];
-        host: string[];
-        osver: string[];
-        kernelver: string[];
+    }
+    interface VarInfo {
+        memusage: number[];
+        memavail: number[];
+        diskusage: number[];
+        uptime: string;
     }
 
-    const [cpuInfo, setCpuInfo] = useState(null);
-    const [fixedInfo, setFixedInfo] = useState<varData>({ totaldisk: [], host: [], osver: [], kernelver: [] });
-    const [varInfo, setVarInfo] = useState<fixedData>({ memusage: [], memavail: [], diskusage: [], uptime: [] });
-
+    /*const [cpuInfo, setCpuInfo] = useState(null); */
+    const [fixedInfo, setFixedInfo] = useState<FixedInfo | null>(null);
+    const [varInfo, setVarInfo] = useState<VarInfo | null>(null);
     /* <<제거    useEffect(() => {
         const fetchData = async () => {
             try {
@@ -45,7 +43,7 @@ function Cpu(): any {
 
     useEffect(() => {
         const fetchData = () => {
-            fetch('/fixedinfo')
+            fetch('/fixedinfo/1')
                 .then((response) => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -60,13 +58,14 @@ function Cpu(): any {
                     console.error('Error fetching data:', error);
                 });
         };
+        fetchData();
     }, []);
 
     /*사용 방법: fixedInfo.host, fixedInfo.osver, fixedInfo.kernelver, fixedInfo.totaldisk */
 
     useEffect(() => {
         const fetchData = () => {
-            fetch('/varinfo')
+            fetch('/varinfo/1')
                 .then((response) => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -74,18 +73,22 @@ function Cpu(): any {
                     return response.json();
                 })
                 .then((data) => {
+                    console.log(data);
                     setVarInfo(data);
                 })
                 .catch((error) => {
                     console.error('Error fetching data:', error);
                 });
         };
-        const interval = setInterval(fetchData, 1000);
+        const interval = setInterval(fetchData, 10000);
 
         return () => clearInterval(interval);
     }, []);
 
     if (varInfo === null) {
+        return null;
+    }
+    if (fixedInfo === null) {
         return null;
     }
 
@@ -164,7 +167,7 @@ function Cpu(): any {
     };
 
     const chart2: any = {
-        series: [varInfo.memusage],
+        series: [varInfo?.memusage],
         options: {
             chart: {
                 height: 350,
@@ -185,7 +188,7 @@ function Cpu(): any {
                             offsetY: 76,
                             fontSize: '22px',
                             color: undefined,
-                            formatter: function (val: number) {
+                            formatter: function (val: any) {
                                 return val + '%';
                             },
                         },
@@ -211,7 +214,7 @@ function Cpu(): any {
     };
 
     const chart3: any = {
-        series: [varInfo.memavail],
+        series: [varInfo?.memavail],
         options: {
             chart: {
                 height: 350,
@@ -232,7 +235,7 @@ function Cpu(): any {
                             offsetY: 76,
                             fontSize: '22px',
                             color: undefined,
-                            formatter: function (val: number) {
+                            formatter: function (val: any) {
                                 return val + '%';
                             },
                         },
@@ -258,7 +261,7 @@ function Cpu(): any {
     };
 
     const chart4: any = {
-        series: [fixedInfo.totaldisk, varInfo.diskusage],
+        series: [fixedInfo?.totaldisk, varInfo?.diskusage],
         options: {
             chart: {
                 height: 390,
@@ -300,7 +303,7 @@ function Cpu(): any {
                 markers: {
                     size: 0,
                 },
-                formatter: function (seriesName: string, opts: any) {
+                formatter: function (seriesName: any, opts: any) {
                     return seriesName + ':  ' + opts.w.globals.series[opts.seriesIndex];
                 },
                 itemMargin: {
@@ -375,19 +378,19 @@ function Cpu(): any {
                         <div id="table">
                             <table className="type04">
                                 <tr>
-                                    <th scope="row">{fixedInfo.host}</th>
+                                    <th scope="row">{fixedInfo?.host}</th>
                                     <td>NA</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">{fixedInfo.osver}</th>
+                                    <th scope="row">{fixedInfo?.osver}</th>
                                     <td>NA</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">{fixedInfo.kernelver}</th>
+                                    <th scope="row">{fixedInfo?.kernelver}</th>
                                     <td>NA</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">{varInfo.uptime}</th>
+                                    <th scope="row">{varInfo?.uptime}</th>
                                     <td>NA</td>
                                 </tr>
                             </table>
