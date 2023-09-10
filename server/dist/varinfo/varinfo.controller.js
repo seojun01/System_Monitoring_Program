@@ -17,11 +17,11 @@ let VarinfoController = exports.VarinfoController = class VarinfoController {
         this.varinfoService = varinfoService;
     }
     async findAll() {
-        return this.varinfoService.findAll();
+        return this.varinfoService.getOne();
     }
 };
 __decorate([
-    (0, common_1.Get)(),
+    (0, common_1.Get)('/1'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)

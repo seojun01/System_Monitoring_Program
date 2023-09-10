@@ -10,14 +10,7 @@ cpuTemp2=$(($cpuTemp0/100))
 cpuTempM=$(($cpuTemp2 % $cpuTemp1))
 cpuTemp=${cpuTemp1}.${cpuTempM}
 
-
-#Insert Data
 mySQL=`which mysql`
 query="INSERT INTO monitoring.cpuInfo (_time, cpuUsage, cpuTemp) VALUES (curtime(), ${cpuUsage}, ${cpuTemp})"
 
 ${mySQL} --login-path=root -e "${query}"
-
-#INSERT Data into Database using EOF
-#<< EOF
-#    ${query}
-#EOF

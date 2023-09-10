@@ -18,6 +18,6 @@ export class VarinfoController {
 
   @Get('/1')
   async findAll(): Promise<VarEntity[]> {
-    return this.varinfoService.findAll();
+    return this.varinfoService.getOne();
   }
 }

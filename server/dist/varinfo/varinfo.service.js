@@ -24,6 +24,14 @@ let VarinfoService = exports.VarinfoService = class VarinfoService {
     async findAll() {
         return this.varRepository.find();
     }
+    async getOne() {
+        return this.varRepository.find({
+            order: {
+                id: 'DESC',
+            },
+            take: 1,
+        });
+    }
 };
 exports.VarinfoService = VarinfoService = __decorate([
     (0, common_1.Injectable)(),
