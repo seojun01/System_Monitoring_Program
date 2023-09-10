@@ -3,22 +3,16 @@ import './pages.css';
 import ReactApexChart from 'react-apexcharts';
 
 function Cpu(): any {
-    interface FixedInfo {
-        host: string;
-        osver: string;
-        kernelver: string;
-        totaldisk: number[];
-    }
-    interface VarInfo {
-        memusage: number[];
-        memavail: number[];
-        diskusage: number[];
-        uptime: string;
-    }
-
     /*const [cpuInfo, setCpuInfo] = useState(null); */
-    const [fixedInfo, setFixedInfo] = useState<FixedInfo | null>(null);
-    const [varInfo, setVarInfo] = useState<VarInfo | null>(null);
+    const [host, setHost] = useState([]);
+    const [osVer, setOsver] = useState([]);
+    const [kernelVer, setKernelver] = useState([]);
+    const [totalDisk, setTotaldisk] = useState([]);
+    const [memUsage, setMemusage] = useState([]);
+    const [memAvail, setMemavail] = useState([]);
+    const [diskUsage, setDiskusage] = useState([]);
+    const [upTime, setUptime] = useState([]);
+
     /* <<제거    useEffect(() => {
         const fetchData = async () => {
             try {
@@ -42,58 +36,125 @@ function Cpu(): any {
     /*사용 방법: cpuInfo.cpuUsage, cpuInfo.cpuTemp*/
 
     useEffect(() => {
-        const fetchData = () => {
-            fetch('/fixedinfo/1')
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then((data) => {
-                    console.log(data);
-                    setFixedInfo(data);
-                })
-                .catch((error) => {
-                    console.error('Error fetching data:', error);
-                });
+        const getData = async () => {
+            const url = '/fixedinfo';
+            try {
+                const response = await fetch(url);
+                const host = await response.json();
+                setHost(host?.map((item: any) => item.host));
+            } catch (error) {
+                console.log(error);
+            }
         };
-        fetchData();
+        getData();
+    }, []);
+    useEffect(() => {
+        const getData = async () => {
+            const url = '/fixedinfo';
+            try {
+                const response = await fetch(url);
+                const osVer = await response.json();
+                setOsver(osVer?.map((item: any) => item.osver));
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getData();
+    }, []);
+    useEffect(() => {
+        const getData = async () => {
+            const url = '/fixedinfo';
+            try {
+                const response = await fetch(url);
+                const kernelVer = await response.json();
+                setKernelver(kernelVer?.map((item: any) => item.kernelver));
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getData();
+    }, []);
+    useEffect(() => {
+        const getData = async () => {
+            const url = '/fixedinfo';
+            try {
+                const response = await fetch(url);
+                const totalDisk = await response.json();
+                setTotaldisk(totalDisk?.map((item: any) => item.totaldisk));
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getData();
     }, []);
 
-    /*사용 방법: fixedInfo.host, fixedInfo.osver, fixedInfo.kernelver, fixedInfo.totaldisk */
-
     useEffect(() => {
-        const fetchData = () => {
-            fetch('/varinfo/1')
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then((data) => {
-                    console.log(data);
-                    setVarInfo(data);
-                })
-                .catch((error) => {
-                    console.error('Error fetching data:', error);
-                });
+        const getData = async () => {
+            const url = '/varinfo';
+            try {
+                const response = await fetch(url);
+                const memAvail = await response.json();
+                console.log(memAvail);
+                setMemavail(memAvail?.map((item: any) => item.memavail));
+            } catch (error) {
+                console.log(error);
+            }
         };
-        const interval = setInterval(fetchData, 10000);
+        getData();
+        const interval = setInterval(getData, 5000); /* 5초 */
+
+        return () => clearInterval(interval);
+    }, []);
+    useEffect(() => {
+        const getData = async () => {
+            const url = '/varinfo';
+            try {
+                const response = await fetch(url);
+                const memUsage = await response.json();
+                setMemusage(memUsage?.map((item: any) => item.memusage));
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getData();
+        const interval = setInterval(getData, 5000); /* 5초 */
+
+        return () => clearInterval(interval);
+    }, []);
+    useEffect(() => {
+        const getData = async () => {
+            const url = '/varinfo';
+            try {
+                const response = await fetch(url);
+                const diskUsage = await response.json();
+                setDiskusage(diskUsage?.map((item: any) => item.diskusage));
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getData();
+        const interval = setInterval(getData, 5000); /* 5초 */
+
+        return () => clearInterval(interval);
+    }, []);
+    useEffect(() => {
+        const getData = async () => {
+            const url = '/varinfo';
+            try {
+                const response = await fetch(url);
+                const upTime = await response.json();
+                setUptime(upTime?.map((item: any) => item.uptime));
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getData();
+        const interval = setInterval(getData, 5000); /* 5초 */
 
         return () => clearInterval(interval);
     }, []);
 
-    if (varInfo === null) {
-        return null;
-    }
-    if (fixedInfo === null) {
-        return null;
-    }
-
-    /*사용 방법: varInfo.memusage, varInfo.memavail, varInfo.diskuasge, varInfo.uptime */
-    const chart1: any = {
+    var chart1: any = {
         options: {
             chart: {
                 height: 280,
@@ -167,7 +228,7 @@ function Cpu(): any {
     };
 
     const chart2: any = {
-        series: [varInfo?.memusage],
+        series: [memAvail],
         options: {
             chart: {
                 height: 350,
@@ -214,7 +275,7 @@ function Cpu(): any {
     };
 
     const chart3: any = {
-        series: [varInfo?.memavail],
+        series: [memUsage],
         options: {
             chart: {
                 height: 350,
@@ -260,8 +321,8 @@ function Cpu(): any {
         },
     };
 
-    const chart4: any = {
-        series: [fixedInfo?.totaldisk, varInfo?.diskusage],
+    var chart4: any = {
+        series: [totalDisk, diskUsage],
         options: {
             chart: {
                 height: 390,
@@ -377,22 +438,24 @@ function Cpu(): any {
                         </div>
                         <div id="table">
                             <table className="type04">
-                                <tr>
-                                    <th scope="row">{fixedInfo?.host}</th>
-                                    <td>NA</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">{fixedInfo?.osver}</th>
-                                    <td>NA</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">{fixedInfo?.kernelver}</th>
-                                    <td>NA</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">{varInfo?.uptime}</th>
-                                    <td>NA</td>
-                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">host</th>
+                                        <td>{host}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">os</th>
+                                        <td>{osVer}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">kernel</th>
+                                        <td>{kernelVer}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">uptime</th>
+                                        <td>{upTime[0]}</td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>
