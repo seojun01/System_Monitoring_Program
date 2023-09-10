@@ -14,11 +14,11 @@ import { CreateCpuinfoDto } from './dto/create-cpuinfo.dto';
 import { UpdateCpuinfoDto } from './dto/update-cpuinfo.dto';
 import { CpuEntity } from './entities/cpuinfo.entity';
 
-@Controller('cpuinfo')
+@Controller()
 export class CpuinfoController {
   constructor(private readonly cpuinfoService: CpuinfoService) {}
 
-  @Get('/1')
+  @Get('/cpuinfo')
   async findAll(): Promise<CpuEntity[]> {
     return this.cpuinfoService.findAll();
   }

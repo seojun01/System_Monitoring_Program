@@ -12,11 +12,11 @@ import { CreatePacketinfoDto } from './dto/create-packetinfo.dto';
 import { UpdatePacketinfoDto } from './dto/update-packetinfo.dto';
 import { PacketEntity } from './entities/packetinfo.entity';
 
-@Controller('packetinfo')
+@Controller()
 export class PacketinfoController {
   constructor(private readonly packetinfoService: PacketinfoService) {}
 
-  @Get('/1')
+  @Get('/packetinfo')
   async findAll(): Promise<PacketEntity[]> {
     return this.packetinfoService.findAll();
   }
