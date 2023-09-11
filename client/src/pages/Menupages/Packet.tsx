@@ -5,7 +5,6 @@ import { log } from 'console';
 import { url } from 'inspector';
 
 function Packet(): JSX.Element {
-<<<<<<< HEAD
     const [time, setTime] = useState([]);
     const [Reception, setReception] = useState([]);
     const [Send, setSend] = useState([]);
@@ -24,7 +23,7 @@ function Packet(): JSX.Element {
         }
     };
     getData();
-    const interval = setInterval(getData, 5000); /* 5초 */
+    const interval = setInterval(getData, 1000);
 
     return () => clearInterval(interval);
     }, []);
@@ -39,51 +38,10 @@ function Packet(): JSX.Element {
 
         } catch (error) {
             console.log(error)
-=======
-    interface TrafficData {
-        reception: number[];
-        send: number[];
-        _time: string[];
-        conn: number[];
-    }
-    const [trafficData, setTrafficData] = useState<TrafficData>({
-        reception: [1, 2, 3, 4, 5],
-        send: [1, 10, 3, 4, 5, 1, 5],
-        _time: ['1', '2', '3', '4', '5', '6', '7', '8'],
-        conn: [1, 10, 3, 4, 5, 1, 5],
-    });
-
-    useEffect(() => {
-        const fetchData = () => {
-            fetch('/packetinfo/1')
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then((data) => {
-                    console.log(data);
-                    setTrafficData(data);
-                })
-                .catch((error) => {
-                    console.error('Error fetching data:', error);
-                });
-        };
-        const interval = setInterval(fetchData, 1000);
-
-        return () => clearInterval(interval);
-    }, [trafficData]);
-
-    function lentime() {
-        var time: any[] = [];
-        for (var i = 5; i >= 1; i--) {
-            time.push(trafficData._time[trafficData._time.length - i]);
->>>>>>> 25f8efa2ca001ff08c8b2650ecf6fe3f2c5d78eb
         }
     };
     getData();
-    const interval = setInterval(getData, 5000); /* 5초 */
+    const interval = setInterval(getData, 1000); 
 
     return () => clearInterval(interval);
     }, []);
@@ -101,7 +59,7 @@ function Packet(): JSX.Element {
         }
     };
     getData();
-    const interval = setInterval(getData, 5000); /* 5초 */
+    const interval = setInterval(getData, 1000);
 
     return () => clearInterval(interval);
     }, []);
@@ -119,7 +77,7 @@ function Packet(): JSX.Element {
         }
     };
     getData();
-    const interval = setInterval(getData, 5000); /* 5초 */
+    const interval = setInterval(getData, 1000);
 
     return () => clearInterval(interval);
     }, []);
@@ -264,7 +222,6 @@ function Packet(): JSX.Element {
 
     return (
         <div id="layoutSidenav">
-<<<<<<< HEAD
             <div id="layoutSidenav_content" style={{ backgroundColor: '#f2f2f2', height: '100%', }}>
                 <main>
                     <div className="container-fluid px-4">
@@ -275,37 +232,13 @@ function Packet(): JSX.Element {
                             fontSize: '2rem',
                             color: '#333'
                         }}>Dashboard</h1>
-=======
-            <div id="layoutSidenav_content" style={{ backgroundColor: '#f2f2f2', height: '100%' }}>
-                <main>
-                    <div className="container-fluid px-4">
-                        <h1
-                            className="mt-4"
-                            style={{
-                                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-                                fontFamily: 'Arial, sans-serif',
-                                fontWeight: 'bold',
-                                fontSize: '2rem',
-                                color: '#333',
-                            }}
-                        >
-                            Dashboard
-                        </h1>
->>>>>>> 25f8efa2ca001ff08c8b2650ecf6fe3f2c5d78eb
                         <ol className="breadcrumb mb-4">
                             <li className="breadcrumb-item active"></li>
                         </ol>
                     </div>
                     <div id="Packet-chart-container">
                         <div id="chart">
-<<<<<<< HEAD
                             <div id="network" style={{ width: '99.99%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
-=======
-                            <div
-                                id="network"
-                                style={{ width: '99.99%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}
-                            >
->>>>>>> 25f8efa2ca001ff08c8b2650ecf6fe3f2c5d78eb
                                 <ReactApexChart
                                     options={chart1.options}
                                     series={chart1.series}
