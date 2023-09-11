@@ -4,4 +4,5 @@ export declare class VarinfoService {
     private varRepository;
     constructor(varRepository: Repository<VarEntity>);
     findAll(): Promise<VarEntity[]>;
+    getOne(): Promise<VarEntity[]>;
 }
