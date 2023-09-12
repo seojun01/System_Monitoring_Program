@@ -354,9 +354,9 @@ function Cpu(): any {
             legend: {
                 show: true,
                 floating: true,
-                fontSize: '16px',
+                fontSize: '14%',
                 position: 'left',
-                offsetX: 40,
+                offsetX: -10,
                 offsetY: 15,
                 labels: {
                     useSeriesColors: true,
@@ -365,7 +365,7 @@ function Cpu(): any {
                     size: 0,
                 },
                 formatter: function (seriesName: any, opts: any) {
-                    return seriesName + ':  ' + opts.w.globals.series[opts.seriesIndex];
+                    return seriesName + ':  ' + opts.w.globals.series[opts.seriesIndex] + 'GB';
                 },
                 itemMargin: {
                     vertical: 3,
