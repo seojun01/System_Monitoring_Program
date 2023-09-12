@@ -228,7 +228,7 @@ function Cpu(): any {
     };
 
     const chart2: any = {
-        series: [memAvail],
+        series: [memUsage],
         options: {
             chart: {
                 height: 350,
@@ -275,7 +275,7 @@ function Cpu(): any {
     };
 
     const chart3: any = {
-        series: [memUsage],
+        series: [memAvail],
         options: {
             chart: {
                 height: 350,
@@ -335,7 +335,7 @@ function Cpu(): any {
                     endAngle: 270,
                     hollow: {
                         margin: 5,
-                        size: '30%',
+                        size: '50%',
                         background: 'transparent',
                         image: undefined,
                     },
@@ -453,7 +453,7 @@ function Cpu(): any {
                                     </tr>
                                     <tr>
                                         <th scope="row">uptime</th>
-                                        <td>{upTime[0]}</td>
+                                        <td>{upTime}</td>
                                     </tr>
                                 </tbody>
                             </table>
