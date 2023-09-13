@@ -15,4 +15,13 @@ export class PacketinfoService {
   async findAll(): Promise<PacketEntity[]> {
     return this.packetRepository.find();
   }
+
+  async getMany() {
+    return this.packetRepository.find({
+      order: {
+        id: 'DESC',
+      },
+      take: 30,
+    });
+  }
 }

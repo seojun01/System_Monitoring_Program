@@ -13,4 +13,13 @@ export class CpuinfoService {
   async findAll(): Promise<CpuEntity[]> {
     return this.cpuRepository.find();
   }
+
+  async getMany() {
+    return this.cpuRepository.find({
+      order: {
+        id: 'DESC',
+      },
+      take: 30,
+    });
+  }
 }

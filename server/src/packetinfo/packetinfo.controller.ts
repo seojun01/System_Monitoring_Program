@@ -18,6 +18,6 @@ export class PacketinfoController {
 
   @Get('/packetinfo')
   async findAll(): Promise<PacketEntity[]> {
-    return this.packetinfoService.findAll();
+    return this.packetinfoService.getMany();
   }
 }

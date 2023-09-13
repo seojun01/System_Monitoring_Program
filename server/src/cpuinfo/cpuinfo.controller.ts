@@ -20,6 +20,6 @@ export class CpuinfoController {
 
   @Get('/cpuinfo')
   async findAll(): Promise<CpuEntity[]> {
-    return this.cpuinfoService.findAll();
+    return this.cpuinfoService.getMany();
   }
 }
