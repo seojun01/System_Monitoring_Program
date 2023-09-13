@@ -112,7 +112,8 @@ ul ol {
     top: 56px;
 }
 
-#chart-container {
+#chart-container,
+#chart {
     width: 95%;
     margin: 0 auto;
 }
@@ -172,7 +173,7 @@ table.type04 {
     border-spacing: 1px;
     text-align: center;
     line-height: 1.5;
-    margin: 10% 30%;
+    margin: 11.5% 30%;
 }
 table.type04 th {
     width: 200px;
@@ -182,7 +183,7 @@ table.type04 th {
     border-bottom: 1px solid #ccc;
 }
 table.type04 td {
-    width: 100px;
+    width: 100%;
     padding: 10px;
     vertical-align: top;
     border-bottom: 1px solid #ccc;
