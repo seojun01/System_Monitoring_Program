@@ -97,22 +97,22 @@ function Packet(): JSX.Element {
                 },
             },
             xaxis: {
-                categories: time.slice(-5),
+                categories: time.slice(0, 10).reverse(),
             },
         },
 
         series: [
             {
                 name: 'reception',
-                data: Reception.slice(-5),
+                data: Reception.slice(0, 10).reverse(),
             },
             {
                 name: 'send',
-                data: Send.slice(-5),
+                data: Send.slice(0, 10).reverse(),
             },
             {
                 name: 'conn',
-                data: Conn.slice(-5),
+                data: Conn.slice(0, 10).reverse(),
             },
         ],
     };
