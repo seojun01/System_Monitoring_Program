@@ -23,7 +23,7 @@ function Packet(): JSX.Element {
         }
     };
     getData();
-    const interval = setInterval(getData, 1000);
+    const interval = setInterval(getData, 5000);
 
     return () => clearInterval(interval);
     }, []);
@@ -41,7 +41,7 @@ function Packet(): JSX.Element {
         }
     };
     getData();
-    const interval = setInterval(getData, 1000); 
+    const interval = setInterval(getData, 5000); 
 
     return () => clearInterval(interval);
     }, []);
@@ -59,7 +59,7 @@ function Packet(): JSX.Element {
         }
     };
     getData();
-    const interval = setInterval(getData, 1000);
+    const interval = setInterval(getData, 5000);
 
     return () => clearInterval(interval);
     }, []);
@@ -77,7 +77,7 @@ function Packet(): JSX.Element {
         }
     };
     getData();
-    const interval = setInterval(getData, 1000);
+    const interval = setInterval(getData, 5000);
 
     return () => clearInterval(interval);
     }, []);
@@ -263,7 +263,7 @@ function Packet(): JSX.Element {
                                     />
                                 </div>
                             </div>
-                            <div id="at_count" style={{ width: '100%', marginTop: '2.2%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
+                            <div id="at_count" style={{ width: '100%', marginTop: '1.3%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
                                 <ReactApexChart
                                     options={chart4.options}
                                     series={chart4.series}

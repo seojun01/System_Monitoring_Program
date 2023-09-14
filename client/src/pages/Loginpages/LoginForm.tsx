@@ -26,7 +26,7 @@ function LoginForm(): JSX.Element {
    };
   //  console.log(req);
   //  console.log(JSON.stringify(req));
-   fetch("/login",{ // 수정 필요
+   fetch("/signin",{ // 수정 필요
     method : "POST",
     headers : {
       "Content-Type" : "application/json",
@@ -35,12 +35,12 @@ function LoginForm(): JSX.Element {
    })
    .then((res) => res.json())
    .then((res) => {
-    if (res.success){ //success 수정 필요
-      location.href ="/";
-    }
-    else{
-      alert(res.msg); //수정필요
-    }
+    // if (res.success){ //success 수정 필요
+    //   location.href ="/";
+    // }
+    // else{
+    //   alert(res.msg); //수정필요
+    // }
    })
    .catch((err) => {
     console.error(new Error("로그인 중 에러 발생"));
