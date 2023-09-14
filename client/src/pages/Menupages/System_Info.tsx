@@ -21,8 +21,10 @@ function Cpu(): any {
             const url = '/cpuinfo';
             try {
                 const response = await fetch(url);
-                const cpuTemp = await response.json();
-                setCpuTemp(cpuTemp?.map((item: any) => item.cpuTemp));
+                const data = await response.json();
+                setCpuTemp(data?.map((item: any) => item.cpuTemp));
+                setCpuUsage(data?.map((item: any) => item.cpuUsage));
+                setCpuTime(data?.map((item: any) => item._time));
             } catch (error) {
                 console.log(error);
             }
@@ -33,88 +35,18 @@ function Cpu(): any {
 
         return () => clearInterval(interval);
     }, []);
-    useEffect(() => {
-        const getData = async () => {
-            const url = '/cpuinfo';
-            try {
-                const response = await fetch(url);
-                const cpuTemp = await response.json();
-                setCpuUsage(cpuTemp?.map((item: any) => item.cpuUsage));
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        getData();
-
-        const interval = setInterval(getData, 1000);
-
-        return () => clearInterval(interval);
-    }, []);
-    useEffect(() => {
-        const getData = async () => {
-            const url = '/cpuinfo';
-            try {
-                const response = await fetch(url);
-                const cpuTime = await response.json();
-                setCpuTime(cpuTime?.map((item: any) => item._time));
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        getData();
-
-        const interval = setInterval(getData, 1000);
-
-        return () => clearInterval(interval);
-    }, []);
-    /*사용 방법: cpuInfo.cpuUsage, cpuInfo.cpuTemp*/
+    /*사용 방법: cpuUsage, cpuTemp*/
 
     useEffect(() => {
         const getData = async () => {
             const url = '/fixedinfo';
             try {
                 const response = await fetch(url);
-                const host = await response.json();
-                setHost(host?.map((item: any) => item.host));
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        getData();
-    }, []);
-    useEffect(() => {
-        const getData = async () => {
-            const url = '/fixedinfo';
-            try {
-                const response = await fetch(url);
-                const osVer = await response.json();
-                setOsver(osVer?.map((item: any) => item.osver));
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        getData();
-    }, []);
-    useEffect(() => {
-        const getData = async () => {
-            const url = '/fixedinfo';
-            try {
-                const response = await fetch(url);
-                const kernelVer = await response.json();
-                setKernelver(kernelVer?.map((item: any) => item.kernelver));
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        getData();
-    }, []);
-    useEffect(() => {
-        const getData = async () => {
-            const url = '/fixedinfo';
-            try {
-                const response = await fetch(url);
-                const totalDisk = await response.json();
-                setTotaldisk(totalDisk?.map((item: any) => item.totaldisk));
+                const data = await response.json();
+                setHost(data?.map((item: any) => item.host));
+                setOsver(data?.map((item: any) => item.osver));
+                setKernelver(data?.map((item: any) => item.kernelver));
+                setTotaldisk(data?.map((item: any) => item.totaldisk));
             } catch (error) {
                 console.log(error);
             }
@@ -127,62 +59,17 @@ function Cpu(): any {
             const url = '/varinfo';
             try {
                 const response = await fetch(url);
-                const memAvail = await response.json();
-                setMemavail(memAvail?.map((item: any) => item.memavail));
+                const data = await response.json();
+                setMemavail(data?.map((item: any) => item.memavail));
+                setMemusage(data?.map((item: any) => item.memusage));
+                setDiskusage(data?.map((item: any) => item.diskusage));
+                setUptime(data?.map((item: any) => item.uptime));
             } catch (error) {
                 console.log(error);
             }
         };
         getData();
         const interval = setInterval(getData, 10000);
-
-        return () => clearInterval(interval);
-    }, []);
-    useEffect(() => {
-        const getData = async () => {
-            const url = '/varinfo';
-            try {
-                const response = await fetch(url);
-                const memUsage = await response.json();
-                setMemusage(memUsage?.map((item: any) => item.memusage));
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        getData();
-        const interval = setInterval(getData, 10000); /* 5초 */
-
-        return () => clearInterval(interval);
-    }, []);
-    useEffect(() => {
-        const getData = async () => {
-            const url = '/varinfo';
-            try {
-                const response = await fetch(url);
-                const diskUsage = await response.json();
-                setDiskusage(diskUsage?.map((item: any) => item.diskusage));
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        getData();
-        const interval = setInterval(getData, 10000); /* 5초 */
-
-        return () => clearInterval(interval);
-    }, []);
-    useEffect(() => {
-        const getData = async () => {
-            const url = '/varinfo';
-            try {
-                const response = await fetch(url);
-                const upTime = await response.json();
-                setUptime(upTime?.map((item: any) => item.uptime));
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        getData();
-        const interval = setInterval(getData, 5000); /* 5초 */
 
         return () => clearInterval(interval);
     }, []);
