@@ -12,24 +12,58 @@ function Cpu(): any {
     const [memAvail, setMemavail] = useState([]);
     const [diskUsage, setDiskusage] = useState([]);
     const [upTime, setUptime] = useState([]);
+    const [cpuTemp, setCpuTemp] = useState([]);
+    const [cpuUsage, setCpuUsage] = useState([]);
+    const [cpuTime, setCpuTime] = useState([]);
 
-    /* <<제거    useEffect(() => {
-        const fetchData = async () => {
+    useEffect(() => {
+        const getData = async () => {
+            const url = '/cpuinfo';
             try {
-                const response = await fetch('/cpuinfo'); // 백엔드 API 엔드포인트 설정 필요
-                if (!response.ok) {
-                    throw new Error('데이터 가져오기 실패');
-                }
-                const data = await response.json();
-                setCpuInfo(data);
+                const response = await fetch(url);
+                const cpuTemp = await response.json();
+                setCpuTemp(cpuTemp?.map((item: any) => item.cpuTemp));
             } catch (error) {
-                console.error('데이터 가져오기 에러:', error);
+                console.log(error);
             }
         };
+        getData();
 
-        fetchData();
+        const interval = setInterval(getData, 1000);
 
-        const interval = setInterval(fetchData, 1000);
+        return () => clearInterval(interval);
+    }, []);
+    useEffect(() => {
+        const getData = async () => {
+            const url = '/cpuinfo';
+            try {
+                const response = await fetch(url);
+                const cpuTemp = await response.json();
+                setCpuUsage(cpuTemp?.map((item: any) => item.cpuUsage));
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getData();
+
+        const interval = setInterval(getData, 1000);
+
+        return () => clearInterval(interval);
+    }, []);
+    useEffect(() => {
+        const getData = async () => {
+            const url = '/cpuinfo';
+            try {
+                const response = await fetch(url);
+                const cpuTime = await response.json();
+                setCpuTime(cpuTime?.map((item: any) => item._time));
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getData();
+
+        const interval = setInterval(getData, 1000);
 
         return () => clearInterval(interval);
     }, []);
@@ -94,14 +128,13 @@ function Cpu(): any {
             try {
                 const response = await fetch(url);
                 const memAvail = await response.json();
-                console.log(memAvail);
                 setMemavail(memAvail?.map((item: any) => item.memavail));
             } catch (error) {
                 console.log(error);
             }
         };
         getData();
-        const interval = setInterval(getData, 5000); /* 5초 */
+        const interval = setInterval(getData, 10000);
 
         return () => clearInterval(interval);
     }, []);
@@ -117,7 +150,7 @@ function Cpu(): any {
             }
         };
         getData();
-        const interval = setInterval(getData, 5000); /* 5초 */
+        const interval = setInterval(getData, 10000); /* 5초 */
 
         return () => clearInterval(interval);
     }, []);
@@ -133,7 +166,7 @@ function Cpu(): any {
             }
         };
         getData();
-        const interval = setInterval(getData, 5000); /* 5초 */
+        const interval = setInterval(getData, 10000); /* 5초 */
 
         return () => clearInterval(interval);
     }, []);
@@ -173,21 +206,7 @@ function Cpu(): any {
                 curve: 'smooth',
             },
             xaxis: {
-                type: 'datetime',
-                categories: [
-                    '2023-09-5T01:00:00.000Z',
-                    '2023-09-5T02:00:00.000Z',
-                    '2023-09-5T03:00:00.000Z',
-                    '2023-09-5T04:00:00.000Z',
-                    '2023-09-5T05:00:00.000Z',
-                    '2023-09-5T06:00:00.000Z',
-                    '2023-09-5T07:00:00.000Z',
-                ],
-            },
-            tooltip: {
-                x: {
-                    format: 'dd/MM/yy HH:mm',
-                },
+                categories: cpuTime.slice(0, 10).reverse(),
             },
             title: {
                 text: 'CPU',
@@ -218,11 +237,11 @@ function Cpu(): any {
         series: [
             {
                 name: 'USAGE',
-                data: [50, 40, 28, 51, 42, 90, 70] /*cpuInfo. */,
+                data: cpuUsage.slice(0, 10).reverse() /*cpuInfo. */,
             },
             {
                 name: 'TEMP',
-                data: [60, 65, 64, 60, 67, 70, 68] /*cpuInfo. */,
+                data: cpuTemp.slice(0, 10).reverse() /*cpuInfo. */,
             },
         ],
     };

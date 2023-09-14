@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import './pages.css';
 import { log } from 'console';
@@ -9,15 +9,22 @@ function Packet(): JSX.Element {
     const [Reception, setReception] = useState([]);
     const [Send, setSend] = useState([]);
     const [Conn, setConn] = useState([]);
-      
+
     useEffect(() => {
         const getData = async () => {
             const url = '/packetinfo';
-        try {
-            const response = await fetch(url);
-            const time = await response.json();
-            setTime(time?.map((item: any) => item._time))
+            try {
+                const response = await fetch(url);
+                const time = await response.json();
+                setTime(time?.map((item: any) => item._time));
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getData();
+        const interval = setInterval(getData, 1000);
 
+<<<<<<< HEAD
         } catch (error) {
             console.log(error)
         }
@@ -26,16 +33,26 @@ function Packet(): JSX.Element {
     const interval = setInterval(getData, 5000);
 
     return () => clearInterval(interval);
+=======
+        return () => clearInterval(interval);
+>>>>>>> 508f433b6aeec56e65288c0f636c2a5a78b28d20
     }, []);
 
     useEffect(() => {
         const getData = async () => {
             const url = '/packetinfo';
-        try {
-            const response = await fetch(url);
-            const Reception = await response.json();
-            setReception(Reception?.map((item: any) => item.reception))
+            try {
+                const response = await fetch(url);
+                const Reception = await response.json();
+                setReception(Reception?.map((item: any) => item.reception));
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getData();
+        const interval = setInterval(getData, 1000);
 
+<<<<<<< HEAD
         } catch (error) {
             console.log(error)
         }
@@ -44,16 +61,26 @@ function Packet(): JSX.Element {
     const interval = setInterval(getData, 5000); 
 
     return () => clearInterval(interval);
+=======
+        return () => clearInterval(interval);
+>>>>>>> 508f433b6aeec56e65288c0f636c2a5a78b28d20
     }, []);
 
     useEffect(() => {
         const getData = async () => {
             const url = '/packetinfo';
-        try {
-            const response = await fetch(url);
-            const Send = await response.json();
-            setSend(Send?.map((item: any) => item.send))
+            try {
+                const response = await fetch(url);
+                const Send = await response.json();
+                setSend(Send?.map((item: any) => item.send));
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getData();
+        const interval = setInterval(getData, 1000);
 
+<<<<<<< HEAD
         } catch (error) {
             console.log(error)
         }
@@ -62,16 +89,26 @@ function Packet(): JSX.Element {
     const interval = setInterval(getData, 5000);
 
     return () => clearInterval(interval);
+=======
+        return () => clearInterval(interval);
+>>>>>>> 508f433b6aeec56e65288c0f636c2a5a78b28d20
     }, []);
 
     useEffect(() => {
         const getData = async () => {
             const url = '/packetinfo';
-        try {
-            const response = await fetch(url);
-            const Conn = await response.json();
-            setConn(Conn?.map((item: any) => item.conn))
+            try {
+                const response = await fetch(url);
+                const Conn = await response.json();
+                setConn(Conn?.map((item: any) => item.conn));
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getData();
+        const interval = setInterval(getData, 1000);
 
+<<<<<<< HEAD
         } catch (error) {
             console.log(error)
         }
@@ -80,8 +117,10 @@ function Packet(): JSX.Element {
     const interval = setInterval(getData, 5000);
 
     return () => clearInterval(interval);
+=======
+        return () => clearInterval(interval);
+>>>>>>> 508f433b6aeec56e65288c0f636c2a5a78b28d20
     }, []);
-        
 
     const chart1: any = {
         options: {
@@ -118,7 +157,7 @@ function Packet(): JSX.Element {
             {
                 name: 'conn',
                 data: Conn.slice(-5),
-            }
+            },
         ],
     };
 
@@ -222,31 +261,46 @@ function Packet(): JSX.Element {
 
     return (
         <div id="layoutSidenav">
-            <div id="layoutSidenav_content" style={{ backgroundColor: '#f2f2f2', height: '100%', }}>
+            <div id="layoutSidenav_content" style={{ backgroundColor: '#f2f2f2', height: '100%' }}>
                 <main>
                     <div className="container-fluid px-4">
-                        <h1 className="mt-4" style={{
-                            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-                            fontFamily: 'Arial, sans-serif',
-                            fontWeight: 'bold',
-                            fontSize: '2rem',
-                            color: '#333'
-                        }}>Dashboard</h1>
+                        <h1
+                            className="mt-4"
+                            style={{
+                                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                                fontFamily: 'Arial, sans-serif',
+                                fontWeight: 'bold',
+                                fontSize: '2rem',
+                                color: '#333',
+                            }}
+                        >
+                            Dashboard
+                        </h1>
                         <ol className="breadcrumb mb-4">
                             <li className="breadcrumb-item active"></li>
                         </ol>
                     </div>
                     <div id="Packet-chart-container">
                         <div id="chart">
-                            <div id="network" style={{ width: '99.99%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
+                            <div
+                                id="network"
+                                style={{ width: '99.99%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}
+                            >
                                 <ReactApexChart
                                     options={chart1.options}
                                     series={chart1.series}
                                     type="area"
-                                    height={280} />
+                                    height={280}
+                                />
                             </div>
-                            <div id="at_types_and_risk" style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1%' }}>
-                                <div id="at_types" style={{ width: '49%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
+                            <div
+                                id="at_types_and_risk"
+                                style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1%' }}
+                            >
+                                <div
+                                    id="at_types"
+                                    style={{ width: '49%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}
+                                >
                                     <ReactApexChart
                                         options={chart2.options}
                                         series={chart2.series}
@@ -254,7 +308,10 @@ function Packet(): JSX.Element {
                                         height={350}
                                     />
                                 </div>
-                                <div id="at_risk" style={{ width: '49%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
+                                <div
+                                    id="at_risk"
+                                    style={{ width: '49%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}
+                                >
                                     <ReactApexChart
                                         options={chart3.options}
                                         series={chart3.series}
@@ -263,12 +320,24 @@ function Packet(): JSX.Element {
                                     />
                                 </div>
                             </div>
+<<<<<<< HEAD
                             <div id="at_count" style={{ width: '100%', marginTop: '1.3%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
+=======
+                            <div
+                                id="at_count"
+                                style={{
+                                    width: '100%',
+                                    marginTop: '2.2%',
+                                    boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)',
+                                }}
+                            >
+>>>>>>> 508f433b6aeec56e65288c0f636c2a5a78b28d20
                                 <ReactApexChart
                                     options={chart4.options}
                                     series={chart4.series}
                                     type="bar"
-                                    height={380} />
+                                    height={380}
+                                />
                             </div>
                         </div>
                     </div>
