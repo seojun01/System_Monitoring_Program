@@ -15,8 +15,12 @@ function Packet(): JSX.Element {
             const url = '/packetinfo';
             try {
                 const response = await fetch(url);
-                const time = await response.json();
-                setTime(time?.map((item: any) => item._time));
+                const data = await response.json();
+                console.log(data);
+                setTime(data?.map((item: any) => item._time));
+                setReception(data?.map((item: any) => item.reception));
+                setSend(data?.map((item: any) => item.send));
+                setConn(data?.map((item: any) => item.conn));
             } catch (error) {
                 console.log(error);
             }
@@ -24,103 +28,59 @@ function Packet(): JSX.Element {
         getData();
         const interval = setInterval(getData, 1000);
 
-<<<<<<< HEAD
-        } catch (error) {
-            console.log(error)
-        }
-    };
-    getData();
-    const interval = setInterval(getData, 5000);
-
-    return () => clearInterval(interval);
-=======
         return () => clearInterval(interval);
->>>>>>> 508f433b6aeec56e65288c0f636c2a5a78b28d20
     }, []);
 
-    useEffect(() => {
-        const getData = async () => {
-            const url = '/packetinfo';
-            try {
-                const response = await fetch(url);
-                const Reception = await response.json();
-                setReception(Reception?.map((item: any) => item.reception));
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        getData();
-        const interval = setInterval(getData, 1000);
+    // useEffect(() => {
+    //     const getData = async () => {
+    //         const url = '/packetinfo';
+    //         try {
+    //             const response = await fetch(url);
+    //             const Reception = await response.json();
+    //             setReception(Reception?.map((item: any) => item.reception));
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //     };
+    //     getData();
+    //     const interval = setInterval(getData, 1000);
 
-<<<<<<< HEAD
-        } catch (error) {
-            console.log(error)
-        }
-    };
-    getData();
-    const interval = setInterval(getData, 5000); 
+    //     return () => clearInterval(interval);
+    // }, []);
 
-    return () => clearInterval(interval);
-=======
-        return () => clearInterval(interval);
->>>>>>> 508f433b6aeec56e65288c0f636c2a5a78b28d20
-    }, []);
+    // useEffect(() => {
+    //     const getData = async () => {
+    //         const url = '/packetinfo';
+    //         try {
+    //             const response = await fetch(url);
+    //             const Send = await response.json();
+    //             setSend(Send?.map((item: any) => item.send));
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //     };
+    //     getData();
+    //     const interval = setInterval(getData, 1000);
 
-    useEffect(() => {
-        const getData = async () => {
-            const url = '/packetinfo';
-            try {
-                const response = await fetch(url);
-                const Send = await response.json();
-                setSend(Send?.map((item: any) => item.send));
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        getData();
-        const interval = setInterval(getData, 1000);
+    //     return () => clearInterval(interval);
+    // }, []);
 
-<<<<<<< HEAD
-        } catch (error) {
-            console.log(error)
-        }
-    };
-    getData();
-    const interval = setInterval(getData, 5000);
+    // useEffect(() => {
+    //     const getData = async () => {
+    //         const url = '/packetinfo';
+    //         try {
+    //             const response = await fetch(url);
+    //             const Conn = await response.json();
+    //             setConn(Conn?.map((item: any) => item.conn));
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //     };
+    //     getData();
+    //     const interval = setInterval(getData, 1000);
 
-    return () => clearInterval(interval);
-=======
-        return () => clearInterval(interval);
->>>>>>> 508f433b6aeec56e65288c0f636c2a5a78b28d20
-    }, []);
-
-    useEffect(() => {
-        const getData = async () => {
-            const url = '/packetinfo';
-            try {
-                const response = await fetch(url);
-                const Conn = await response.json();
-                setConn(Conn?.map((item: any) => item.conn));
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        getData();
-        const interval = setInterval(getData, 1000);
-
-<<<<<<< HEAD
-        } catch (error) {
-            console.log(error)
-        }
-    };
-    getData();
-    const interval = setInterval(getData, 5000);
-
-    return () => clearInterval(interval);
-=======
-        return () => clearInterval(interval);
->>>>>>> 508f433b6aeec56e65288c0f636c2a5a78b28d20
-    }, []);
+    //     return () => clearInterval(interval);
+    // }, []);
 
     const chart1: any = {
         options: {
@@ -320,9 +280,6 @@ function Packet(): JSX.Element {
                                     />
                                 </div>
                             </div>
-<<<<<<< HEAD
-                            <div id="at_count" style={{ width: '100%', marginTop: '1.3%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}>
-=======
                             <div
                                 id="at_count"
                                 style={{
@@ -331,7 +288,6 @@ function Packet(): JSX.Element {
                                     boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)',
                                 }}
                             >
->>>>>>> 508f433b6aeec56e65288c0f636c2a5a78b28d20
                                 <ReactApexChart
                                     options={chart4.options}
                                     series={chart4.series}
