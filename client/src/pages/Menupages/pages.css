@@ -112,10 +112,13 @@ ul ol {
     top: 56px;
 }
 
-#chart-container,
 #chart {
     width: 95%;
     margin: 0 auto;
+}
+
+main {
+    background-color: #f2f2f2;
 }
 
 #chart1,
@@ -123,48 +126,55 @@ ul ol {
 #memory2,
 #disk,
 #table {
+    border-radius: 10px;
     box-shadow: 11px -16px 10px rgba(0, 0, 0, 0.1); /* 아래로 4픽셀 내리는 그림자, 6픽셀의 흐림 정도, 투명한 검은색 그림자 */
 }
 
-@media (min-width: 768px) {
-    #chart1 {
-        width: 100%;
-        float: left;
+#chart1 {
+    background-color: #ffff;
+    width: 95%;
+    margin: 3% 3% 3%;
+}
+
+#memContainer {
+    display: flex;
+}
+
+#memory1 {
+    background-color: #ffff;
+    width: 55%;
+    margin: 1% 3% 3%;
+}
+
+#memory2 {
+    background-color: #ffff;
+    width: 55%;
+    margin: 1% 2% 3%;
+}
+
+#disk {
+    background-color: #ffff;
+    width: 55%;
+    margin: 1% 3% 3%;
+}
+
+#table {
+    background-color: #ffff;
+    width: 55%;
+    margin: 1% 2% 3%;
+}
+
+@media (min-width: 800px) {
+    #disk-table {
+        display: flex;
     }
 }
 
-@media (min-width: 992px) {
-    #chart1 {
-        width: 100%;
-        float: left;
-    }
-}
-
-@media (min-width: 768px) {
-    #memory1,
+@media (max-width: 799px) {
+    #disk,
     #table {
-        width: 50%;
-        float: left;
-        height: 100%;
-    }
-    #memory2,
-    #disk {
-        width: 50%;
-        float: right;
-    }
-}
-
-@media (min-width: 992px) {
-    #memory1,
-    #table {
-        width: 50%;
-        float: left;
-        height: 100%;
-    }
-    #memory2,
-    #disk {
-        width: 50%;
-        float: right;
+        width: 95%;
+        margin: 0 auto;
     }
 }
 

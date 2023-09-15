@@ -3,7 +3,6 @@ import './pages.css';
 import ReactApexChart from 'react-apexcharts';
 
 function Cpu(): any {
-    /*const [cpuInfo, setCpuInfo] = useState(null); */
     const [host, setHost] = useState([]);
     const [osVer, setOsver] = useState([]);
     const [kernelVer, setKernelver] = useState([]);
@@ -309,15 +308,15 @@ function Cpu(): any {
                         </h1>
                         <ol className="breadcrumb mb-4"></ol>
                     </div>
-                    <div id="chart-container">
-                        <div id="chart1">
-                            <ReactApexChart
-                                options={chart1.options}
-                                series={chart1.series}
-                                type="area"
-                                height={chart1.options.chart.height}
-                            />
-                        </div>
+                    <div id="chart1">
+                        <ReactApexChart
+                            options={chart1.options}
+                            series={chart1.series}
+                            type="area"
+                            height={chart1.options.chart.height}
+                        />
+                    </div>
+                    <div id="memContainer">
                         <div id="memory1">
                             <ReactApexChart
                                 options={chart2.options}
@@ -334,6 +333,8 @@ function Cpu(): any {
                                 height={chart3.options.chart.height}
                             />
                         </div>
+                    </div>
+                    <div id="disk-table">
                         <div id="disk">
                             <ReactApexChart
                                 options={chart4.options}
