@@ -126,6 +126,7 @@ main {
 #memory2,
 #disk,
 #table {
+    border: solid 0.5px rgb(147, 147, 147);
     border-radius: 10px;
     box-shadow: 11px -16px 10px rgba(0, 0, 0, 0.1); /* 아래로 4픽셀 내리는 그림자, 6픽셀의 흐림 정도, 투명한 검은색 그림자 */
 }

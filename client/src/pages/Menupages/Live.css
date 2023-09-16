@@ -26,6 +26,7 @@
     background-clip: border-box;
     border: var(--bs-card-border-width) solid var(--bs-card-border-color);
     box-shadow: 11px -16px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 .card > hr {
     margin-right: 0;
