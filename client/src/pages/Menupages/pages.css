@@ -172,10 +172,13 @@ main {
 }
 
 @media (max-width: 799px) {
-    #disk,
-    #table {
+    #disk {
         width: 95%;
         margin: 0 auto;
+    }
+    #table {
+        width: 95%;
+        margin: 3% auto;
     }
 }
 
