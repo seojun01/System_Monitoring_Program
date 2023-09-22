@@ -29,10 +29,6 @@
     border-radius: 10px;
     border: solid 0.5px rgb(147, 147, 147);
 }
-.card > hr {
-    margin-right: 0;
-    margin-left: 0;
-}
 .card > .list-group {
     border-top: inherit;
     border-bottom: inherit;
@@ -122,24 +118,6 @@
     border-radius: var(--bs-card-inner-border-radius);
 }
 
-.card-img,
-.card-img-top,
-.card-img-bottom {
-    width: 100%;
-}
-
-.card-img,
-.card-img-top {
-    border-top-left-radius: var(--bs-card-inner-border-radius);
-    border-top-right-radius: var(--bs-card-inner-border-radius);
-}
-
-.card-img,
-.card-img-bottom {
-    border-bottom-right-radius: var(--bs-card-inner-border-radius);
-    border-bottom-left-radius: var(--bs-card-inner-border-radius);
-}
-
 .card-group > .card {
     margin-bottom: var(--bs-card-group-margin);
 }
@@ -220,7 +198,7 @@ th {
     --bs-table-hover-color: var(--bs-body-color);
     --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 0rem;
     color: var(--bs-table-color);
     vertical-align: top;
     border-color: var(--bs-table-border-color);
