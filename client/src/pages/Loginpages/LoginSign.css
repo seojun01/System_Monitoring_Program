@@ -89,20 +89,17 @@ h6 span {
 
 .card-3d-wrap {
     position: relative;
-    width: 440px;
-    max-width: 100%;
+    width: 35%;
     height: 400px;
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     perspective: 800px;
-    margin-top: 60px;
+    margin-top: 6%;
 }
 .card-3d-wrapper {
     width: 100%;
     height: 100%;
     position: absolute;
-    top: 0;
-    left: 0;
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     transition: all 600ms ease-out;
@@ -118,8 +115,7 @@ h6 span {
     background-size: 300%;
     position: absolute;
     border-radius: 6px;
-    left: 120%;
-    top: 10%;
+    margin-left: 94%;
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     -webkit-backface-visibility: hidden;
