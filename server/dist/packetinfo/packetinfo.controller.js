@@ -17,17 +17,17 @@ let PacketinfoController = exports.PacketinfoController = class PacketinfoContro
         this.packetinfoService = packetinfoService;
     }
     async findAll() {
-        return this.packetinfoService.findAll();
+        return this.packetinfoService.getMany();
     }
 };
 __decorate([
-    (0, common_1.Get)('/1'),
+    (0, common_1.Get)('/packetinfo'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], PacketinfoController.prototype, "findAll", null);
 exports.PacketinfoController = PacketinfoController = __decorate([
-    (0, common_1.Controller)('packetinfo'),
+    (0, common_1.Controller)(),
     __metadata("design:paramtypes", [packetinfo_service_1.PacketinfoService])
 ], PacketinfoController);
 //# sourceMappingURL=packetinfo.controller.js.map

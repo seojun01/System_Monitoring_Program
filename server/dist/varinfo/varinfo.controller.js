@@ -21,13 +21,13 @@ let VarinfoController = exports.VarinfoController = class VarinfoController {
     }
 };
 __decorate([
-    (0, common_1.Get)('/1'),
+    (0, common_1.Get)('/varinfo'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], VarinfoController.prototype, "findAll", null);
 exports.VarinfoController = VarinfoController = __decorate([
-    (0, common_1.Controller)('varinfo'),
+    (0, common_1.Controller)(),
     __metadata("design:paramtypes", [varinfo_service_1.VarinfoService])
 ], VarinfoController);
 //# sourceMappingURL=varinfo.controller.js.map

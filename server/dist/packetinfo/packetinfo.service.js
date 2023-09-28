@@ -24,6 +24,14 @@ let PacketinfoService = exports.PacketinfoService = class PacketinfoService {
     async findAll() {
         return this.packetRepository.find();
     }
+    async getMany() {
+        return this.packetRepository.find({
+            order: {
+                id: 'DESC',
+            },
+            take: 30,
+        });
+    }
 };
 exports.PacketinfoService = PacketinfoService = __decorate([
     (0, common_1.Injectable)(),

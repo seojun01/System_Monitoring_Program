@@ -8,11 +8,13 @@ import {
   Delete,
   Req,
   Res,
+  Sse,
 } from '@nestjs/common';
 import { CpuinfoService } from './cpuinfo.service';
-import { CreateCpuinfoDto } from './dto/create-cpuinfo.dto';
-import { UpdateCpuinfoDto } from './dto/update-cpuinfo.dto';
+import { cpuDataDTO } from './dto/cpuDataDTO.dto';
 import { CpuEntity } from './entities/cpuinfo.entity';
+import { interval, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Controller()
 export class CpuinfoController {
@@ -20,6 +22,15 @@ export class CpuinfoController {
 
   @Get('/cpuinfo')
   async findAll(): Promise<CpuEntity[]> {
-    return this.cpuinfoService.getMany();
+    //console.log(JSON.parse(this.cpuinfoService.dbData));
+    return this.cpuinfoService.getOne();
+  }
+
+  @Sse('/sse')
+  async sse() {
+    let data = await this.cpuinfoService.getOne();
+    return interval(3000).pipe(
+      map((_) => ({ data: { data } })),
+    );
   }
 }

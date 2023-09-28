@@ -21,13 +21,13 @@ let FixedinfoController = exports.FixedinfoController = class FixedinfoControlle
     }
 };
 __decorate([
-    (0, common_1.Get)('/1'),
+    (0, common_1.Get)('/fixedinfo'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], FixedinfoController.prototype, "findAll", null);
 exports.FixedinfoController = FixedinfoController = __decorate([
-    (0, common_1.Controller)('fixedinfo'),
+    (0, common_1.Controller)(),
     __metadata("design:paramtypes", [fixedinfo_service_1.FixedinfoService])
 ], FixedinfoController);
 //# sourceMappingURL=fixedinfo.controller.js.map
