@@ -23,7 +23,7 @@ export class CpuinfoController {
   @Get('/cpuinfo')
   async findAll(): Promise<CpuEntity[]> {
     //console.log(JSON.parse(this.cpuinfoService.dbData));
-    return this.cpuinfoService.getOne();
+    return this.cpuinfoService.getMany();
   }
 
   @Sse('/sse')

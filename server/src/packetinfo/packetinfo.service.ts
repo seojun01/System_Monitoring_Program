@@ -21,7 +21,7 @@ export class PacketinfoService {
       order: {
         id: 'DESC',
       },
-      take: 30,
+      take: 10,
     });
   }
 }

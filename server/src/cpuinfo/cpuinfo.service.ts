@@ -21,7 +21,7 @@ export class CpuinfoService {
       order: {
         id: 'DESC',
       },
-      take: 30,
+      take: 10,
     });
   }
 

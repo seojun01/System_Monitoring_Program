@@ -1,5 +1,7 @@
 #!/bin/sh
 
+while true;
+do
 #Server Uptime
 upTime=`uptime -p | awk -F "up " '{print $2}'`
 
@@ -13,4 +15,7 @@ diskUsage=$(df --total | awk '/total/' | awk '{print $2, $3}' | awk -F " " '{pri
 mySQL=`which mysql`
 query="INSERT INTO monitoring.variableInfo (uptime, memusage, memavail, diskusage) VALUES ('${upTime}', '${memUsage}', '${memAvail}', '${diskUsage}')"
 
+echo "Uptime : " ${upTime} ", memUasge : " ${memUsage} ", memAvail : " ${memAvail} ", diskUsage : " ${diskUsage} 
 ${mySQL} --login-path=root -e "${query}"
+sleep 1;
+done;

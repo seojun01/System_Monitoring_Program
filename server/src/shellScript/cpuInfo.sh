@@ -1,5 +1,7 @@
 #!/bin/sh
 
+while true;
+do
 #Cpu usage
 cpuUsage=$(top -bn1 | awk '/Cpu/ {print $2}')
 
@@ -13,4 +15,7 @@ cpuTemp=${cpuTemp1}.${cpuTempM}
 mySQL=`which mysql`
 query="INSERT INTO monitoring.cpuInfo (_time, cpuUsage, cpuTemp) VALUES (curtime(), ${cpuUsage}, ${cpuTemp})"
 
+echo "cpuUsage : " ${cpuUsage} ", cpuTemp : " ${cpuTemp}	
 ${mySQL} --login-path=root -e "${query}"
+sleep 1;
+done;
