@@ -1,10 +1,16 @@
-import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
+import React, { useState, ChangeEvent, FormEvent, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './LoginSign.css';
+import { useCookies } from 'react-cookie';
+import axios from 'axios';
 
 function LoginForm(): JSX.Element {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const formRef = useRef(null); // useRef를 컴포넌트 상단에 정의
+
+    const [cookies, setCookie] = useCookies(['id']); // 쿠키 훅 
 
     function checklogin(e: FormEvent) {
         e.preventDefault(); // 이벤트 기본 동작을 막음 (페이지 새로고침 방지)
@@ -20,28 +26,14 @@ function LoginForm(): JSX.Element {
             return;
         }
 
-        const req = {
-            id: email,
-            psword: password,
-        };
-        //  console.log(req);
-        //  console.log(JSON.stringify(req));
-        fetch('/login', {
-            // 수정 필요
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(req),
-        })
-            .then((res) => res.json())
-            .then((res) => {})
-            .catch((err) => {
-                console.error(new Error('로그인 중 에러 발생'));
+        axios
+            .post('/signin', { // 로그인 요청
+                email: email,
+                password: password
+            })
+            .then((res) => {
+                setCookie('id', res.data.token); // 쿠키에 토큰 저장
             });
-
-        // 로그인 성공 시 라우터를 이용하여 메인페이지로 연결
-        // alert("로그인 성공!");
     }
 
     return (
