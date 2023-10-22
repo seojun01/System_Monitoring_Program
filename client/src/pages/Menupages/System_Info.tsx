@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './pages.css';
 import ReactApexChart from 'react-apexcharts';
 
@@ -59,7 +59,6 @@ function Cpu(): any {
             try {
                 const response = await fetch(url);
                 const data = await response.json();
-                console.log(data);
                 setMemavail(data?.map((item: any) => item.memavail));
                 setMemusage(data?.map((item: any) => item.memusage));
                 setDiskusage(data?.map((item: any) => item.diskusage));
@@ -74,7 +73,7 @@ function Cpu(): any {
         return () => clearInterval(interval);
     }, []);
 
-    var chart1: any = {
+    const chart1: any = {
         options: {
             chart: {
                 height: 280,
@@ -227,12 +226,16 @@ function Cpu(): any {
         },
     };
 
-    var chart4: any = {
+    const chart4: any = {
         series: [totalDisk, diskUsage],
         options: {
             chart: {
                 height: 390,
                 type: 'radialBar',
+            },
+            title: {
+                text: 'Disk Usage',
+                align: 'left',
             },
             plotOptions: {
                 radialBar: {
@@ -290,6 +293,108 @@ function Cpu(): any {
         },
     };
 
+    const chart5: any = {
+        series: [
+            {
+                name: 'CPU USAGE',
+                data: [400, 430, 448, 470, 540, 580, 690, 1100],
+            },
+        ],
+        options: {
+            chart: {
+                height: 350,
+                type: 'bar',
+                toolbar: {
+                    show: false,
+                },
+            },
+            title: {
+                text: 'CPU Detail',
+                align: 'left',
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: 4,
+                    horizontal: true,
+                },
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            legend: {
+                show: false,
+            },
+            xaxis: {
+                categories: [
+                    ['John', 'Doe'],
+                    ['Joe', 'Smith'],
+                    ['Jake', 'Williams'],
+                    'Amber',
+                    ['Peter', 'Brown'],
+                    ['Mary', 'Evans'],
+                    ['David', 'Wilson'],
+                    ['Lily', 'Roberts'],
+                ],
+                labels: {
+                    style: {
+                        fontSize: '12px',
+                    },
+                },
+            },
+        },
+    };
+
+    const chart6: any = {
+        series: [
+            {
+                name: 'Memory Usage',
+                data: [400, 430, 448, 470, 540, 580, 690, 1100],
+            },
+        ],
+        options: {
+            chart: {
+                height: 350,
+                type: 'bar',
+                toolbar: {
+                    show: false,
+                },
+            },
+            title: {
+                text: 'Memory Detail',
+                align: 'left',
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: 4,
+                    horizontal: true,
+                },
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            legend: {
+                show: false,
+            },
+            xaxis: {
+                categories: [
+                    ['John', 'Doe'],
+                    ['Joe', 'Smith'],
+                    ['Jake', 'Williams'],
+                    'Amber',
+                    ['Peter', 'Brown'],
+                    ['Mary', 'Evans'],
+                    ['David', 'Wilson'],
+                    ['Lily', 'Roberts'],
+                ],
+                labels: {
+                    style: {
+                        fontSize: '12px',
+                    },
+                },
+            },
+        },
+    };
+
     return (
         <div id="layoutSidenav">
             <div id="layoutSidenav_content">
@@ -332,6 +437,24 @@ function Cpu(): any {
                                 series={chart3.series}
                                 type="radialBar"
                                 height={chart3.options.chart.height}
+                            />
+                        </div>
+                    </div>
+                    <div id="detailContainer">
+                        <div id="cpuDetail">
+                            <ReactApexChart
+                                options={chart5.options}
+                                series={chart5.series}
+                                type="bar"
+                                height={chart5.options.chart.height}
+                            />
+                        </div>
+                        <div id="memoryDetail">
+                            <ReactApexChart
+                                options={chart6.options}
+                                series={chart6.series}
+                                type="bar"
+                                height={chart6.options.chart.height}
                             />
                         </div>
                     </div>
