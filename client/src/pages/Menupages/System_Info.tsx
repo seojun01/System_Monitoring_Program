@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './pages.css';
 import ReactApexChart from 'react-apexcharts';
 

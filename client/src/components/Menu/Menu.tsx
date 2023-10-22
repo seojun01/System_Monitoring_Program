@@ -14,6 +14,12 @@ function Menu(): JSX.Element {
                                 </div>
                                 Packet
                             </a>
+                            <a className="nav-link" href="/attack">
+                                <div className="sb-nav-link-icon">
+                                    <i className="fa-brands fa-watchman-monitoring"></i>
+                                </div>
+                                Attack Packet
+                            </a>
                             <a className="nav-link" href="/live">
                                 <div className="sb-nav-link-icon">
                                     <i className="fa-solid fa-circle-info"></i>
@@ -26,6 +32,13 @@ function Menu(): JSX.Element {
                                     <i className="fa-solid fa-microchip"></i>
                                 </div>
                                 System_Info
+                            </a>
+                            <div className="sb-sidenav-menu-heading">mantle</div>
+                            <a className="nav-link" href="/mypage">
+                                <div className="sb-nav-link-icon">
+                                    <i className="fa-solid fa-file"></i>
+                                </div>
+                                MyPage
                             </a>
                         </div>
                     </div>

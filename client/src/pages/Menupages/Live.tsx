@@ -64,7 +64,9 @@ function Live(): JSX.Element {
                                             <th>Time</th>
                                             <th>Info</th>
                                             <th>Src</th>
+                                            <th>Src Port</th>
                                             <th>Dst</th>
+                                            <th>Dst Port</th>
                                             <th>Protocol</th>
                                         </tr>
                                     </thead>
@@ -75,7 +77,9 @@ function Live(): JSX.Element {
                                             <th>Time</th>
                                             <th>Info</th>
                                             <th>Src</th>
+                                            <th>Src Port</th>
                                             <th>Dst</th>
+                                            <th>Dst Port</th>
                                             <th>Protocol</th>
                                         </tr>
                                     </tfoot>
@@ -86,7 +90,9 @@ function Live(): JSX.Element {
                                             <td>22:50</td>
                                             <td>Dos</td>
                                             <td>xxx.xxx.xxx.xx</td>
+                                            <td>80</td>
                                             <td>xxx.xxx.xxx.xx</td>
+                                            <td>8080</td>
                                             <td>TCP</td>
                                         </tr>
                                         <tr>
@@ -95,7 +101,9 @@ function Live(): JSX.Element {
                                             <td>22:50</td>
                                             <td>Dos</td>
                                             <td>xxx.xxx.xxx.xx</td>
+                                            <td>80</td>
                                             <td>xxx.xxx.xxx.xx</td>
+                                            <td>8080</td>
                                             <td>TCP</td>
                                         </tr>
                                         <tr>
@@ -104,7 +112,9 @@ function Live(): JSX.Element {
                                             <td>22:50</td>
                                             <td>Dos</td>
                                             <td>xxx.xxx.xxx.xx</td>
+                                            <td>80</td>
                                             <td>xxx.xxx.xxx.xx</td>
+                                            <td>8080</td>
                                             <td>TCP</td>
                                         </tr>
                                         <tr>
@@ -113,7 +123,9 @@ function Live(): JSX.Element {
                                             <td>22:50</td>
                                             <td>Dos</td>
                                             <td>xxx.xxx.xxx.xx</td>
+                                            <td>80</td>
                                             <td>xxx.xxx.xxx.xx</td>
+                                            <td>8080</td>
                                             <td>TCP</td>
                                         </tr>
                                         <tr>
@@ -122,7 +134,9 @@ function Live(): JSX.Element {
                                             <td>22:50</td>
                                             <td>Dos</td>
                                             <td>xxx.xxx.xxx.xx</td>
+                                            <td>80</td>
                                             <td>xxx.xxx.xxx.xx</td>
+                                            <td>8080</td>
                                             <td>TCP</td>
                                         </tr>
                                         <tr>
@@ -131,7 +145,9 @@ function Live(): JSX.Element {
                                             <td>22:50</td>
                                             <td>Dos</td>
                                             <td>xxx.xxx.xxx.xx</td>
+                                            <td>80</td>
                                             <td>xxx.xxx.xxx.xx</td>
+                                            <td>8080</td>
                                             <td>TCP</td>
                                         </tr>
                                         <tr>
@@ -140,7 +156,9 @@ function Live(): JSX.Element {
                                             <td>22:50</td>
                                             <td>Dos</td>
                                             <td>xxx.xxx.xxx.xx</td>
+                                            <td>80</td>
                                             <td>xxx.xxx.xxx.xx</td>
+                                            <td>8080</td>
                                             <td>TCP</td>
                                         </tr>
                                         <tr>
@@ -149,7 +167,9 @@ function Live(): JSX.Element {
                                             <td>22:50</td>
                                             <td>Dos</td>
                                             <td>xxx.xxx.xxx.xx</td>
+                                            <td>80</td>
                                             <td>xxx.xxx.xxx.xx</td>
+                                            <td>8080</td>
                                             <td>TCP</td>
                                         </tr>
                                         <tr>
@@ -158,7 +178,9 @@ function Live(): JSX.Element {
                                             <td>22:50</td>
                                             <td>Dos</td>
                                             <td>xxx.xxx.xxx.xx</td>
+                                            <td>80</td>
                                             <td>xxx.xxx.xxx.xx</td>
+                                            <td>8080</td>
                                             <td>TCP</td>
                                         </tr>
                                         <tr>
@@ -167,7 +189,9 @@ function Live(): JSX.Element {
                                             <td>22:50</td>
                                             <td>Dos</td>
                                             <td>xxx.xxx.xxx.xx</td>
+                                            <td>80</td>
                                             <td>xxx.xxx.xxx.xx</td>
+                                            <td>8080</td>
                                             <td>TCP</td>
                                         </tr>
                                     </tbody>
