@@ -10,7 +10,7 @@ function LoginForm(): JSX.Element {
 
     const formRef = useRef(null); // useRef를 컴포넌트 상단에 정의
 
-    const [cookies, setCookie] = useCookies(['id']); // 쿠키 훅 
+    const [cookies, setCookie] = useCookies(['id']); // 쿠키 훅
 
     function checklogin(e: FormEvent) {
         e.preventDefault(); // 이벤트 기본 동작을 막음 (페이지 새로고침 방지)
@@ -27,11 +27,12 @@ function LoginForm(): JSX.Element {
         }
 
         axios
-            .post('/signin', { // 로그인 요청
+            .post('/signin', {
+                // 로그인 요청
                 email: email,
-                password: password
+                password: password,
             })
-            .then((res) => {
+            .then((res: any) => {
                 setCookie('id', res.data.token); // 쿠키에 토큰 저장
             });
     }
