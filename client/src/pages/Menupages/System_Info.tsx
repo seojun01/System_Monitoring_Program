@@ -59,6 +59,7 @@ function Cpu(): any {
             try {
                 const response = await fetch(url);
                 const data = await response.json();
+                console.log(data);
                 setMemavail(data?.map((item: any) => item.memavail));
                 setMemusage(data?.map((item: any) => item.memusage));
                 setDiskusage(data?.map((item: any) => item.diskusage));

@@ -29,6 +29,10 @@ function Header(): JSX.Element {
                     </a>
                     <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li>
+                            <a className="dropdown-item" href="/mypage">
+                                MyPage
+                            </a>
+                            <hr />
                             <a className="dropdown-item" href="/logout">
                                 Logout
                             </a>

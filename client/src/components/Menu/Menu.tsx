@@ -33,7 +33,7 @@ function Menu(): JSX.Element {
                                 </div>
                                 System_Info
                             </a>
-                            <div className="sb-sidenav-menu-heading">mantle</div>
+                            <div className="sb-sidenav-menu-heading">crust</div>
                             <a className="nav-link" href="/mypage">
                                 <div className="sb-nav-link-icon">
                                     <i className="fa-solid fa-file"></i>
