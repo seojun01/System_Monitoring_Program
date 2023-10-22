@@ -100,22 +100,22 @@ function Packet(): JSX.Element {
                 },
             },
             xaxis: {
-                categories: time.slice(0, 10).reverse(),
+                categories: time.slice(0, 13).reverse(),
             },
         },
 
         series: [
             {
                 name: 'reception',
-                data: Reception.slice(0, 10).reverse(),
+                data: Reception.slice(0, 13).reverse(),
             },
             {
                 name: 'send',
-                data: Send.slice(0, 10).reverse(),
+                data: Send.slice(0, 13).reverse(),
             },
             {
                 name: 'conn',
-                data: Conn.slice(0, 10).reverse(),
+                data: Conn.slice(0, 13).reverse(),
             },
         ],
     };
@@ -243,7 +243,7 @@ function Packet(): JSX.Element {
                         <div id="chart">
                             <div
                                 id="network"
-                                style={{ width: '99.99%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}
+                                style={{ width: '100%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}
                             >
                                 <ReactApexChart
                                     options={chart1.options}
