@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import './pages.css';
-import { log } from 'console';
-import { url } from 'inspector';
 
 function Packet(): JSX.Element {
     const [time, setTime] = useState([]);
@@ -26,7 +24,7 @@ function Packet(): JSX.Element {
             }
         };
         getData();
-        const interval = setInterval(getData, 1000);
+        const interval = setInterval(getData, 5000);
 
         return () => clearInterval(interval);
     }, []);
@@ -92,6 +90,7 @@ function Packet(): JSX.Element {
                 zoom: {
                     enabled: false,
                 },
+                
             },
             title: {
                 text: 'Packet',

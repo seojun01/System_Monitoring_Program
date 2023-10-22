@@ -3,15 +3,27 @@ import { Link } from 'react-router-dom';
 import './LoginSign.css';
 
 function SignUpForm(): JSX.Element {
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [phonenumber, setPhonenumber] = useState('');
     const [password, setPassword] = useState('');
 
     function checkSignUp(e: FormEvent) {
         e.preventDefault();
 
         // 회원가입 유효성 검사
+        if (name.trim() === '') {
+            alert('이름을 입력하세요.');
+            return;
+        }
+
         if (email.trim() === '') {
             alert('이메일을 입력하세요.');
+            return;
+        }
+
+        if (phonenumber.trim() === '') {
+            alert('전화번호을 입력하세요.');
             return;
         }
 
@@ -51,6 +63,9 @@ function SignUpForm(): JSX.Element {
                                                         placeholder="Your Full Name"
                                                         id="logname"
                                                         autoComplete="off"
+                                                        value={name}
+                                                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                                            setName(e.target.value)}
                                                     />
                                                     <i className="input-icon uil uil-user"></i>
                                                 </div>
@@ -65,6 +80,21 @@ function SignUpForm(): JSX.Element {
                                                         value={email}
                                                         onChange={(e: ChangeEvent<HTMLInputElement>) =>
                                                             setEmail(e.target.value)
+                                                        }
+                                                    />
+                                                    <i className="input-icon uil uil-at"></i>
+                                                </div>
+                                                <div className="form-group mt-2">
+                                                    <input
+                                                        type="tell"
+                                                        name="phonenumber"
+                                                        className="form-style"
+                                                        placeholder="Your Phone Number"
+                                                        id="phonenumber"
+                                                        autoComplete="off"
+                                                        value={phonenumber}
+                                                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                                            setPhonenumber(e.target.value)
                                                         }
                                                     />
                                                     <i className="input-icon uil uil-at"></i>
