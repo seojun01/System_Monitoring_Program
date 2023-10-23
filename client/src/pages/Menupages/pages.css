@@ -121,6 +121,16 @@ main {
     background-color: #f6f6f6;
 }
 
+#conn,
+#reception,
+#send,
+#protocol,
+#allPacket,
+#src,
+#port,
+#attack,
+#attackType,
+#attackRisk,
 #cpu1,
 #cpu2,
 #memory1,
@@ -137,6 +147,10 @@ main {
     box-shadow: 11px -16px 10px rgba(0, 0, 0, 0.1); 아래로 4픽셀 내리는 그림자, 6픽셀의 흐림 정도, 투명한 검은색 그림자 */
 }
 
+#allPacket,
+#attack,
+#conn,
+#protocol,
 #cpu1,
 #cpu2 {
     background-color: #ffff;
@@ -144,11 +158,17 @@ main {
     margin: 3% 3% 3%;
 }
 
+#attackTypeAndRisk,
+#srcAndPort,
+#packetContainer,
 #memContainer,
 #detailContainer {
     display: flex;
 }
 
+#src,
+#attackType,
+#reception,
 #memory1,
 #cpu3 {
     background-color: #ffff;
@@ -156,6 +176,10 @@ main {
     margin: 1% 3% 3%;
 }
 
+#attackRisk,
+#attackRisk,
+#port,
+#send,
 #memory2,
 #memory3 {
     background-color: #ffff;
