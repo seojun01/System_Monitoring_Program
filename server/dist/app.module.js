@@ -18,6 +18,7 @@ const fixedinfo_module_1 = require("./fixedinfo/fixedinfo.module");
 const varinfo_module_1 = require("./varinfo/varinfo.module");
 const user_module_1 = require("./login/modules/user/user.module");
 const auth_module_1 = require("./login/modules/auth/auth.module");
+const psinfo_module_1 = require("./psinfo/psinfo.module");
 const Joi = require("joi");
 let AppModule = exports.AppModule = class AppModule {
 };
@@ -56,6 +57,7 @@ exports.AppModule = AppModule = __decorate([
             cpuinfo_module_1.CpuinfoModule,
             fixedinfo_module_1.FixedinfoModule,
             varinfo_module_1.VarinfoModule,
+            psinfo_module_1.PsinfoModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

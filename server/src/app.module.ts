@@ -11,6 +11,7 @@ import { VarinfoModule } from './varinfo/varinfo.module';
 import { User } from './login/entities/user.entity';
 import { UserModule } from './login/modules/user/user.module';
 import { AuthModule } from './login/modules/auth/auth.module';
+import { PsinfoModule } from './psinfo/psinfo.module';
 import * as Joi from 'joi';
 
 @Module({
@@ -47,6 +48,7 @@ import * as Joi from 'joi';
     CpuinfoModule,
     FixedinfoModule,
     VarinfoModule,
+    PsinfoModule,
   ],
   controllers: [AppController],
   providers: [AppService],

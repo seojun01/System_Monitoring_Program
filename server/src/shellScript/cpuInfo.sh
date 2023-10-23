@@ -19,3 +19,5 @@ echo "cpuUsage : " ${cpuUsage} ", cpuTemp : " ${cpuTemp}
 ${mySQL} --login-path=root -e "${query}"
 sleep 1;
 done;
+
+ps -aux --sort -pcpu | head -n 11 | awk '{print $3}'
