@@ -73,7 +73,7 @@ function Cpu(): any {
         return () => clearInterval(interval);
     }, []);
 
-    const chart1: any = {
+    const cpuChart1: any = {
         options: {
             chart: {
                 height: 280,
@@ -95,7 +95,7 @@ function Cpu(): any {
                 categories: cpuTime.slice(0, 10).reverse(),
             },
             title: {
-                text: 'CPU',
+                text: 'CPU Usage',
                 align: 'left',
             },
             yaxis: [
@@ -109,12 +109,6 @@ function Cpu(): any {
                         },
                     },
                 },
-                {
-                    opposite: true,
-                    title: {
-                        text: 'Celsius',
-                    },
-                },
             ],
             grid: {
                 show: false,
@@ -125,6 +119,51 @@ function Cpu(): any {
                 name: 'USAGE',
                 data: cpuUsage.slice(0, 10).reverse() /*cpuInfo. */,
             },
+        ],
+    };
+
+    const cpuChart2: any = {
+        options: {
+            chart: {
+                height: 280,
+                type: 'area',
+                toolbar: {
+                    show: false,
+                },
+                zoom: {
+                    enabled: false,
+                },
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            stroke: {
+                curve: 'smooth',
+            },
+            xaxis: {
+                categories: cpuTime.slice(0, 10).reverse(),
+            },
+            title: {
+                text: 'CPU Temp',
+                align: 'left',
+            },
+            yaxis: [
+                {
+                    title: {
+                        text: 'Celsius',
+                    },
+                    labels: {
+                        formatter: function (value0: any): string {
+                            return value0 + '℃';
+                        },
+                    },
+                },
+            ],
+            grid: {
+                show: false,
+            },
+        },
+        series: [
             {
                 name: 'TEMP',
                 data: cpuTemp.slice(0, 10).reverse() /*cpuInfo. */,
@@ -132,7 +171,7 @@ function Cpu(): any {
         ],
     };
 
-    const chart2: any = {
+    const memoryChart1: any = {
         series: [memUsage],
         options: {
             chart: {
@@ -179,7 +218,7 @@ function Cpu(): any {
         },
     };
 
-    const chart3: any = {
+    const memoryChart2: any = {
         series: [memAvail],
         options: {
             chart: {
@@ -226,7 +265,7 @@ function Cpu(): any {
         },
     };
 
-    const chart4: any = {
+    const diskChart: any = {
         series: [totalDisk, diskUsage],
         options: {
             chart: {
@@ -293,7 +332,7 @@ function Cpu(): any {
         },
     };
 
-    const chart5: any = {
+    const cpuChart3: any = {
         series: [
             {
                 name: 'CPU USAGE',
@@ -344,7 +383,7 @@ function Cpu(): any {
         },
     };
 
-    const chart6: any = {
+    const memoryChart3: any = {
         series: [
             {
                 name: 'Memory Usage',
@@ -400,71 +439,68 @@ function Cpu(): any {
             <div id="layoutSidenav_content">
                 <main>
                     <div className="container-fluid px-4">
-                        <h1
-                            className="mt-4"
-                            style={{
-                                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-                                fontFamily: 'Arial, sans-serif',
-                                fontWeight: 'bold',
-                                fontSize: '2rem',
-                                color: '#333',
-                            }}
-                        >
-                            System_Info
-                        </h1>
+                        <h1 className="mt-4">System_Info</h1>
                         <ol className="breadcrumb mb-4"></ol>
                     </div>
                     <div id="chart1">
                         <ReactApexChart
-                            options={chart1.options}
-                            series={chart1.series}
+                            options={cpuChart1.options}
+                            series={cpuChart2.series}
                             type="area"
-                            height={chart1.options.chart.height}
+                            height={cpuChart1.options.chart.height}
+                        />
+                    </div>
+                    <div id="chart1">
+                        <ReactApexChart
+                            options={cpuChart2.options}
+                            series={cpuChart2.series}
+                            type="area"
+                            height={cpuChart2.options.chart.height}
                         />
                     </div>
                     <div id="memContainer">
                         <div id="memory1">
                             <ReactApexChart
-                                options={chart2.options}
-                                series={chart2.series}
+                                options={memoryChart1.options}
+                                series={memoryChart1.series}
                                 type="radialBar"
-                                height={chart2.options.chart.height}
+                                height={memoryChart1.options.chart.height}
                             />
                         </div>
                         <div id="memory2">
                             <ReactApexChart
-                                options={chart3.options}
-                                series={chart3.series}
+                                options={memoryChart2.options}
+                                series={memoryChart2.series}
                                 type="radialBar"
-                                height={chart3.options.chart.height}
+                                height={memoryChart2.options.chart.height}
                             />
                         </div>
                     </div>
                     <div id="detailContainer">
                         <div id="cpuDetail">
                             <ReactApexChart
-                                options={chart5.options}
-                                series={chart5.series}
+                                options={cpuChart3.options}
+                                series={cpuChart3.series}
                                 type="bar"
-                                height={chart5.options.chart.height}
+                                height={cpuChart3.options.chart.height}
                             />
                         </div>
                         <div id="memoryDetail">
                             <ReactApexChart
-                                options={chart6.options}
-                                series={chart6.series}
+                                options={memoryChart3.options}
+                                series={memoryChart3.series}
                                 type="bar"
-                                height={chart6.options.chart.height}
+                                height={memoryChart3.options.chart.height}
                             />
                         </div>
                     </div>
                     <div id="disk-table">
                         <div id="disk">
                             <ReactApexChart
-                                options={chart4.options}
-                                series={chart4.series}
+                                options={diskChart.options}
+                                series={diskChart.series}
                                 type="radialBar"
-                                height={chart4.options.chart.height}
+                                height={diskChart.options.chart.height}
                             />
                         </div>
                         <div id="table">

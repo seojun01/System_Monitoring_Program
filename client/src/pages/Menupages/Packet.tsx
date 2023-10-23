@@ -29,57 +29,6 @@ function Packet(): JSX.Element {
         return () => clearInterval(interval);
     }, []);
 
-    // useEffect(() => {
-    //     const getData = async () => {
-    //         const url = '/packetinfo';
-    //         try {
-    //             const response = await fetch(url);
-    //             const Reception = await response.json();
-    //             setReception(Reception?.map((item: any) => item.reception));
-    //         } catch (error) {
-    //             console.log(error);
-    //         }
-    //     };
-    //     getData();
-    //     const interval = setInterval(getData, 1000);
-
-    //     return () => clearInterval(interval);
-    // }, []);
-
-    // useEffect(() => {
-    //     const getData = async () => {
-    //         const url = '/packetinfo';
-    //         try {
-    //             const response = await fetch(url);
-    //             const Send = await response.json();
-    //             setSend(Send?.map((item: any) => item.send));
-    //         } catch (error) {
-    //             console.log(error);
-    //         }
-    //     };
-    //     getData();
-    //     const interval = setInterval(getData, 1000);
-
-    //     return () => clearInterval(interval);
-    // }, []);
-
-    // useEffect(() => {
-    //     const getData = async () => {
-    //         const url = '/packetinfo';
-    //         try {
-    //             const response = await fetch(url);
-    //             const Conn = await response.json();
-    //             setConn(Conn?.map((item: any) => item.conn));
-    //         } catch (error) {
-    //             console.log(error);
-    //         }
-    //     };
-    //     getData();
-    //     const interval = setInterval(getData, 1000);
-
-    //     return () => clearInterval(interval);
-    // }, []);
-
     const chart1: any = {
         options: {
             chart: {
@@ -90,7 +39,6 @@ function Packet(): JSX.Element {
                 zoom: {
                     enabled: false,
                 },
-                
             },
             title: {
                 text: 'Packet',
@@ -223,18 +171,7 @@ function Packet(): JSX.Element {
             <div id="layoutSidenav_content" style={{ backgroundColor: '#f2f2f2', height: '100%' }}>
                 <main>
                     <div className="container-fluid px-4">
-                        <h1
-                            className="mt-4"
-                            style={{
-                                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-                                fontFamily: 'Arial, sans-serif',
-                                fontWeight: 'bold',
-                                fontSize: '2rem',
-                                color: '#333',
-                            }}
-                        >
-                            Dashboard
-                        </h1>
+                        <h1 className="mt-4">Dashboard</h1>
                         <ol className="breadcrumb mb-4">
                             <li className="breadcrumb-item active"></li>
                         </ol>

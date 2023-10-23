@@ -45,6 +45,11 @@ ul ol {
 
 .mt-4 {
     margin-top: 1.5rem !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 2rem;
+    color: #333;
 }
 
 .mb-0 {

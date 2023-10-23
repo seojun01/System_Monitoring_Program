@@ -582,6 +582,8 @@ a:not([href]):not([class]):hover {
 
 .ps-3 {
     padding-left: 1rem !important;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
 }
 
 .bg-dark {
