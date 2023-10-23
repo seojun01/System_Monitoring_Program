@@ -29,59 +29,149 @@ function Packet(): JSX.Element {
         return () => clearInterval(interval);
     }, []);
 
-    // useEffect(() => {
-    //     const getData = async () => {
-    //         const url = '/packetinfo';
-    //         try {
-    //             const response = await fetch(url);
-    //             const Reception = await response.json();
-    //             setReception(Reception?.map((item: any) => item.reception));
-    //         } catch (error) {
-    //             console.log(error);
-    //         }
-    //     };
-    //     getData();
-    //     const interval = setInterval(getData, 1000);
+    const conn_chart: any = {
+        options : {
+            chart: {
+            background: '#ffffff',
+            toolbar: {
+                show: false,
+            },
+            zoom: {
+                enabled: false,
+                },
+            type: 'area',
+            stacked: false,
+            height: 280,
+          },
+          dataLabels: {
+            enabled: false
+          },
+          markers: {
+            size: 0,
+          },
+          title: {
+            text: 'Conn',
+            align: 'left'
+          },
+          fill: {
+            type: 'gradient',
+            gradient: {
+              shadeIntensity: 1,
+              inverseColors: false,
+              opacityFrom: 0.5,
+              opacityTo: 0,
+              stops: [0, 90, 100]
+            },
+          },
+          xaxis: {
+            categories: time.slice(0, 13).reverse(),
+          },
+          yaxis:{
+            min : 0
+          }
+          },
+          series: [{
+             name: 'conn',
+             data: Conn.slice(0, 13).reverse(),
+          }],
+    };
 
-    //     return () => clearInterval(interval);
-    // }, []);
 
-    // useEffect(() => {
-    //     const getData = async () => {
-    //         const url = '/packetinfo';
-    //         try {
-    //             const response = await fetch(url);
-    //             const Send = await response.json();
-    //             setSend(Send?.map((item: any) => item.send));
-    //         } catch (error) {
-    //             console.log(error);
-    //         }
-    //     };
-    //     getData();
-    //     const interval = setInterval(getData, 1000);
+    const reception_chart: any = {
+        options : {
+            chart: {
+            background: '#ffffff',
+            toolbar: {
+                show: false,
+            },
+            zoom: {
+                enabled: false,
+                },
+            type: 'area',
+            stacked: false,
+            height: 350,
+          },
+          dataLabels: {
+            enabled: false
+          },
+          markers: {
+            size: 0,
+          },
+          title: {
+            text: 'Reception',
+            align: 'left'
+          },
+          fill: {
+            type: 'gradient',
+            gradient: {
+              shadeIntensity: 1,
+              inverseColors: false,
+              opacityFrom: 0.5,
+              opacityTo: 0,
+              stops: [0, 90, 100]
+            },
+          },
+          xaxis: {
+            categories: time.slice(0, 13).reverse(),
+          },
+          yaxis:{
+            min : 0
+          },
+          },
+          series: [{
+             name: 'Reception',
+             data: Reception.slice(0, 13).reverse(),
+          }],
+    };
+    const send_chart: any = {
+        options : {
+            chart: {
+            background: '#ffffff',
+            toolbar: {
+                show: false,
+            },
+            zoom: {
+                enabled: false,
+                },
+            type: 'area',
+            stacked: false,
+            height: 350,
+          },
+          dataLabels: {
+            enabled: false
+          },
+          markers: {
+            size: 0,
+          },
+          title: {
+            text: 'Send',
+            align: 'left'
+          },
+          fill: {
+            type: 'gradient',
+            gradient: {
+              shadeIntensity: 1,
+              inverseColors: false,
+              opacityFrom: 0.5,
+              opacityTo: 0,
+              stops: [0, 90, 100]
+            },
+          },
+          xaxis: {
+            categories: time.slice(0, 13).reverse(),
+          },
+          yaxis:{
+            min : 0
+          },
+          },
+          series: [{
+             name: 'send',
+             data: Send.slice(0, 13).reverse(),
+          }],
+    }
 
-    //     return () => clearInterval(interval);
-    // }, []);
-
-    // useEffect(() => {
-    //     const getData = async () => {
-    //         const url = '/packetinfo';
-    //         try {
-    //             const response = await fetch(url);
-    //             const Conn = await response.json();
-    //             setConn(Conn?.map((item: any) => item.conn));
-    //         } catch (error) {
-    //             console.log(error);
-    //         }
-    //     };
-    //     getData();
-    //     const interval = setInterval(getData, 1000);
-
-    //     return () => clearInterval(interval);
-    // }, []);
-
-    const chart1: any = {
-        options: {
+    const UDP_TCP_chart: any = {
+        options : {
             chart: {
                 background: '#ffffff',
                 toolbar: {
@@ -89,133 +179,32 @@ function Packet(): JSX.Element {
                 },
                 zoom: {
                     enabled: false,
-                },
-                
-            },
-            title: {
-                text: 'Packet',
-                align: 'left',
-                style: {
-                    color: 'black',
-                },
-            },
-            xaxis: {
-                categories: time.slice(0, 13).reverse(),
-            },
-        },
-
-        series: [
-            {
-                name: 'reception',
-                data: Reception.slice(0, 13).reverse(),
-            },
-            {
-                name: 'send',
-                data: Send.slice(0, 13).reverse(),
-            },
-            {
-                name: 'conn',
-                data: Conn.slice(0, 13).reverse(),
-            },
-        ],
-    };
-
-    const chart2: any = {
-        options: {
-            chart: {
-                background: '#ffffff',
-                toolbar: {
-                    show: false,
-                },
-            },
-            title: {
-                text: 'Type of attack',
-                align: 'left',
-                style: {
-                    color: 'black',
-                },
-            },
-            xaxis: {
-                categories: ['SQL 인젝션', '커맨드 인젝션', 'Xpath 인젝션', 'XSS', 'CSRF'],
-            },
-        },
-        series: [
-            {
-                name: '공격종류',
-                data: [19, 25, 20, 9, 2],
-            },
-        ],
-    };
-
-    const chart3: any = {
-        options: {
-            chart: {
-                background: '#ffffff',
-                width: 380,
-            },
-            title: {
-                text: 'Attack Risk',
-                align: 'left',
-                style: {
-                    color: 'black',
-                },
-            },
-            labels: ['관심', '주의', '경고', '위험'],
-            responsive: [
-                {
-                    breakpoint: 480,
-                    options: {
-                        toolbar: {
-                            show: false,
-                        },
                     },
-                },
-            ],
-        },
-        name: '위험도',
-        series: [44, 55, 13, 13],
-    };
-
-    const chart4: any = {
-        options: {
-            chart: {
-                background: '#ffffff',
-                toolbar: {
-                    show: false,
-                },
-            },
-            title: {
-                text: 'Number of attacks',
-                align: 'left',
-                style: {
-                    color: 'black',
-                },
-            },
-
-            responsive: [
-                {
-                    breakpoint: 480,
-                    options: {
-                        chart: {
-                            width: 200,
-                        },
-                        legend: {
-                            position: 'bottom',
-                        },
-                    },
-                },
-            ],
-            xaxis: {
-                categories: ['8:21', '8:22', '8:23', '8:24', '8:25', '8:26', '8.27'],
-            },
-            colors: ['#D25A5A'],
-        },
-        series: [
-            {
-                name: '공격횟수',
-                data: [19, 25, 20, 9, 2, 5, 8],
-            },
-        ],
+                height: 320,
+                type: 'bar',
+          },
+          dataLabels: {
+              enabled: false
+          },
+          fill: {
+              opacity: 0.8
+          },
+          title: {
+              text: 'UDP And TCP'
+          },
+          xaxis: {
+              tickAmount: 12,
+              type: 'category',
+          },
+          },
+          series: [{
+            name: 'Bubble1',
+            data: [5,8,9,8,7,6,4,8,8,7,9,8,7]
+          },
+          {
+            name: 'Bubble4',
+            data: [5,8,9,8,7,19,4,8,8,7,9,8,7]
+          }],
     };
 
     return (
@@ -246,10 +235,10 @@ function Packet(): JSX.Element {
                                 style={{ width: '100%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}
                             >
                                 <ReactApexChart
-                                    options={chart1.options}
-                                    series={chart1.series}
-                                    type="area"
-                                    height={280}
+                                    options={conn_chart.options}
+                                    series={conn_chart.series}
+                                    type={conn_chart.options.chart.type}
+                                    height={conn_chart.options.chart.height}
                                 />
                             </div>
                             <div
@@ -261,10 +250,10 @@ function Packet(): JSX.Element {
                                     style={{ width: '49%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}
                                 >
                                     <ReactApexChart
-                                        options={chart2.options}
-                                        series={chart2.series}
-                                        type="radar"
-                                        height={350}
+                                        options={reception_chart.options}
+                                        series={reception_chart.series}
+                                        type={reception_chart.options.chart.type}
+                                        height={reception_chart.options.chart.height}
                                     />
                                 </div>
                                 <div
@@ -272,10 +261,10 @@ function Packet(): JSX.Element {
                                     style={{ width: '49%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}
                                 >
                                     <ReactApexChart
-                                        options={chart3.options}
-                                        series={chart3.series}
-                                        type="pie"
-                                        height={350}
+                                        options={send_chart.options}
+                                        series={send_chart.series}
+                                        type={send_chart.options.chart.type}
+                                        height={send_chart.options.chart.height}
                                     />
                                 </div>
                             </div>
@@ -288,10 +277,10 @@ function Packet(): JSX.Element {
                                 }}
                             >
                                 <ReactApexChart
-                                    options={chart4.options}
-                                    series={chart4.series}
-                                    type="bar"
-                                    height={380}
+                                    options={UDP_TCP_chart.options}
+                                    series={UDP_TCP_chart.series}
+                                    type={UDP_TCP_chart.options.chart.type}
+                                    height={UDP_TCP_chart.options.chart.height}
                                 />
                             </div>
                         </div>

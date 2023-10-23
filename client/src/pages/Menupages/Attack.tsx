@@ -3,12 +3,12 @@ import React, { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 
 function Attack(): any {
-    const chart1: any = {
+    const Packet_Data_chart: any = {
         options : {
           chart: {
             background: '#ffffff',
             id: 'realtime',
-            height: 350,
+            height: 280,
             type: 'line',
             animations: {
                 enabled: true,
@@ -52,7 +52,7 @@ function Attack(): any {
         ],
 
     };
-    const chart2 : any = {
+    const SRC_IP_Packet_Amount_chart : any = {
         options : {  
             chart: {
               background: '#ffffff',
@@ -128,7 +128,7 @@ function Attack(): any {
             }],
 
           }
-          const chart3 : any = {
+          const Port_Packet_Amount_chart : any = {
             options : {  
                 chart: {
                   background: '#ffffff',
@@ -191,12 +191,12 @@ function Attack(): any {
                 }],
     
               };
-        const chart4: any = {
+        const Attack_Packet_Data_Amount_chart: any = {
           options : {
             chart: {
               id: 'chartyear',
               type: 'area',
-              height: 160,
+              height: 280,
               background: '#ffffff',
              toolbar: {
                 show: false,
@@ -232,13 +232,15 @@ function Attack(): any {
           }],
         };
 
-        const chart5: any = {
+        const Type_of_attack_chart: any = {
           options: {
               chart: {
                   background: '#ffffff',
                   toolbar: {
                       show: false,
                   },
+                  type: "radar",
+                  height: 350
               },
               title: {
                   text: 'Type of attack',
@@ -259,11 +261,13 @@ function Attack(): any {
           ],
       };
     
-      const chart6: any = {
+      const Attack_Risk_chart: any = {
             options: {
                 chart: {
                     background: '#ffffff',
                     width: 380,
+                    type: "pie",
+                    height: 350
                 },
                 title: {
                     text: 'Attack Risk',
@@ -313,10 +317,10 @@ function Attack(): any {
                                 style={{ width: '100%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)' }}
                             >
                                 <ReactApexChart
-                                    options={chart1.options}
-                                    series={chart1.series}
-                                    type="line"
-                                    height={280}
+                                    options={Packet_Data_chart.options}
+                                    series={Packet_Data_chart.series}
+                                    type={Packet_Data_chart.options.chart.type}
+                                    height={Packet_Data_chart.options.chart.height}
                                 />
                                  </div>
                             </div>
@@ -330,10 +334,10 @@ function Attack(): any {
                                     style={{ width: '46.3%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)',marginLeft: "2.5%" }}
                                 >
                                     <ReactApexChart
-                                        options={chart2.options}
-                                        series={chart2.series}
-                                        type="bar"
-                                        height={350}
+                                        options={SRC_IP_Packet_Amount_chart.options}
+                                        series={SRC_IP_Packet_Amount_chart.series}
+                                        type={SRC_IP_Packet_Amount_chart.options.chart.type}
+                                        height={SRC_IP_Packet_Amount_chart.options.chart.height}
                                     />
                                 </div>
                           <div
@@ -341,10 +345,10 @@ function Attack(): any {
                                     style={{ width: '46.3%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)',marginRight: "2.5%" }}
                                 >
                                     <ReactApexChart
-                                        options={chart3.options}
-                                        series={chart3.series}
-                                        type="bar"
-                                        height={350}
+                                        options={Port_Packet_Amount_chart.options}
+                                        series={Port_Packet_Amount_chart.series}
+                                        type={Port_Packet_Amount_chart.options.chart.type}
+                                        height={Port_Packet_Amount_chart.options.chart.height}
                                     />
                               </div>
                       </div>
@@ -355,10 +359,10 @@ function Attack(): any {
                                 style={{ width: '100%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)',marginTop: '1%' }}
                             >
                                 <ReactApexChart
-                                    options={chart4.options}
-                                    series={chart4.series}
-                                    type="area"
-                                    height={280}
+                                    options={Attack_Packet_Data_Amount_chart.options}
+                                    series={Attack_Packet_Data_Amount_chart.series}
+                                    type={Attack_Packet_Data_Amount_chart.options.chart.type}
+                                    height={Attack_Packet_Data_Amount_chart.options.chart.height}
                                 />
                                  </div>
                             </div>
@@ -372,10 +376,10 @@ function Attack(): any {
                                     style={{ width: '46.3%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)',marginLeft: "2.5%" }}
                                 >
                                     <ReactApexChart
-                                        options={chart5.options}
-                                        series={chart5.series}
-                                        type="radar"
-                                        height={350}
+                                        options={Type_of_attack_chart.options}
+                                        series={Type_of_attack_chart.series}
+                                        type={Type_of_attack_chart.options.chart.type}
+                                        height={Type_of_attack_chart.options.chart.height}
                                     />
                                 </div>
                                 <div
@@ -383,10 +387,10 @@ function Attack(): any {
                                     style={{ width: '46.3%', boxShadow: '11px -16px 10px rgba(0, 0, 0, 0.1)',marginRight: "2.5%" }}
                                 >
                                     <ReactApexChart
-                                        options={chart6.options}
-                                        series={chart6.series}
-                                        type="pie"
-                                        height={350}
+                                        options={Attack_Risk_chart.options}
+                                        series={Attack_Risk_chart.series}
+                                        type={Attack_Risk_chart.options.chart.type}
+                                        height={Attack_Risk_chart.options.chart.height}
                                     />
                                 </div>
                             </div>
