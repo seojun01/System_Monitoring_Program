@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { CpuEntity } from './entities/cpuinfo.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { Observable } from 'rxjs';
+import { subscribe } from 'diagnostics_channel';
 
 @Injectable()
 export class CpuinfoService {
@@ -9,12 +11,6 @@ export class CpuinfoService {
     @InjectRepository(CpuEntity)
     private cpuRepository: Repository<CpuEntity>,
   ) {}
-
-  public dbData: CpuEntity[] = [];
-
-  async findAll(): Promise<CpuEntity[]> {
-    return this.cpuRepository.find();
-  }
 
   async getMany(): Promise<CpuEntity[]> {
     return this.cpuRepository.find({
@@ -26,14 +22,12 @@ export class CpuinfoService {
   }
 
   async getOne(): Promise<CpuEntity[]> {
-    let data = await this.cpuRepository.find({
+    return this.cpuRepository.find({
       order: {
         id: 'DESC',
       },
       take: 1,
     });
-
-    this.dbData = data;
-    return this.dbData;
   }
+
 }

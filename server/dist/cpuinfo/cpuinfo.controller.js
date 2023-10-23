@@ -14,30 +14,31 @@ const common_1 = require("@nestjs/common");
 const cpuinfo_service_1 = require("./cpuinfo.service");
 const rxjs_1 = require("rxjs");
 const operators_1 = require("rxjs/operators");
+;
 let CpuinfoController = exports.CpuinfoController = class CpuinfoController {
     constructor(cpuinfoService) {
         this.cpuinfoService = cpuinfoService;
+        this.data = null;
+        setInterval(async () => {
+            try {
+                const newData = await this.cpuinfoService.getMany();
+                this.data = JSON.stringify(newData);
+            }
+            catch (error) {
+                console.error('data select error', error);
+            }
+        }, 1000);
     }
-    async findAll() {
-        return this.cpuinfoService.getOne();
-    }
-    async sse() {
-        let data = await this.cpuinfoService.getOne();
-        return (0, rxjs_1.interval)(3000).pipe((0, operators_1.map)((_) => ({ data: { data } })));
+    async getMany() {
+        return (0, rxjs_1.interval)(1000).pipe((0, operators_1.map)(() => ({ data: this.data })));
     }
 };
 __decorate([
-    (0, common_1.Get)('/cpuinfo'),
+    (0, common_1.Sse)('/cpuinfo'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], CpuinfoController.prototype, "findAll", null);
-__decorate([
-    (0, common_1.Sse)('/sse'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], CpuinfoController.prototype, "sse", null);
+], CpuinfoController.prototype, "getMany", null);
 exports.CpuinfoController = CpuinfoController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [cpuinfo_service_1.CpuinfoService])

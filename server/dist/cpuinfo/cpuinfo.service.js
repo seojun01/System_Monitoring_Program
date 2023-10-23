@@ -20,28 +20,22 @@ const typeorm_2 = require("typeorm");
 let CpuinfoService = exports.CpuinfoService = class CpuinfoService {
     constructor(cpuRepository) {
         this.cpuRepository = cpuRepository;
-        this.dbData = [];
-    }
-    async findAll() {
-        return this.cpuRepository.find();
     }
     async getMany() {
         return this.cpuRepository.find({
             order: {
                 id: 'DESC',
             },
-            take: 30,
+            take: 10,
         });
     }
     async getOne() {
-        let data = await this.cpuRepository.find({
+        return this.cpuRepository.find({
             order: {
                 id: 'DESC',
             },
             take: 1,
         });
-        this.dbData = data;
-        return this.dbData;
     }
 };
 exports.CpuinfoService = CpuinfoService = __decorate([

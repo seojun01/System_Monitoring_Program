@@ -29,7 +29,7 @@ let PacketinfoService = exports.PacketinfoService = class PacketinfoService {
             order: {
                 id: 'DESC',
             },
-            take: 30,
+            take: 10,
         });
     }
 };

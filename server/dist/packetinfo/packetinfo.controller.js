@@ -12,20 +12,32 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PacketinfoController = void 0;
 const common_1 = require("@nestjs/common");
 const packetinfo_service_1 = require("./packetinfo.service");
+const rxjs_1 = require("rxjs");
 let PacketinfoController = exports.PacketinfoController = class PacketinfoController {
     constructor(packetinfoService) {
         this.packetinfoService = packetinfoService;
+        this.data = null;
+        setInterval(async () => {
+            try {
+                const newData = await this.packetinfoService.getMany();
+                this.data = JSON.stringify(newData);
+            }
+            catch (error) {
+                console.error('data select error', error);
+            }
+        }, 1000);
     }
-    async findAll() {
-        return this.packetinfoService.getMany();
+    async getMany() {
+        return (0, rxjs_1.interval)(1000).pipe((0, rxjs_1.map)(() => ({ data: this.data })));
     }
+    ;
 };
 __decorate([
-    (0, common_1.Get)('/packetinfo'),
+    (0, common_1.Sse)('/packetinfo'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], PacketinfoController.prototype, "findAll", null);
+], PacketinfoController.prototype, "getMany", null);
 exports.PacketinfoController = PacketinfoController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [packetinfo_service_1.PacketinfoService])

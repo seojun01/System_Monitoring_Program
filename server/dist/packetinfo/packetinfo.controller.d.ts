@@ -1,7 +1,12 @@
 import { PacketinfoService } from './packetinfo.service';
-import { PacketEntity } from './entities/packetinfo.entity';
+import { Observable } from 'rxjs';
+interface MessageEvent {
+    data: string;
+}
 export declare class PacketinfoController {
     private readonly packetinfoService;
+    private data;
     constructor(packetinfoService: PacketinfoService);
-    findAll(): Promise<PacketEntity[]>;
+    getMany(): Promise<Observable<MessageEvent>>;
 }
+export {};

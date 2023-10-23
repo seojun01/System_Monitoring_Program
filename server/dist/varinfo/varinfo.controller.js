@@ -12,16 +12,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.VarinfoController = void 0;
 const common_1 = require("@nestjs/common");
 const varinfo_service_1 = require("./varinfo.service");
+const rxjs_1 = require("rxjs");
 let VarinfoController = exports.VarinfoController = class VarinfoController {
     constructor(varinfoService) {
         this.varinfoService = varinfoService;
+        this.data = null;
+        setInterval(async () => {
+            try {
+                const newData = await this.varinfoService.getOne();
+                this.data = JSON.stringify(newData);
+            }
+            catch (error) {
+                console.error('data select error', error);
+            }
+        }, 1000);
     }
     async findAll() {
-        return this.varinfoService.getOne();
+        return (0, rxjs_1.interval)(1000).pipe((0, rxjs_1.map)(() => ({ data: this.data })));
     }
 };
 __decorate([
-    (0, common_1.Get)('/varinfo'),
+    (0, common_1.Sse)('/varinfo'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
