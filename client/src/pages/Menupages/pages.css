@@ -45,6 +45,11 @@ ul ol {
 
 .mt-4 {
     margin-top: 1.5rem !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 2rem;
+    color: #333;
 }
 
 .mb-0 {
@@ -112,28 +117,28 @@ ul ol {
     top: 56px;
 }
 
-#chart {
-    width: 95%;
-    margin: 0 auto;
-}
-
 main {
-    background-color: #f2f2f2;
+    background-color: #f6f6f6;
 }
 
-#chart1,
+#cpu1,
+#cpu2,
 #memory1,
 #memory2,
-#cpuDetail,
-#memoryDetail,
+#cpu3,
+#memory3,
 #disk,
 #table {
-    border: solid 0.5px rgb(147, 147, 147);
+    border-radius: 30px;
+    background: #e0e0e0;
+    box-shadow: 8px 8px 5px #a6a6a6, -8px -8px 5px #fffffffa;
+    /* border: solid 0.5px rgb(147, 147, 147);
     border-radius: 10px;
-    box-shadow: 11px -16px 10px rgba(0, 0, 0, 0.1); /* 아래로 4픽셀 내리는 그림자, 6픽셀의 흐림 정도, 투명한 검은색 그림자 */
+    box-shadow: 11px -16px 10px rgba(0, 0, 0, 0.1); 아래로 4픽셀 내리는 그림자, 6픽셀의 흐림 정도, 투명한 검은색 그림자 */
 }
 
-#chart1 {
+#cpu1,
+#cpu2 {
     background-color: #ffff;
     width: 95%;
     margin: 3% 3% 3%;
@@ -145,14 +150,14 @@ main {
 }
 
 #memory1,
-#cpuDetail {
+#cpu3 {
     background-color: #ffff;
     width: 55%;
     margin: 1% 3% 3%;
 }
 
 #memory2,
-#memoryDetail {
+#memory3 {
     background-color: #ffff;
     width: 55%;
     margin: 1% 2% 3%;

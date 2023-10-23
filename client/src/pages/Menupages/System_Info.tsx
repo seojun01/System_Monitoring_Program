@@ -73,7 +73,7 @@ function Cpu(): any {
         return () => clearInterval(interval);
     }, []);
 
-    const chart1: any = {
+    const cpuChart1: any = {
         options: {
             chart: {
                 height: 280,
@@ -95,7 +95,7 @@ function Cpu(): any {
                 categories: cpuTime.slice(0, 10).reverse(),
             },
             title: {
-                text: 'CPU',
+                text: 'CPU Usage',
                 align: 'left',
             },
             yaxis: [
@@ -109,22 +109,63 @@ function Cpu(): any {
                         },
                     },
                 },
-                {
-                    opposite: true,
-                    title: {
-                        text: 'Celsius',
-                    },
-                },
             ],
             grid: {
                 show: false,
             },
+            colors: ['#11468F'],
         },
         series: [
             {
                 name: 'USAGE',
                 data: cpuUsage.slice(0, 10).reverse() /*cpuInfo. */,
             },
+        ],
+    };
+
+    const cpuChart2: any = {
+        options: {
+            chart: {
+                height: 280,
+                type: 'area',
+                toolbar: {
+                    show: false,
+                },
+                zoom: {
+                    enabled: false,
+                },
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            stroke: {
+                curve: 'smooth',
+            },
+            xaxis: {
+                categories: cpuTime.slice(0, 10).reverse(),
+            },
+            title: {
+                text: 'CPU Temp',
+                align: 'left',
+            },
+            yaxis: [
+                {
+                    title: {
+                        text: 'Celsius',
+                    },
+                    labels: {
+                        formatter: function (value0: any): string {
+                            return value0 + '℃';
+                        },
+                    },
+                },
+            ],
+            grid: {
+                show: false,
+            },
+            colors: ['#DA1212'],
+        },
+        series: [
             {
                 name: 'TEMP',
                 data: cpuTemp.slice(0, 10).reverse() /*cpuInfo. */,
@@ -132,7 +173,7 @@ function Cpu(): any {
         ],
     };
 
-    const chart2: any = {
+    const memoryChart1: any = {
         series: [memUsage],
         options: {
             chart: {
@@ -175,11 +216,12 @@ function Cpu(): any {
             stroke: {
                 dashArray: 4,
             },
+            colors: ['#11468F'],
             labels: ['메모리 사용량'],
         },
     };
 
-    const chart3: any = {
+    const memoryChart2: any = {
         series: [memAvail],
         options: {
             chart: {
@@ -222,78 +264,12 @@ function Cpu(): any {
             stroke: {
                 dashArray: 4,
             },
+            colors: ['#11468F'],
             labels: ['메모리 잔여량'],
         },
     };
 
-    const chart4: any = {
-        series: [totalDisk, diskUsage],
-        options: {
-            chart: {
-                height: 390,
-                type: 'radialBar',
-            },
-            title: {
-                text: 'Disk Usage',
-                align: 'left',
-            },
-            plotOptions: {
-                radialBar: {
-                    offsetY: 0,
-                    startAngle: 0,
-                    endAngle: 270,
-                    hollow: {
-                        margin: 5,
-                        size: '50%',
-                        background: 'transparent',
-                        image: undefined,
-                    },
-                    dataLabels: {
-                        name: {
-                            show: false,
-                        },
-                        value: {
-                            show: false,
-                        },
-                    },
-                },
-            },
-            colors: ['#1ab7ea', '#0084ff'],
-            labels: ['디스크 총 용량', '디스크 사용량'],
-            legend: {
-                show: true,
-                floating: true,
-                fontSize: '14%',
-                position: 'left',
-                offsetX: -10,
-                offsetY: 15,
-                labels: {
-                    useSeriesColors: true,
-                },
-                markers: {
-                    size: 0,
-                },
-                formatter: function (seriesName: any, opts: any) {
-                    return seriesName + ':  ' + opts.w.globals.series[opts.seriesIndex] + 'GB';
-                },
-                itemMargin: {
-                    vertical: 3,
-                },
-            },
-            responsive: [
-                {
-                    breakpoint: 48,
-                    options: {
-                        legend: {
-                            show: false,
-                        },
-                    },
-                },
-            ],
-        },
-    };
-
-    const chart5: any = {
+    const cpuChart3: any = {
         series: [
             {
                 name: 'CPU USAGE',
@@ -341,10 +317,11 @@ function Cpu(): any {
                     },
                 },
             },
+            colors: ['#11468F'],
         },
     };
 
-    const chart6: any = {
+    const memoryChart3: any = {
         series: [
             {
                 name: 'Memory Usage',
@@ -392,6 +369,74 @@ function Cpu(): any {
                     },
                 },
             },
+            colors: ['#11468F'],
+        },
+    };
+
+    const diskChart: any = {
+        series: [totalDisk, diskUsage],
+        options: {
+            chart: {
+                height: 390,
+                type: 'radialBar',
+            },
+            title: {
+                text: 'Disk Usage',
+                align: 'left',
+            },
+            plotOptions: {
+                radialBar: {
+                    offsetY: 0,
+                    startAngle: 0,
+                    endAngle: 270,
+                    hollow: {
+                        margin: 5,
+                        size: '50%',
+                        background: 'transparent',
+                        image: undefined,
+                    },
+                    dataLabels: {
+                        name: {
+                            show: false,
+                        },
+                        value: {
+                            show: false,
+                        },
+                    },
+                },
+            },
+            colors: ['#11468F', '#041562'],
+            labels: ['디스크 총 용량', '디스크 사용량'],
+            legend: {
+                show: true,
+                floating: true,
+                fontSize: '14%',
+                position: 'left',
+                offsetX: -10,
+                offsetY: 15,
+                labels: {
+                    useSeriesColors: true,
+                },
+                markers: {
+                    size: 0,
+                },
+                formatter: function (seriesName: any, opts: any) {
+                    return seriesName + ':  ' + opts.w.globals.series[opts.seriesIndex] + 'GB';
+                },
+                itemMargin: {
+                    vertical: 3,
+                },
+            },
+            responsive: [
+                {
+                    breakpoint: 48,
+                    options: {
+                        legend: {
+                            show: false,
+                        },
+                    },
+                },
+            ],
         },
     };
 
@@ -400,71 +445,68 @@ function Cpu(): any {
             <div id="layoutSidenav_content">
                 <main>
                     <div className="container-fluid px-4">
-                        <h1
-                            className="mt-4"
-                            style={{
-                                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-                                fontFamily: 'Arial, sans-serif',
-                                fontWeight: 'bold',
-                                fontSize: '2rem',
-                                color: '#333',
-                            }}
-                        >
-                            System_Info
-                        </h1>
+                        <h1 className="mt-4">System_Info</h1>
                         <ol className="breadcrumb mb-4"></ol>
                     </div>
-                    <div id="chart1">
+                    <div id="cpu1">
                         <ReactApexChart
-                            options={chart1.options}
-                            series={chart1.series}
-                            type="area"
-                            height={chart1.options.chart.height}
+                            options={cpuChart1.options}
+                            series={cpuChart1.series}
+                            type={cpuChart1.options.chart.type}
+                            height={cpuChart1.options.chart.height}
+                        />
+                    </div>
+                    <div id="cpu2">
+                        <ReactApexChart
+                            options={cpuChart2.options}
+                            series={cpuChart2.series}
+                            type={cpuChart2.options.chart.type}
+                            height={cpuChart2.options.chart.height}
                         />
                     </div>
                     <div id="memContainer">
                         <div id="memory1">
                             <ReactApexChart
-                                options={chart2.options}
-                                series={chart2.series}
-                                type="radialBar"
-                                height={chart2.options.chart.height}
+                                options={memoryChart1.options}
+                                series={memoryChart1.series}
+                                type={memoryChart1.options.chart.type}
+                                height={memoryChart1.options.chart.height}
                             />
                         </div>
                         <div id="memory2">
                             <ReactApexChart
-                                options={chart3.options}
-                                series={chart3.series}
-                                type="radialBar"
-                                height={chart3.options.chart.height}
+                                options={memoryChart2.options}
+                                series={memoryChart2.series}
+                                type={memoryChart2.options.chart.type}
+                                height={memoryChart2.options.chart.height}
                             />
                         </div>
                     </div>
                     <div id="detailContainer">
-                        <div id="cpuDetail">
+                        <div id="cpu3">
                             <ReactApexChart
-                                options={chart5.options}
-                                series={chart5.series}
-                                type="bar"
-                                height={chart5.options.chart.height}
+                                options={cpuChart3.options}
+                                series={cpuChart3.series}
+                                type={cpuChart3.options.chart.type}
+                                height={cpuChart3.options.chart.height}
                             />
                         </div>
-                        <div id="memoryDetail">
+                        <div id="memory3">
                             <ReactApexChart
-                                options={chart6.options}
-                                series={chart6.series}
-                                type="bar"
-                                height={chart6.options.chart.height}
+                                options={memoryChart3.options}
+                                series={memoryChart3.series}
+                                type={memoryChart3.options.chart.type}
+                                height={memoryChart3.options.chart.height}
                             />
                         </div>
                     </div>
                     <div id="disk-table">
                         <div id="disk">
                             <ReactApexChart
-                                options={chart4.options}
-                                series={chart4.series}
-                                type="radialBar"
-                                height={chart4.options.chart.height}
+                                options={diskChart.options}
+                                series={diskChart.series}
+                                type={diskChart.options.chart.type}
+                                height={diskChart.options.chart.height}
                             />
                         </div>
                         <div id="table">
