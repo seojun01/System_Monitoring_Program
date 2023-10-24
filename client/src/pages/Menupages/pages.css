@@ -243,7 +243,7 @@ table.type04 td {
 }
 
 #myPage {
-    margin-top: 4%;
+    margin-top: 2%;
     margin-left: 20%;
     margin-right: 20%;
     height: 350%;
@@ -254,7 +254,7 @@ table.type04 td {
 
 .myTable {
     position: absolute;
-    left: 50%; /* 원하는 위치로 조정 */
+    left: 50%;
     top: 37%;
 }
 

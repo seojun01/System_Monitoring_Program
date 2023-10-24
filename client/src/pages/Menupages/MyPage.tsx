@@ -30,6 +30,7 @@ function MyPage(): any {
                 <main id="main">
                     <div className="container-fluid px-4">
                         <h1 className="mt-4">MyPage</h1>
+                        <ol className="breadcrumb mb-4"></ol>
                     </div>
                     <div id="myPage">
                         <table className="myTable">
@@ -37,22 +38,13 @@ function MyPage(): any {
                                 <th>Email : </th>
                                 <td>ekfefaoi@lsrfjs</td>
                             </tr>
-                            <tr>
-                                <td></td>
-                            </tr>
                             <tr className="row">
                                 <th>Password : </th>
                                 <td>{password}</td>
                             </tr>
-                            <tr>
-                                <td></td>
-                            </tr>
                             <tr className="row">
                                 <th>Name : </th>
                                 <td>{name}</td>
-                            </tr>
-                            <tr>
-                                <td></td>
                             </tr>
                             <tr className="row">
                                 <th>Mobile : </th>

@@ -20,18 +20,18 @@ function Menu(): JSX.Element {
                                 </div>
                                 Network Packet
                             </a>
-                            <a className="nav-link" href="/live">
+                            <a className="nav-link" href="/realtime">
                                 <div className="sb-nav-link-icon">
                                     <i className="fa-solid fa-circle-info"></i>
                                 </div>
-                                Live
+                                Real-time Notification
                             </a>
                             <div className="sb-sidenav-menu-heading">mantle</div>
-                            <a className="nav-link" href="/system_info">
+                            <a className="nav-link" href="/perfmon">
                                 <div className="sb-nav-link-icon">
                                     <i className="fa-solid fa-microchip"></i>
                                 </div>
-                                Perfmon
+                                Performance Monitor
                             </a>
                             <div className="sb-sidenav-menu-heading">crust</div>
                             <a className="nav-link" href="/mypage">

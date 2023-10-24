@@ -37,7 +37,7 @@ function Live(): JSX.Element {
             <div id="layoutSidenav_content">
                 <main>
                     <div className="container-fluid px-4">
-                        <h1 className="mt-4">Live</h1>
+                        <h1 className="mt-4">Real-time Notification</h1>
                         <ol className="breadcrumb mb-4"></ol>
                         <div className="card mb-4">
                             <div className="card-header">

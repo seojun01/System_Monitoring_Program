@@ -2,7 +2,7 @@ import './pages.css';
 import React, { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 
-function Attack(): any {
+function Attack(): JSX.Element {
     const Packet_Data_chart: any = {
         options: {
             chart: {

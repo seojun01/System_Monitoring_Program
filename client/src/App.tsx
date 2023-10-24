@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
-import Packet from './pages/Menupages/Packet';
+import NetworkPacket from './pages/Menupages/Network';
 import Attack from './pages/Menupages/Attack';
 import Live from './pages/Menupages/Live';
-import System_Info from './pages/Menupages/System_Info';
+import Perfmon from './pages/Menupages/Perfmon';
 import MyPage from './pages/Menupages/MyPage';
 import SignUpForm from './pages/Loginpages/SignUpForm';
 import LoginForm from './pages/Loginpages/LoginForm';
@@ -19,35 +19,36 @@ function App(): JSX.Element {
             <Routes>
                 <Route path="/" element={<Menu />} />
             </Routes>
+
             <Routes>
                 <Route path="/" element={<Attack />} />
             </Routes>
             <Routes>
-                <Route path="/attack" element={<Header />} />
+                <Route path="/network" element={<Header />} />
             </Routes>
             <Routes>
-                <Route path="/attack" element={<Menu />} />
+                <Route path="/network" element={<Menu />} />
             </Routes>
             <Routes>
-                <Route path="/attack" element={<Packet />} />
+                <Route path="/network" element={<NetworkPacket />} />
             </Routes>
             <Routes>
-                <Route path="/live" element={<Header />} />
+                <Route path="/realtime" element={<Header />} />
             </Routes>
             <Routes>
-                <Route path="/live" element={<Menu />} />
+                <Route path="/realtime" element={<Menu />} />
             </Routes>
             <Routes>
-                <Route path="/live" element={<Live />} />
+                <Route path="/realtime" element={<Live />} />
             </Routes>
             <Routes>
-                <Route path="/system_info" element={<Header />} />
+                <Route path="/perfmon" element={<Header />} />
             </Routes>
             <Routes>
-                <Route path="/system_info" element={<Menu />} />
+                <Route path="/perfmon" element={<Menu />} />
             </Routes>
             <Routes>
-                <Route path="/system_info" element={<System_Info />} />
+                <Route path="/perfmon" element={<Perfmon />} />
             </Routes>
             <Routes>
                 <Route path="/mypage" element={<Header />} />

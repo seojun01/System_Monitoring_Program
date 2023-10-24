@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import './pages.css';
 
-function Packet(): JSX.Element {
+function NetworkPacket(): JSX.Element {
     const [time, setTime] = useState([]);
     const [Reception, setReception] = useState([]);
     const [Send, setSend] = useState([]);
@@ -141,7 +141,7 @@ function Packet(): JSX.Element {
             yaxis: {
                 min: 0,
             },
-            colors : ['#FA2C25']
+            colors: ['#FA2C25'],
         },
         series: [
             {
@@ -191,7 +191,7 @@ function Packet(): JSX.Element {
             yaxis: {
                 min: 0,
             },
-            colors : ['#3739FA']
+            colors: ['#3739FA'],
         },
         series: [
             {
@@ -229,7 +229,7 @@ function Packet(): JSX.Element {
                 tickAmount: 12,
                 type: 'category',
             },
-            colors : ['#5390d9','#f26a8d']
+            colors: ['#5390d9', '#f26a8d'],
         },
         series: [
             {
@@ -291,4 +291,4 @@ function Packet(): JSX.Element {
     );
 }
 
-export default Packet;
+export default NetworkPacket;

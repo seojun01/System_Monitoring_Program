@@ -3,7 +3,7 @@ import './pages.css';
 import ReactApexChart from 'react-apexcharts';
 import { useActionData } from 'react-router-dom';
 
-function Cpu(): any {
+function Perfmon(): any {
     const [host, setHost] = useState([]);
     const [osVer, setOsver] = useState([]);
     const [kernelVer, setKernelver] = useState([]);
@@ -308,7 +308,7 @@ function Cpu(): any {
                 show: false,
             },
             xaxis: {
-                categories: command.slice(0,5).reverse(),
+                categories: command.slice(0, 5).reverse(),
                 labels: {
                     style: {
                         fontSize: '12px',
@@ -351,7 +351,7 @@ function Cpu(): any {
                 show: false,
             },
             xaxis: {
-                categories: command.slice(0,5).reverse(),
+                categories: command.slice(0, 5).reverse(),
                 labels: {
                     style: {
                         fontSize: '12px',
@@ -434,7 +434,7 @@ function Cpu(): any {
             <div id="layoutSidenav_content">
                 <main>
                     <div className="container-fluid px-4">
-                        <h1 className="mt-4">Perfmon</h1>
+                        <h1 className="mt-4">Performance Monitor</h1>
                         <ol className="breadcrumb mb-4"></ol>
                     </div>
                     <div id="cpu1">
@@ -500,24 +500,22 @@ function Cpu(): any {
                         </div>
                         <div id="table">
                             <table className="type04">
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">host</th>
-                                        <td>{host}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">os</th>
-                                        <td>{osVer}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">kernel</th>
-                                        <td>{kernelVer}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">uptime</th>
-                                        <td>{upTime}</td>
-                                    </tr>
-                                </tbody>
+                                <tr>
+                                    <th scope="row">host</th>
+                                    <td>{host}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">os</th>
+                                    <td>{osVer}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">kernel</th>
+                                    <td>{kernelVer}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">uptime</th>
+                                    <td>{upTime}</td>
+                                </tr>
                             </table>
                         </div>
                     </div>
@@ -527,4 +525,4 @@ function Cpu(): any {
     );
 }
 
-export default Cpu;
+export default Perfmon;
