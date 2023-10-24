@@ -280,7 +280,7 @@ function Cpu(): any {
         series: [
             {
                 name: 'CPU Usage',
-                data: cpuTime.slice(0, 5).reverse(),
+                data: cpuUsageDetail.slice(0, 5).reverse(),
             },
         ],
         options: {
@@ -308,12 +308,7 @@ function Cpu(): any {
                 show: false,
             },
             xaxis: {
-                categories: [
-                    ['Peter', 'Brown'],
-                    ['Mary', 'Evans'],
-                    ['David', 'Wilson'],
-                    ['Lily', 'Roberts'],
-                ],
+                categories: command.slice(0,5).reverse(),
                 labels: {
                     style: {
                         fontSize: '12px',
@@ -328,7 +323,7 @@ function Cpu(): any {
         series: [
             {
                 name: 'Memory Usage',
-                data: [400, 430, 448, 470, 540],
+                data: memUsageDetail.slice(0, 5).reverse(),
             },
         ],
         options: {
@@ -356,7 +351,7 @@ function Cpu(): any {
                 show: false,
             },
             xaxis: {
-                categories: ['Peter', 'Peter', 'Peter', 'Peter', 'Peter'],
+                categories: command.slice(0,5).reverse(),
                 labels: {
                     style: {
                         fontSize: '12px',
