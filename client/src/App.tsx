@@ -11,6 +11,7 @@ import LoginForm from './pages/Loginpages/LoginForm';
 import './App.css';
 
 function App(): JSX.Element {
+    const customCursor = document.createElement('div');
     return (
         <Router>
             <Routes>
@@ -19,7 +20,6 @@ function App(): JSX.Element {
             <Routes>
                 <Route path="/" element={<Menu />} />
             </Routes>
-
             <Routes>
                 <Route path="/" element={<Attack />} />
             </Routes>

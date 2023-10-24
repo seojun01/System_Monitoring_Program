@@ -269,10 +269,10 @@ button {
     margin-left: 50%;
     padding: 1.3em 3em;
     font-size: 8px;
-    text-transform: uppercase;
     letter-spacing: 2.5px;
-    font-weight: 500;
     font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana,
+        sans-serif;
     color: #000;
     background-color: #fff;
     border: none;
