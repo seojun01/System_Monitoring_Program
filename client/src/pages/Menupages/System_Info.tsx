@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './pages.css';
 import ReactApexChart from 'react-apexcharts';
+import { useActionData } from 'react-router-dom';
 
 function Cpu(): any {
     const [host, setHost] = useState([]);
@@ -8,11 +9,14 @@ function Cpu(): any {
     const [kernelVer, setKernelver] = useState([]);
     const [totalDisk, setTotaldisk] = useState([]);
     const [memUsage, setMemusage] = useState([]);
+    const [memUsageDetail, setMemusagedetail] = useState([]);
     const [memAvail, setMemavail] = useState([]);
     const [diskUsage, setDiskusage] = useState([]);
     const [upTime, setUptime] = useState([]);
     const [cpuTemp, setCpuTemp] = useState([]);
     const [cpuUsage, setCpuUsage] = useState([]);
+    const [cpuUsageDetail, setCpuUsageDetail] = useState([]);
+    const [command, setCommand] = useState([]);
     const [cpuTime, setCpuTime] = useState([]);
 
     useEffect(() => {
@@ -56,6 +60,20 @@ function Cpu(): any {
                 setMemusage(data?.map((item: any) => item.memusage));
                 setDiskusage(data?.map((item: any) => item.diskusage));
                 setUptime(data?.map((item: any) => item.uptime));
+            } catch (error) {
+                console.log(error);
+            }
+        };
+    }, []);
+
+    useEffect(() => {
+        const eventSource = new EventSource('/psinfo');
+        eventSource.onmessage = (event) => {
+            try {
+                const data = JSON.parse(event.data);
+                setCpuUsageDetail(data?.map((item: any) => item.cpuUsageDetail));
+                setMemusagedetail(data?.map((item: any) => item.memUsageDetail));
+                setCommand(data?.map((item: any) => item.command));
             } catch (error) {
                 console.log(error);
             }
@@ -261,8 +279,8 @@ function Cpu(): any {
     const cpuChart3: any = {
         series: [
             {
-                name: 'CPU USAGE',
-                data: [400, 430, 448, 470, 540],
+                name: 'CPU Usage',
+                data: cpuTime.slice(0, 5).reverse(),
             },
         ],
         options: {
@@ -338,12 +356,7 @@ function Cpu(): any {
                 show: false,
             },
             xaxis: {
-                categories: [
-                    ['Peter', 'Brown'],
-                    ['Mary', 'Evans'],
-                    ['David', 'Wilson'],
-                    ['Lily', 'Roberts'],
-                ],
+                categories: ['Peter', 'Peter', 'Peter', 'Peter', 'Peter'],
                 labels: {
                     style: {
                         fontSize: '12px',
@@ -426,7 +439,7 @@ function Cpu(): any {
             <div id="layoutSidenav_content">
                 <main>
                     <div className="container-fluid px-4">
-                        <h1 className="mt-4">System_Info</h1>
+                        <h1 className="mt-4">Perfmon</h1>
                         <ol className="breadcrumb mb-4"></ol>
                     </div>
                     <div id="cpu1">

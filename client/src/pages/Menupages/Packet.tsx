@@ -14,20 +14,19 @@ function Packet(): JSX.Element {
             try {
                 const data = JSON.parse(msg.data); // JSON 문자열을 파싱
                 console.log(data);
-    
+
                 // Update the state with the new data
                 setTime(data?.map((item: any) => item._time));
                 setReception(data?.map((item: any) => item.reception));
                 setSend(data?.map((item: any) => item.send));
                 setConn(data?.map((item: any) => item.conn));
-                var a =time.reverse();
+                var a = time.reverse();
             } catch (error) {
                 console.error('Error parsing data:', error);
             }
         };
-        }, []);
-            // 새 데이터를 사용하여 상태를 업데이트
-            
+    }, []);
+    // 새 데이터를 사용하여 상태를 업데이트
 
     // useEffect(() => {
     //     const getData = async () => {
@@ -72,7 +71,7 @@ function Packet(): JSX.Element {
                 size: 0,
             },
             title: {
-                text: 'Conn',
+                text: 'Connection',
                 align: 'left',
             },
             fill: {
@@ -246,7 +245,7 @@ function Packet(): JSX.Element {
             <div id="layoutSidenav_content">
                 <main>
                     <div className="container-fluid px-4">
-                        <h1 className="mt-4">Dashboard</h1>
+                        <h1 className="mt-4">Network Packet</h1>
                         <ol className="breadcrumb mb-4"></ol>
                     </div>
                     <div id="conn">

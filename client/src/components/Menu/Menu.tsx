@@ -10,15 +10,15 @@ function Menu(): JSX.Element {
                             <div className="sb-sidenav-menu-heading">core</div>
                             <a className="nav-link" href="/">
                                 <div className="sb-nav-link-icon">
-                                    <i className="fas fa-tachometer-alt"></i>
-                                </div>
-                                Packet
-                            </a>
-                            <a className="nav-link" href="/attack">
-                                <div className="sb-nav-link-icon">
                                     <i className="fa-brands fa-watchman-monitoring"></i>
                                 </div>
                                 Attack Packet
+                            </a>
+                            <a className="nav-link" href="/network">
+                                <div className="sb-nav-link-icon">
+                                    <i className="fas fa-tachometer-alt"></i>
+                                </div>
+                                Network Packet
                             </a>
                             <a className="nav-link" href="/live">
                                 <div className="sb-nav-link-icon">
@@ -31,7 +31,7 @@ function Menu(): JSX.Element {
                                 <div className="sb-nav-link-icon">
                                     <i className="fa-solid fa-microchip"></i>
                                 </div>
-                                System_Info
+                                Perfmon
                             </a>
                             <div className="sb-sidenav-menu-heading">crust</div>
                             <a className="nav-link" href="/mypage">

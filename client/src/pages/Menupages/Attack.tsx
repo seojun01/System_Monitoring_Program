@@ -8,13 +8,6 @@ function Attack(): any {
             chart: {
                 height: 280,
                 type: 'line',
-                animations: {
-                    enabled: true,
-                    easing: 'linear',
-                    dynamicAnimation: {
-                        speed: 1000,
-                    },
-                },
                 toolbar: {
                     show: false,
                 },
@@ -63,7 +56,6 @@ function Attack(): any {
     const SRC_IP_Packet_Amount_chart: any = {
         options: {
             chart: {
-                background: '#ffffff',
                 height: 350,
                 type: 'bar',
                 toolbar: {
@@ -87,7 +79,6 @@ function Attack(): any {
                 enabled: false,
             },
             stroke: {
-                width: 2,
                 curve: 'smooth',
             },
 
@@ -141,7 +132,6 @@ function Attack(): any {
     const Port_Packet_Amount_chart: any = {
         options: {
             chart: {
-                background: '#ffffff',
                 height: 350,
                 type: 'bar',
                 toolbar: {
@@ -164,7 +154,6 @@ function Attack(): any {
                 enabled: false,
             },
             stroke: {
-                width: 2,
                 curve: 'smooth',
             },
 
@@ -221,7 +210,6 @@ function Attack(): any {
                 id: 'chartyear',
                 type: 'area',
                 height: 280,
-                background: '#ffffff',
                 toolbar: {
                     show: false,
                     autoSelected: 'pan',
@@ -275,7 +263,6 @@ function Attack(): any {
     const Type_of_attack_chart: any = {
         options: {
             chart: {
-                background: '#ffffff',
                 toolbar: {
                     show: false,
                 },
@@ -307,7 +294,6 @@ function Attack(): any {
     const Attack_Risk_chart: any = {
         options: {
             chart: {
-                background: '#ffffff',
                 width: 380,
                 type: 'pie',
                 height: 350,

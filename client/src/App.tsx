@@ -20,7 +20,7 @@ function App(): JSX.Element {
                 <Route path="/" element={<Menu />} />
             </Routes>
             <Routes>
-                <Route path="/" element={<Packet />} />
+                <Route path="/" element={<Attack />} />
             </Routes>
             <Routes>
                 <Route path="/attack" element={<Header />} />
@@ -29,7 +29,7 @@ function App(): JSX.Element {
                 <Route path="/attack" element={<Menu />} />
             </Routes>
             <Routes>
-                <Route path="/attack" element={<Attack />} />
+                <Route path="/attack" element={<Packet />} />
             </Routes>
             <Routes>
                 <Route path="/live" element={<Header />} />
