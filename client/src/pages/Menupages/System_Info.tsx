@@ -262,7 +262,7 @@ function Cpu(): any {
         series: [
             {
                 name: 'CPU USAGE',
-                data: [400, 430, 448, 470, 540, 580, 690, 1100],
+                data: [400, 430, 448, 470, 540],
             },
         ],
         options: {
@@ -291,10 +291,6 @@ function Cpu(): any {
             },
             xaxis: {
                 categories: [
-                    ['John', 'Doe'],
-                    ['Joe', 'Smith'],
-                    ['Jake', 'Williams'],
-                    'Amber',
                     ['Peter', 'Brown'],
                     ['Mary', 'Evans'],
                     ['David', 'Wilson'],
@@ -314,7 +310,7 @@ function Cpu(): any {
         series: [
             {
                 name: 'Memory Usage',
-                data: [400, 430, 448, 470, 540, 580, 690, 1100],
+                data: [400, 430, 448, 470, 540],
             },
         ],
         options: {
@@ -343,10 +339,6 @@ function Cpu(): any {
             },
             xaxis: {
                 categories: [
-                    ['John', 'Doe'],
-                    ['Joe', 'Smith'],
-                    ['Jake', 'Williams'],
-                    'Amber',
                     ['Peter', 'Brown'],
                     ['Mary', 'Evans'],
                     ['David', 'Wilson'],
