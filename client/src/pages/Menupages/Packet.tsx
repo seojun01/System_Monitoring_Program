@@ -9,25 +9,46 @@ function Packet(): JSX.Element {
     const [Conn, setConn] = useState([]);
 
     useEffect(() => {
-        const getData = async () => {
-            const url = '/packetinfo';
+        const eventSource = new EventSource('/packetinfo');
+        eventSource.onmessage = (msg) => {
             try {
-                const response = await fetch(url);
-                const data = await response.json();
+                const data = JSON.parse(msg.data); // JSON 문자열을 파싱
                 console.log(data);
+    
+                // Update the state with the new data
                 setTime(data?.map((item: any) => item._time));
                 setReception(data?.map((item: any) => item.reception));
                 setSend(data?.map((item: any) => item.send));
                 setConn(data?.map((item: any) => item.conn));
+                var a =time.reverse();
             } catch (error) {
-                console.log(error);
+                console.error('Error parsing data:', error);
             }
         };
-        getData();
-        const interval = setInterval(getData, 5000);
+        }, []);
+            // 새 데이터를 사용하여 상태를 업데이트
+            
 
-        return () => clearInterval(interval);
-    }, []);
+    // useEffect(() => {
+    //     const getData = async () => {
+    //         const url = '/packetinfo';
+    //         try {
+    //             const response = await fetch(url);
+    //             const data = await response.json();
+    //             console.log(data);
+    //             setTime(data?.map((item: any) => item._time));
+    //             setReception(data?.map((item: any) => item.reception));
+    //             setSend(data?.map((item: any) => item.send));
+    //             setConn(data?.map((item: any) => item.conn));
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //     };
+    //     getData();
+    //     const interval = setInterval(getData, 5000);
+
+    //     return () => clearInterval(interval);
+    // }, []);
 
     const conn_chart: any = {
         options: {
