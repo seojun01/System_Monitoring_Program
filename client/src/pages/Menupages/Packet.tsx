@@ -90,7 +90,7 @@ function Packet(): JSX.Element {
             yaxis: {
                 min: 0,
             },
-            colors: ['#11468F'],
+            colors: ['#7400b8'],
         },
         series: [
             {
@@ -141,6 +141,7 @@ function Packet(): JSX.Element {
             yaxis: {
                 min: 0,
             },
+            colors : ['#FA2C25']
         },
         series: [
             {
@@ -190,6 +191,7 @@ function Packet(): JSX.Element {
             yaxis: {
                 min: 0,
             },
+            colors : ['#3739FA']
         },
         series: [
             {
@@ -227,14 +229,15 @@ function Packet(): JSX.Element {
                 tickAmount: 12,
                 type: 'category',
             },
+            colors : ['#5390d9','#f26a8d']
         },
         series: [
             {
-                name: 'Bubble1',
+                name: 'UDP',
                 data: [5, 8, 9, 8, 7, 6, 4, 8, 8, 7, 9, 8, 7],
             },
             {
-                name: 'Bubble4',
+                name: 'TCP',
                 data: [5, 8, 9, 8, 7, 19, 4, 8, 8, 7, 9, 8, 7],
             },
         ],

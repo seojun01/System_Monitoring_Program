@@ -12,10 +12,10 @@ export class PsinfoEntity {
     pid: number;
     
     @Column({ type: 'float' })
-    cpuUsage: number;
+    cpuUsageDetail: number;
 
     @Column({ type: 'float' })
-    memUsage: number;
+    memUsageDetail: number;
 
     @Column({ type: 'varchar' })
     command: string;
