@@ -16,11 +16,10 @@ function Cpu(): any {
     const [cpuTime, setCpuTime] = useState([]);
 
     useEffect(() => {
-        const getData = async () => {
-            const url = '/cpuinfo';
+        const eventSource = new EventSource('/cpuinfo');
+        eventSource.onmessage = (event) => {
             try {
-                const response = await fetch(url);
-                const data = await response.json();
+                const data = JSON.parse(event.data);
                 setCpuTemp(data?.map((item: any) => item.cpuTemp));
                 setCpuUsage(data?.map((item: any) => item.cpuUsage));
                 setCpuTime(data?.map((item: any) => item._time));
@@ -28,11 +27,6 @@ function Cpu(): any {
                 console.log(error);
             }
         };
-        getData();
-
-        const interval = setInterval(getData, 1000);
-
-        return () => clearInterval(interval);
     }, []);
     /*사용 방법: cpuUsage, cpuTemp*/
 
@@ -54,11 +48,10 @@ function Cpu(): any {
     }, []);
 
     useEffect(() => {
-        const getData = async () => {
-            const url = '/varinfo';
+        const eventSource = new EventSource('/varinfo');
+        eventSource.onmessage = (event) => {
             try {
-                const response = await fetch(url);
-                const data = await response.json();
+                const data = JSON.parse(event.data);
                 setMemavail(data?.map((item: any) => item.memavail));
                 setMemusage(data?.map((item: any) => item.memusage));
                 setDiskusage(data?.map((item: any) => item.diskusage));
@@ -67,10 +60,6 @@ function Cpu(): any {
                 console.log(error);
             }
         };
-        getData();
-        const interval = setInterval(getData, 10000);
-
-        return () => clearInterval(interval);
     }, []);
 
     const cpuChart1: any = {
