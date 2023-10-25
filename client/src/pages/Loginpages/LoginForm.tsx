@@ -55,7 +55,7 @@ function LoginForm(): JSX.Element {
                                 <div className="card-front">
                                     <div className="center-wrap">
                                         <div className="section text-center">
-                                            <h4 className="mb-4 pb-3">Log In</h4>
+                                            <h4 className="title">Log In</h4>
                                             <div className="form-group"></div>
                                             <input
                                                 type="email"
@@ -82,7 +82,7 @@ function LoginForm(): JSX.Element {
                                                 }
                                             />
                                             <button type="submit" className="btn mt-4">
-                                                Submit
+                                                Login
                                             </button>
                                         </div>
                                     </div>

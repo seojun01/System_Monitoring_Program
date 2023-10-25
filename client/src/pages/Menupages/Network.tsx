@@ -7,6 +7,9 @@ function NetworkPacket(): JSX.Element {
     const [Reception, setReception] = useState([]);
     const [Send, setSend] = useState([]);
     const [Conn, setConn] = useState([]);
+    const [Udp, setUdp] = useState([]);
+    const [Tcp, setTcp] = useState([]);
+    
 
     useEffect(() => {
         const eventSource = new EventSource('/packetinfo');
@@ -20,7 +23,8 @@ function NetworkPacket(): JSX.Element {
                 setReception(data?.map((item: any) => item.reception));
                 setSend(data?.map((item: any) => item.send));
                 setConn(data?.map((item: any) => item.conn));
-                var a = time.reverse();
+                setUdp(data?.map((item: any) => item.udp));
+                setTcp(data?.map((item: any) => item.tcp));
             } catch (error) {
                 console.error('Error parsing data:', error);
             }

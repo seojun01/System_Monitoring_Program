@@ -31,6 +31,7 @@ h4 {
     font-weight: 600;
     color: white;
     font: caption;
+    text-shadow:  5px 3px 15px #ffffff;
 }
 h6 span {
     padding: 0 20px;
@@ -122,6 +123,8 @@ h6 span {
     -moz-backface-visibility: hidden;
     -o-backface-visibility: hidden;
     backface-visibility: hidden;
+    box-shadow:  15px 15px 30px #111116,
+             -15px -15px 30px #43455a;
 }
 .card-back {
     transform: rotateY(180deg);
@@ -281,3 +284,4 @@ h6 span {
     width: auto;
     display: block;
 }
+
