@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import './pages.css';
+import { useEffect, useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
-import { useActionData } from 'react-router-dom';
+import './Css/pages.css';
 
 function Perfmon(): JSX.Element {
     const [host, setHost] = useState([]);
