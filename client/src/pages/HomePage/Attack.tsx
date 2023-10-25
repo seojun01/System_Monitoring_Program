@@ -1,5 +1,5 @@
-import './pages.css';
-import React, { useState, useEffect } from 'react';
+import '../Menupages/Css/pages.css';
+import { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 
 function Attack(): JSX.Element {

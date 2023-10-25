@@ -1,27 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import './pages.css';
-import './Live.css';
+import './Css/pages.css';
+import './Css/Live.css';
 
 function Live(): JSX.Element {
-    //const [live, setLiveInfo] = useState([]);
-
-    // useEffect(() => {
-    //     const getData = async () => {
-    //         const url = '/';
-    //         try {
-    //             const response = await fetch(url);
-    //             const data = await response.json();
-    //             setLiveInfo(data?.map((item: any) => item.live));
-    //         } catch (error) {
-    //             console.log(error);
-    //         }
-    //     };
-    //     getData();
-
-    //     const interval = setInterval(getData, 10000); //10초
-
-    //     return () => clearInterval(interval);
-    // }, []);
 
     useEffect(() => {
         // Simple-DataTables

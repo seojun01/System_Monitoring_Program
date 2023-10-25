@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
-import './pages.css';
+import './Css/pages.css';
 
 function NetworkPacket(): JSX.Element {
     const [time, setTime] = useState([]);
@@ -30,28 +30,6 @@ function NetworkPacket(): JSX.Element {
             }
         };
     }, []);
-    // 새 데이터를 사용하여 상태를 업데이트
-
-    // useEffect(() => {
-    //     const getData = async () => {
-    //         const url = '/packetinfo';
-    //         try {
-    //             const response = await fetch(url);
-    //             const data = await response.json();
-    //             console.log(data);
-    //             setTime(data?.map((item: any) => item._time));
-    //             setReception(data?.map((item: any) => item.reception));
-    //             setSend(data?.map((item: any) => item.send));
-    //             setConn(data?.map((item: any) => item.conn));
-    //         } catch (error) {
-    //             console.log(error);
-    //         }
-    //     };
-    //     getData();
-    //     const interval = setInterval(getData, 5000);
-
-    //     return () => clearInterval(interval);
-    // }, []);
 
     const conn_chart: any = {
         options: {
