@@ -3,6 +3,14 @@ import React, { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 
 function Attack(): JSX.Element {
+    const [Packet, setPacket] = useState([]);
+    const [Src, setSrc] = useState([]);
+    const [PortPacket, setPortPacket] = useState([]);
+    const [AttPacket, setAttPacket] = useState([]);
+    const [AttType, setAttType] = useState([]);
+    const [AttRisk, setAttRisk] = useState([]);
+
+
     const Packet_Data_chart: any = {
         options: {
             chart: {
@@ -210,7 +218,9 @@ function Attack(): JSX.Element {
                 height: 280,
                 toolbar: {
                     show: false,
-                    autoSelected: 'pan',
+                },
+                zoom: {
+                    enabled: false,
                 },
             },
             title: {
