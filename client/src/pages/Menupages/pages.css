@@ -243,19 +243,16 @@ table.type04 td {
 }
 
 #myPage {
-    margin-top: 2%;
-    margin-left: 20%;
-    margin-right: 20%;
-    height: 350%;
+    width: 85%;
+    margin: 3% 7.3% 5%;
+    height: 100%;
     border-radius: 40px;
     background: #f9faf4;
     box-shadow: 35px 35px 70px #bbbcb7, -35px -35px 70px #ffffff;
 }
 
 .myTable {
-    position: absolute;
-    left: 46%;
-    top: 37%;
+    margin-left: 3%;
 }
 
 .row {
@@ -266,9 +263,8 @@ table.type04 td {
 }
 
 button {
-    margin-left: 50%;
     padding: 1.3em 3em;
-    font-size: 8px;
+    font-size: 10px;
     letter-spacing: 2.5px;
     font-weight: bold;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana,

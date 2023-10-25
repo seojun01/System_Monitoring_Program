@@ -54,7 +54,12 @@ function MyPage(): JSX.Element {
                                 <td></td>
                                 <td>
                                     <button>
-                                        <span className="button_top"> Modify</span>
+                                        <span className="button_top"> Edit</span>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button>
+                                        <span className="button_top"> Reset</span>
                                     </button>
                                 </td>
                             </tr>
