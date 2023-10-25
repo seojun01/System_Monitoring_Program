@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './pages.css';
 
-function MyPage(): any {
+function MyPage(): JSX.Element {
     const [email, setEmail] = useState([]);
     const [password, setPassword] = useState([]);
     const [name, setName] = useState([]);

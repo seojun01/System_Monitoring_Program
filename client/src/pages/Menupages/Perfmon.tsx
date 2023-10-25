@@ -3,7 +3,7 @@ import './pages.css';
 import ReactApexChart from 'react-apexcharts';
 import { useActionData } from 'react-router-dom';
 
-function Perfmon(): any {
+function Perfmon(): JSX.Element {
     const [host, setHost] = useState([]);
     const [osVer, setOsver] = useState([]);
     const [kernelVer, setKernelver] = useState([]);
@@ -500,22 +500,24 @@ function Perfmon(): any {
                         </div>
                         <div id="table">
                             <table className="type04">
-                                <tr>
-                                    <th scope="row">host</th>
-                                    <td>{host}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">os</th>
-                                    <td>{osVer}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">kernel</th>
-                                    <td>{kernelVer}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">uptime</th>
-                                    <td>{upTime}</td>
-                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">host</th>
+                                        <td>{host}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">os</th>
+                                        <td>{osVer}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">kernel</th>
+                                        <td>{kernelVer}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">uptime</th>
+                                        <td>{upTime}</td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>
