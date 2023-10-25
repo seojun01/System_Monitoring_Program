@@ -391,3 +391,27 @@ a:not([href]):not([class]):hover {
 .sb-sidenav-dark .sb-sidenav-menu .nav-link:hover {
     color: #fff;
 }
+
+.sb-sidenav .sb-sidenav-footer {
+    padding: 0.75rem;
+    flex-shrink: 0;
+}
+
+.sb-sidenav-dark .sb-sidenav-footer {
+    background-color: #343a40;
+}
+
+.sb-sidenav-light .sb-sidenav-footer {
+    background-color: #e9ecef;
+}
+
+small,
+.small {
+    font-size: 0.875em;
+}
+
+.name {
+    font-size: 0.875em;
+    text-align: right;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}

@@ -33,7 +33,7 @@ function Header(): JSX.Element {
                                 MyPage
                             </a>
                             <hr />
-                            <a className="dropdown-item" href="/logout">
+                            <a className="dropdown-item" href="/login">
                                 Logout
                             </a>
                         </li>

@@ -7,7 +7,7 @@ function Attack(): JSX.Element {
         options: {
             chart: {
                 height: 280,
-                type: 'line',
+                type: 'area',
                 toolbar: {
                     show: false,
                 },
@@ -25,9 +25,6 @@ function Attack(): JSX.Element {
             title: {
                 text: 'Packet Data',
                 align: 'left',
-            },
-            markers: {
-                size: 0,
             },
             xaxis: {
                 categories: [
@@ -49,6 +46,7 @@ function Attack(): JSX.Element {
         },
         series: [
             {
+                name: 'Packet',
                 data: [44, 55, 41, 67, 22, 43, 21, 33, 45, 31],
             },
         ],
