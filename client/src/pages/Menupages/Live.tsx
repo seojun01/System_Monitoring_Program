@@ -3,44 +3,50 @@ import './Css/pages.css';
 import './Css/Live.css';
 
 function Live(): JSX.Element {
-    const [event, setEvent] = useState([]);
-    const [date, setDate] = useState([]);
-    const [attack, setAttack] = useState([]);
-    const [srcIp, setSrcIp] = useState([]);
-    const [dstIp, setDstIp] = useState([]);
-    const [srcPort, setSrcPort] = useState([]);
-    const [dstPort, setDstPort] = useState([]);
-    const [protocol, setProtocol] = useState([]);
+    // const [event_type, setEvent] = useState([]);
+    // const [timestamp, setDate] = useState([]);
+    // const [signature, setAttack] = useState([]);
+    // const [src_ip, setSrcIp] = useState([]);
+    // const [dest_ip, setDstIp] = useState([]);
+    // const [src_port, setSrcPort] = useState([]);
+    // const [dest_port, setDstPort] = useState([]);
+    // const [proto, setProtocol] = useState([]);
 
+    // setEvent(data?.map((item: any) => item.event_type));
+    // setDate(data?.map((item: any) => item.timestamp));
+    // setAttack(data?.map((item: any) => item.signature));
+    // setSrcIp(data?.map((item: any) => item.src_ip));
+    // setSrcPort(data?.map((item: any) => item.src_port));
+    // setDstIp(data?.map((item: any) => item.dest_ip));
+    // setDstPort(data?.map((item: any) => item.dest_port));
+    // setProtocol(data?.map((item: any) => item.proto));
+
+    type User = {
+        id: string;
+        event_type: string;
+        timestamp: string;
+        signature: string;
+        src_ip: string;
+        src_port: number;
+        dest_ip: string;
+        dest_port: number;
+        proto: string;
+    };
+
+    const [users, setUsers] = useState<User[]>([]);
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('/ips/notificate');
-                const data = await response.json();
-                setEvent(data?.map((item: any) => item.event));
-                setDate(data?.map((item: any) => item.date));
-                setAttack(data?.map((item: any) => item.attack));
-                setSrcIp(data?.map((item: any) => item.srcIp));
-                setSrcPort(data?.map((item: any) => item.srcPort));
-                setDstIp(data?.map((item: any) => item.dstIp));
-                setDstPort(data?.map((item: any) => item.dstPort));
-                setProtocol(data?.map((item: any) => item.Protocol));
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        fetchData();
+        fetch('/ips/notificate')
+            .then((response) => response.json())
+            .then((json: any) => setUsers(json));
     }, []);
 
-    useEffect(() => {
-        // Simple-DataTables
-        // https://github.com/fiduswriter/Simple-DataTables/wiki
+    const datatablesSimple = document.getElementById('datatablesSimple');
+    if (datatablesSimple) {
+        const dataTable = new (window as any).simpleDatatables.DataTable(datatablesSimple, {
+            sortable: false,
+        });
+    }
 
-        const datatablesSimple = document.getElementById('datatablesSimple');
-        if (datatablesSimple) {
-            new (window as any).simpleDatatables.DataTable(datatablesSimple);
-        }
-    }, []);
     return (
         <div id="layoutSidenav">
             <div id="layoutSidenav_content">
@@ -80,15 +86,27 @@ function Live(): JSX.Element {
                                         </tr>
                                     </tfoot>
                                     <tbody>
+                                        {users.map((user) => (
+                                            <tr key={user.id}>
+                                                <td>{user.event_type}</td>
+                                                <td>{new Date(user.timestamp).toLocaleString()}</td>
+                                                <td>{user.signature}</td>
+                                                <td>{user.src_ip}</td>
+                                                <td>{user.src_port}</td>
+                                                <td>{user.dest_ip}</td>
+                                                <td>{user.dest_port}</td>
+                                                <td>{user.proto}</td>
+                                            </tr>
+                                        ))}
                                         <tr>
-                                            <td>{event}</td>
-                                            <td>{date}</td>
-                                            <td>{attack}</td>
-                                            <td>{srcIp}</td>
-                                            <td>{srcPort}</td>
-                                            <td>{dstIp}</td>
-                                            <td>{dstPort}</td>
-                                            <td>{protocol}</td>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
                                         </tr>
                                     </tbody>
                                 </table>
