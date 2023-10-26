@@ -1,3 +1,4 @@
+import { dir } from 'console';
 import '../Menupages/Css/pages.css';
 import { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
@@ -7,6 +8,8 @@ function Attack(): JSX.Element {
     const [SrcPort, setSrcPort] = useState([]);
     const [DstIp, setDstIp] = useState([]);
     const [DstPort, setDstPort] = useState([]);
+    const [ipro, setipro] = useState([]);
+    const [Evetype, setEvetype] = useState([]);
     const [time, setTime] = useState([]);
     const [Reception, setReception] = useState([]);
     const [Send, setSend] = useState([]);
@@ -26,7 +29,10 @@ function Attack(): JSX.Element {
     const [FinScan, setFinScan] = useState([]);
     const [XmasScan, setXmasScan] = useState([]);
     const [NullScan, setNullScan] = useState([]);
-
+    let cnt80:any,cnt52684:any,cnt59011:any,cnt65419:any,cnt22:any,cnt3389: any;
+    let dcnt80:any,dcnt52684:any,dcnt59011:any,dcnt65419:any,dcnt22:any,dcnt3389:any;
+    let a,b,c;
+    let da,db,dc;
 
     useEffect(() => {
         const eventSource = new EventSource('/packetinfo');
@@ -44,35 +50,33 @@ function Attack(): JSX.Element {
                 console.error('Error parsing data:', error);
             }
         };
-            const Iport = async () => {
-                try {
-                    const response = await fetch('/ips/iport');
-                    const data = await response.json();
-                    setSrcIp(data?.map((item: any) => item.src_ip));
-                    setSrcPort(data?.map((item: any) => item.src_port));
-                    setDstIp(data?.map((item: any) => item.dest_ip));
-                    setDstPort(data?.map((item: any) => item.dest_port));
-                    // const srcIpCounts: Map<string, number> = new Map();
-                    // for (const entry of data) {
-                    //     const srcIp = data.src_ip;
-                    //     if (srcIp && srcIp !== "") {
-                    //         if (srcIpCounts.has(srcIp)) {
-                    //             srcIpCounts.set(srcIp, srcIpCounts.get(srcIp)! + 1);
-                    //         } else {
-                    //             srcIpCounts.set(srcIp, 1);
-                    //         }
-                    //     }
-                    // }
-                    
-                    // for (const [srcIp, count] of srcIpCounts.entries()) {
-                    //     if (count > 1) {
-                    //         console.log(`src_ip: ${srcIp} 중복 횟수: ${count}`);
-                    //     }
-                    // }
-                } catch (error) {
-                    console.error("/ips/iport",error);
-                }
-            };
+        const Iport = async () => {
+            try {
+              const response = await fetch('/ips/iport');
+              const data = await response.json();
+          
+              // 데이터를 활용하여 필요한 상태를 설정
+              const srcIps = data.map((item : any) => item.src_ip);
+              const srcPorts = data.map((item : any) => item.src_port);
+              const dstIps = data.map((item : any) => item.dest_ip);
+              const dstPorts = data.map((item : any) => item.dest_port);
+              const evetype = data.map((item : any) => item.event_type);
+              const pro = data.map((item : any) => item.proto);
+          
+              // 이제 상태에 할당
+              setSrcIp(srcIps);
+              setSrcPort(srcPorts);
+              setDstIp(dstIps);
+              setDstPort(dstPorts);
+              setipro(pro)
+              setEvetype(evetype)
+            //   console.log(srcIps)
+              
+              
+            } catch (error) {
+              console.error("/ips/iport", error);
+            }
+          };
             Iport();
             const proto = async () => {
                 try {
@@ -97,7 +101,7 @@ function Attack(): JSX.Element {
                     setSsh(data?.ssh);
                     setDns(data?.dns);
                     setHttp(data?.http);
-                    setRdp(data?.rdp);
+                    setRdp(data?.rdp);            
                 } catch (error) {
                     console.error("proto",error);
                 }
@@ -118,7 +122,23 @@ function Attack(): JSX.Element {
             };
             Attacks();
     }, []);
+              cnt80 = SrcPort.filter(element => 80 === element).length;
+              cnt52684 = SrcPort.filter(element => 52684 === element).length;
+              cnt59011 = SrcPort.filter(element => 59011 === element).length;
+              cnt65419 = SrcPort.filter(element => 65419 === element).length;
+              cnt22 = SrcPort.filter(element => 22 === element).length;
+              cnt3389 = SrcPort.filter(element => 3389 === element).length;
 
+              dcnt80 = DstPort.filter(element => 80 === element).length;
+              dcnt52684 = DstPort.filter(element => 52684 === element).length;
+              dcnt59011 = DstPort.filter(element => 59011 === element).length;
+              dcnt65419 = DstPort.filter(element => 65419 === element).length;
+              dcnt22 = DstPort.filter(element => 22 === element).length;
+              dcnt3389 = DstPort.filter(element => 3389 === element).length;
+                let arr = [];
+              for(let i = 0; i < SrcIp.length; i++){
+                 arr = SrcIp[i]
+              }
 
     const conn_chart: any = {
         options: {
@@ -293,19 +313,7 @@ function Attack(): JSX.Element {
                     rotate: -45,
                 },
                 categories: [
-                    '80',
-                    '22',
-                    '8080',
-                    '1234',
-                    '443',
-                    '3389',
-                    '5678',
-                    '8000',
-                    '9000',
-                    '8888',
-                    '9999',
-                    '1111',
-                    '2222',
+                    '80','52684','59011','65419','22','3389'
                 ],
                 tickPlacement: 'on',
             },
@@ -326,7 +334,7 @@ function Attack(): JSX.Element {
         series: [
             {
                 name: 'Servings',
-                data: [44, 55, 41, 67, 22, 43, 21, 33, 45, 31, 87, 65, 35],
+                data: [cnt80,cnt52684,cnt59011,cnt65419,cnt22,cnt3389],
             },
         ],
     };
@@ -370,19 +378,7 @@ function Attack(): JSX.Element {
                     rotate: -45,
                 },
                 categories: [
-                    '80',
-                    '22',
-                    '8080',
-                    '1234',
-                    '443',
-                    '3389',
-                    '5678',
-                    '8000',
-                    '9000',
-                    '8888',
-                    '9999',
-                    '1111',
-                    '2222',
+                    '80','52684','59011','65419','22','3389'
                 ],
                 tickPlacement: 'on',
             },
@@ -403,7 +399,7 @@ function Attack(): JSX.Element {
         series: [
             {
                 name: 'Servings',
-                data: [44, 55, 41, 67, 22, 43, 21, 33, 45, 31, 87, 65, 35],
+                data: [cnt80,cnt52684,cnt59011,cnt65419,cnt22,cnt3389],
             },
         ],
     };
@@ -447,19 +443,7 @@ function Attack(): JSX.Element {
                     rotate: -45,
                 },
                 categories: [
-                    '80',
-                    '22',
-                    '8080',
-                    '1234',
-                    '443',
-                    '3389',
-                    '5678',
-                    '8000',
-                    '9000',
-                    '8888',
-                    '9999',
-                    '1111',
-                    '2222',
+                    '80','52684','59011','65419','22','3389'
                 ],
                 tickPlacement: 'on',
             },
@@ -480,7 +464,7 @@ function Attack(): JSX.Element {
         series: [
             {
                 name: 'Servings',
-                data: [44, 55, 41, 67, 22, 43, 21, 33, 45, 31, 87, 65, 35],
+                data: [dcnt80,dcnt52684,dcnt59011,dcnt65419,dcnt22,dcnt3389],
             },
         ],
     };
