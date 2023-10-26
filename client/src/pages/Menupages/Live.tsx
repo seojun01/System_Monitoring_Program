@@ -17,14 +17,14 @@ function Live(): JSX.Element {
             try {
                 const response = await fetch('/ips/notificate');
                 const data = await response.json();
-                setEvent(data.map((item: any) => item.event));
-                setDate(data.map((item: any) => item.date));
-                setAttack(data.map((item: any) => item.attack));
-                setSrcIp(data.map((item: any) => item.srcIp));
-                setSrcPort(data.map((item: any) => item.srcPort));
-                setDstIp(data.map((item: any) => item.dstIp));
-                setDstPort(data.map((item: any) => item.dstPort));
-                setProtocol(data.map((item: any) => item.Protocol));
+                setEvent(data?.map((item: any) => item.event));
+                setDate(data?.map((item: any) => item.date));
+                setAttack(data?.map((item: any) => item.attack));
+                setSrcIp(data?.map((item: any) => item.srcIp));
+                setSrcPort(data?.map((item: any) => item.srcPort));
+                setDstIp(data?.map((item: any) => item.dstIp));
+                setDstPort(data?.map((item: any) => item.dstPort));
+                setProtocol(data?.map((item: any) => item.Protocol));
             } catch (error) {
                 console.error(error);
             }
@@ -80,18 +80,16 @@ function Live(): JSX.Element {
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        {event.map((item, index) => (
-                                            <tr key={index}>
-                                                <td>{item}</td>
-                                                <td>{date[index]}</td>
-                                                <td>{attack[index]}</td>
-                                                <td>{srcIp[index]}</td>
-                                                <td>{srcPort[index]}</td>
-                                                <td>{dstIp[index]}</td>
-                                                <td>{dstPort[index]}</td>
-                                                <td>{protocol[index]}</td>
-                                            </tr>
-                                        ))}
+                                        <tr>
+                                            <td>{event}</td>
+                                            <td>{date}</td>
+                                            <td>{attack}</td>
+                                            <td>{srcIp}</td>
+                                            <td>{srcPort}</td>
+                                            <td>{dstIp}</td>
+                                            <td>{dstPort}</td>
+                                            <td>{protocol}</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
