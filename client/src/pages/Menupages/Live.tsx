@@ -22,6 +22,7 @@ function Live(): JSX.Element {
     // setProtocol(data?.map((item: any) => item.proto));
 
     type User = {
+        id: string;
         event_type: string;
         timestamp: string;
         signature: string;
@@ -41,7 +42,9 @@ function Live(): JSX.Element {
 
     const datatablesSimple = document.getElementById('datatablesSimple');
     if (datatablesSimple) {
-        new (window as any).simpleDatatables.DataTable(datatablesSimple);
+        const dataTable = new (window as any).simpleDatatables.DataTable(datatablesSimple, {
+            sortable: false,
+        });
     }
 
     return (
@@ -84,9 +87,9 @@ function Live(): JSX.Element {
                                     </tfoot>
                                     <tbody>
                                         {users.map((user) => (
-                                            <tr>
+                                            <tr key={user.id}>
                                                 <td>{user.event_type}</td>
-                                                <td>{new Date(user.timestamp).toLocaleTimeString()}</td>
+                                                <td>{new Date(user.timestamp).toLocaleString()}</td>
                                                 <td>{user.signature}</td>
                                                 <td>{user.src_ip}</td>
                                                 <td>{user.src_port}</td>
@@ -95,6 +98,16 @@ function Live(): JSX.Element {
                                                 <td>{user.proto}</td>
                                             </tr>
                                         ))}
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
