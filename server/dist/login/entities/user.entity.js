@@ -12,8 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 const core_entity_1 = require("../common/entities/core.entity");
 const typeorm_1 = require("typeorm");
-let User = exports.User = class User extends core_entity_1.coreEntity {
+let User = class User extends core_entity_1.coreEntity {
 };
+exports.User = User;
 __decorate([
     (0, typeorm_1.Column)({ unique: true, length: 32, comment: '이메일' }),
     __metadata("design:type", String)

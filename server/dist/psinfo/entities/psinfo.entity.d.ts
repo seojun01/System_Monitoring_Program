@@ -2,7 +2,7 @@ export declare class PsinfoEntity {
     id: number;
     _time: Date;
     pid: number;
-    cpuUsage: number;
-    memUsage: number;
+    cpuUsageDetail: number;
+    memUsageDetail: number;
     command: string;
 }

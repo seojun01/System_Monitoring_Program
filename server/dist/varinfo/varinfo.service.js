@@ -17,7 +17,7 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const varinfo_entity_1 = require("./entities/varinfo.entity");
 const typeorm_2 = require("typeorm");
-let VarinfoService = exports.VarinfoService = class VarinfoService {
+let VarinfoService = class VarinfoService {
     constructor(varRepository) {
         this.varRepository = varRepository;
     }
@@ -33,6 +33,7 @@ let VarinfoService = exports.VarinfoService = class VarinfoService {
         });
     }
 };
+exports.VarinfoService = VarinfoService;
 exports.VarinfoService = VarinfoService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(varinfo_entity_1.VarEntity)),

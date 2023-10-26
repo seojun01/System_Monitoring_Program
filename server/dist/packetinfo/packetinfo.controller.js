@@ -13,7 +13,7 @@ exports.PacketinfoController = void 0;
 const common_1 = require("@nestjs/common");
 const packetinfo_service_1 = require("./packetinfo.service");
 const rxjs_1 = require("rxjs");
-let PacketinfoController = exports.PacketinfoController = class PacketinfoController {
+let PacketinfoController = class PacketinfoController {
     constructor(packetinfoService) {
         this.packetinfoService = packetinfoService;
         this.data = null;
@@ -32,6 +32,7 @@ let PacketinfoController = exports.PacketinfoController = class PacketinfoContro
     }
     ;
 };
+exports.PacketinfoController = PacketinfoController;
 __decorate([
     (0, common_1.Sse)('/packetinfo'),
     __metadata("design:type", Function),

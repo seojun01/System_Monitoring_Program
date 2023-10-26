@@ -11,8 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PsinfoEntity = void 0;
 const typeorm_1 = require("typeorm");
-let PsinfoEntity = exports.PsinfoEntity = class PsinfoEntity {
+let PsinfoEntity = class PsinfoEntity {
 };
+exports.PsinfoEntity = PsinfoEntity;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
@@ -28,11 +29,11 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ type: 'float' }),
     __metadata("design:type", Number)
-], PsinfoEntity.prototype, "cpuUsage", void 0);
+], PsinfoEntity.prototype, "cpuUsageDetail", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'float' }),
     __metadata("design:type", Number)
-], PsinfoEntity.prototype, "memUsage", void 0);
+], PsinfoEntity.prototype, "memUsageDetail", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'varchar' }),
     __metadata("design:type", String)

@@ -12,8 +12,9 @@ const cpuinfo_service_1 = require("./cpuinfo.service");
 const cpuinfo_controller_1 = require("./cpuinfo.controller");
 const typeorm_1 = require("@nestjs/typeorm");
 const cpuinfo_entity_1 = require("./entities/cpuinfo.entity");
-let CpuinfoModule = exports.CpuinfoModule = class CpuinfoModule {
+let CpuinfoModule = class CpuinfoModule {
 };
+exports.CpuinfoModule = CpuinfoModule;
 exports.CpuinfoModule = CpuinfoModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([cpuinfo_entity_1.CpuEntity])],

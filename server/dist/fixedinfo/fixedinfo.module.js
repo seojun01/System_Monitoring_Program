@@ -12,8 +12,9 @@ const fixedinfo_service_1 = require("./fixedinfo.service");
 const fixedinfo_controller_1 = require("./fixedinfo.controller");
 const fixedinfo_entity_1 = require("./entities/fixedinfo.entity");
 const typeorm_1 = require("@nestjs/typeorm");
-let FixedinfoModule = exports.FixedinfoModule = class FixedinfoModule {
+let FixedinfoModule = class FixedinfoModule {
 };
+exports.FixedinfoModule = FixedinfoModule;
 exports.FixedinfoModule = FixedinfoModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([fixedinfo_entity_1.FixedEntity])],

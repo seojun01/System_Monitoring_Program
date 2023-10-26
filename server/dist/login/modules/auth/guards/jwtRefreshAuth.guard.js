@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.JwtRefreshAuthGuard = void 0;
 const common_1 = require("@nestjs/common");
 const passport_1 = require("@nestjs/passport");
-let JwtRefreshAuthGuard = exports.JwtRefreshAuthGuard = class JwtRefreshAuthGuard extends (0, passport_1.AuthGuard)('jwt-refresh') {
+let JwtRefreshAuthGuard = class JwtRefreshAuthGuard extends (0, passport_1.AuthGuard)('jwt-refresh') {
     canActivate(context) {
         return super.canActivate(context);
     }
@@ -20,6 +20,7 @@ let JwtRefreshAuthGuard = exports.JwtRefreshAuthGuard = class JwtRefreshAuthGuar
         return user;
     }
 };
+exports.JwtRefreshAuthGuard = JwtRefreshAuthGuard;
 exports.JwtRefreshAuthGuard = JwtRefreshAuthGuard = __decorate([
     (0, common_1.Injectable)()
 ], JwtRefreshAuthGuard);

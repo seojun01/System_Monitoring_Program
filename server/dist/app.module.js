@@ -19,9 +19,11 @@ const varinfo_module_1 = require("./varinfo/varinfo.module");
 const user_module_1 = require("./login/modules/user/user.module");
 const auth_module_1 = require("./login/modules/auth/auth.module");
 const psinfo_module_1 = require("./psinfo/psinfo.module");
+const ips_module_1 = require("./ips/ips.module");
 const Joi = require("joi");
-let AppModule = exports.AppModule = class AppModule {
+let AppModule = class AppModule {
 };
+exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
@@ -58,6 +60,7 @@ exports.AppModule = AppModule = __decorate([
             fixedinfo_module_1.FixedinfoModule,
             varinfo_module_1.VarinfoModule,
             psinfo_module_1.PsinfoModule,
+            ips_module_1.IpsModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

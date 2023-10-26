@@ -19,7 +19,7 @@ const typeorm_2 = require("typeorm");
 const user_entity_1 = require("../../entities/user.entity");
 const bcrypt = require("bcrypt");
 const Validator = require("class-validator");
-let UserService = exports.UserService = class UserService {
+let UserService = class UserService {
     constructor(userRepository) {
         this.userRepository = userRepository;
     }
@@ -160,6 +160,7 @@ let UserService = exports.UserService = class UserService {
         return this.userRepository.findOne(condition);
     }
 };
+exports.UserService = UserService;
 exports.UserService = UserService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.User)),

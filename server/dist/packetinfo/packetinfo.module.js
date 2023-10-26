@@ -12,8 +12,9 @@ const packetinfo_service_1 = require("./packetinfo.service");
 const packetinfo_controller_1 = require("./packetinfo.controller");
 const packetinfo_entity_1 = require("./entities/packetinfo.entity");
 const typeorm_1 = require("@nestjs/typeorm");
-let PacketinfoModule = exports.PacketinfoModule = class PacketinfoModule {
+let PacketinfoModule = class PacketinfoModule {
 };
+exports.PacketinfoModule = PacketinfoModule;
 exports.PacketinfoModule = PacketinfoModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([packetinfo_entity_1.PacketEntity])],

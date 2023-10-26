@@ -17,7 +17,7 @@ const common_1 = require("@nestjs/common");
 const packetinfo_entity_1 = require("./entities/packetinfo.entity");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
-let PacketinfoService = exports.PacketinfoService = class PacketinfoService {
+let PacketinfoService = class PacketinfoService {
     constructor(packetRepository) {
         this.packetRepository = packetRepository;
     }
@@ -33,6 +33,7 @@ let PacketinfoService = exports.PacketinfoService = class PacketinfoService {
         });
     }
 };
+exports.PacketinfoService = PacketinfoService;
 exports.PacketinfoService = PacketinfoService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(packetinfo_entity_1.PacketEntity)),

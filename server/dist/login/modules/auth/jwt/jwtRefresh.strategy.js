@@ -22,7 +22,7 @@ const fromCookie = (req) => {
     }
     return token;
 };
-let JwtRefreshStrategy = exports.JwtRefreshStrategy = class JwtRefreshStrategy extends (0, passport_1.PassportStrategy)(passport_jwt_1.Strategy, 'jwt-refresh') {
+let JwtRefreshStrategy = class JwtRefreshStrategy extends (0, passport_1.PassportStrategy)(passport_jwt_1.Strategy, 'jwt-refresh') {
     constructor(config, userService) {
         super({
             jwtFromRequest: fromCookie,
@@ -50,6 +50,7 @@ let JwtRefreshStrategy = exports.JwtRefreshStrategy = class JwtRefreshStrategy e
         return user;
     }
 };
+exports.JwtRefreshStrategy = JwtRefreshStrategy;
 exports.JwtRefreshStrategy = JwtRefreshStrategy = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [config_1.ConfigService,

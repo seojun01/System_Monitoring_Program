@@ -14,8 +14,7 @@ const common_1 = require("@nestjs/common");
 const cpuinfo_service_1 = require("./cpuinfo.service");
 const rxjs_1 = require("rxjs");
 const operators_1 = require("rxjs/operators");
-;
-let CpuinfoController = exports.CpuinfoController = class CpuinfoController {
+let CpuinfoController = class CpuinfoController {
     constructor(cpuinfoService) {
         this.cpuinfoService = cpuinfoService;
         this.data = null;
@@ -33,6 +32,7 @@ let CpuinfoController = exports.CpuinfoController = class CpuinfoController {
         return (0, rxjs_1.interval)(1000).pipe((0, operators_1.map)(() => ({ data: this.data })));
     }
 };
+exports.CpuinfoController = CpuinfoController;
 __decorate([
     (0, common_1.Sse)('/cpuinfo'),
     __metadata("design:type", Function),
