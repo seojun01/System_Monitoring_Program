@@ -403,7 +403,7 @@ function Attack(): JSX.Element {
         ],
     };
     
-    const Packet_Data_chart: any = {
+    const Event_Type_chart: any = {
         options : {
             chart: {
             type: 'bar',
@@ -414,6 +414,10 @@ function Attack(): JSX.Element {
             zoom: {
                 enabled: false,
             },
+          },
+          title : {
+            text : "Event Type",
+            align : "left"
           },
           plotOptions: {
             bar: {
@@ -551,10 +555,10 @@ function Attack(): JSX.Element {
                     </div>
                     <div id="allPacket">
                         <ReactApexChart
-                            options={Packet_Data_chart.options}
-                            series={Packet_Data_chart.series}
-                            type={Packet_Data_chart.options.chart.type}
-                            height={Packet_Data_chart.options.chart.height}
+                            options={Event_Type_chart.options}
+                            series={Event_Type_chart.series}
+                            type={Event_Type_chart.options.chart.type}
+                            height={Event_Type_chart.options.chart.height}
                         />
                     </div>
                     <div id="srcAndPort">
