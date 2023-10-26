@@ -18,7 +18,7 @@ const user_service_1 = require("./user.service");
 const createAccount_dto_1 = require("./dto/createAccount.dto");
 const jwtAuth_guard_1 = require("../auth/guards/jwtAuth.guard");
 const updateAccount_dto_1 = require("./dto/updateAccount.dto");
-let UserController = exports.UserController = class UserController {
+let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
     }
@@ -38,6 +38,7 @@ let UserController = exports.UserController = class UserController {
         return this.userService.delete(id);
     }
 };
+exports.UserController = UserController;
 __decorate([
     (0, common_1.Get)('all'),
     __metadata("design:type", Function),

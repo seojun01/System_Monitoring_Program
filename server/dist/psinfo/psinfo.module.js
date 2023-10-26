@@ -12,8 +12,9 @@ const psinfo_service_1 = require("./psinfo.service");
 const psinfo_controller_1 = require("./psinfo.controller");
 const psinfo_entity_1 = require("./entities/psinfo.entity");
 const typeorm_1 = require("@nestjs/typeorm");
-let PsinfoModule = exports.PsinfoModule = class PsinfoModule {
+let PsinfoModule = class PsinfoModule {
 };
+exports.PsinfoModule = PsinfoModule;
 exports.PsinfoModule = PsinfoModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([psinfo_entity_1.PsinfoEntity])],

@@ -12,8 +12,9 @@ const varinfo_service_1 = require("./varinfo.service");
 const varinfo_controller_1 = require("./varinfo.controller");
 const varinfo_entity_1 = require("./entities/varinfo.entity");
 const typeorm_1 = require("@nestjs/typeorm");
-let VarinfoModule = exports.VarinfoModule = class VarinfoModule {
+let VarinfoModule = class VarinfoModule {
 };
+exports.VarinfoModule = VarinfoModule;
 exports.VarinfoModule = VarinfoModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([varinfo_entity_1.VarEntity])],

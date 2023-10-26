@@ -17,7 +17,7 @@ const common_1 = require("@nestjs/common");
 const psinfo_entity_1 = require("./entities/psinfo.entity");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
-let PsinfoService = exports.PsinfoService = class PsinfoService {
+let PsinfoService = class PsinfoService {
     constructor(psinfoRepository) {
         this.psinfoRepository = psinfoRepository;
     }
@@ -30,6 +30,7 @@ let PsinfoService = exports.PsinfoService = class PsinfoService {
         });
     }
 };
+exports.PsinfoService = PsinfoService;
 exports.PsinfoService = PsinfoService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(psinfo_entity_1.PsinfoEntity)),

@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FixedinfoController = void 0;
 const common_1 = require("@nestjs/common");
 const fixedinfo_service_1 = require("./fixedinfo.service");
-let FixedinfoController = exports.FixedinfoController = class FixedinfoController {
+let FixedinfoController = class FixedinfoController {
     constructor(fixedinfoService) {
         this.fixedinfoService = fixedinfoService;
     }
@@ -20,6 +20,7 @@ let FixedinfoController = exports.FixedinfoController = class FixedinfoControlle
         return this.fixedinfoService.findAll();
     }
 };
+exports.FixedinfoController = FixedinfoController;
 __decorate([
     (0, common_1.Get)('/fixedinfo'),
     __metadata("design:type", Function),

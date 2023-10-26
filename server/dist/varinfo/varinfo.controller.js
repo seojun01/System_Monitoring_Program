@@ -13,7 +13,7 @@ exports.VarinfoController = void 0;
 const common_1 = require("@nestjs/common");
 const varinfo_service_1 = require("./varinfo.service");
 const rxjs_1 = require("rxjs");
-let VarinfoController = exports.VarinfoController = class VarinfoController {
+let VarinfoController = class VarinfoController {
     constructor(varinfoService) {
         this.varinfoService = varinfoService;
         this.data = null;
@@ -31,6 +31,7 @@ let VarinfoController = exports.VarinfoController = class VarinfoController {
         return (0, rxjs_1.interval)(1000).pipe((0, rxjs_1.map)(() => ({ data: this.data })));
     }
 };
+exports.VarinfoController = VarinfoController;
 __decorate([
     (0, common_1.Sse)('/varinfo'),
     __metadata("design:type", Function),

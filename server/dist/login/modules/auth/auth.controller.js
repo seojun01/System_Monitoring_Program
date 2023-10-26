@@ -18,7 +18,7 @@ const auth_service_1 = require("./auth.service");
 const login_dto_1 = require("./dto/login.dto");
 const jwtRefreshAuth_guard_1 = require("./guards/jwtRefreshAuth.guard");
 const jwtAuth_guard_1 = require("./guards/jwtAuth.guard");
-let AuthController = exports.AuthController = class AuthController {
+let AuthController = class AuthController {
     constructor(authService) {
         this.authService = authService;
     }
@@ -33,6 +33,7 @@ let AuthController = exports.AuthController = class AuthController {
         return this.authService.logout(req.user, res);
     }
 };
+exports.AuthController = AuthController;
 __decorate([
     (0, common_1.Post)('login'),
     __param(0, (0, common_1.Body)()),

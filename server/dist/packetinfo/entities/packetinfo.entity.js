@@ -11,8 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PacketEntity = void 0;
 const typeorm_1 = require("typeorm");
-let PacketEntity = exports.PacketEntity = class PacketEntity {
+let PacketEntity = class PacketEntity {
 };
+exports.PacketEntity = PacketEntity;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)

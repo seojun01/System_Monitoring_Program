@@ -11,8 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FixedEntity = void 0;
 const typeorm_1 = require("typeorm");
-let FixedEntity = exports.FixedEntity = class FixedEntity {
+let FixedEntity = class FixedEntity {
 };
+exports.FixedEntity = FixedEntity;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)

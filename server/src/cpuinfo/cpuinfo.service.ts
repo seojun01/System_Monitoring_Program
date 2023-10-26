@@ -3,7 +3,6 @@ import { CpuEntity } from './entities/cpuinfo.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Observable } from 'rxjs';
-import { subscribe } from 'diagnostics_channel';
 
 @Injectable()
 export class CpuinfoService {

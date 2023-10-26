@@ -17,7 +17,7 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const fixedinfo_entity_1 = require("./entities/fixedinfo.entity");
 const typeorm_2 = require("typeorm");
-let FixedinfoService = exports.FixedinfoService = class FixedinfoService {
+let FixedinfoService = class FixedinfoService {
     constructor(fixedRepository) {
         this.fixedRepository = fixedRepository;
     }
@@ -25,6 +25,7 @@ let FixedinfoService = exports.FixedinfoService = class FixedinfoService {
         return this.fixedRepository.find();
     }
 };
+exports.FixedinfoService = FixedinfoService;
 exports.FixedinfoService = FixedinfoService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(fixedinfo_entity_1.FixedEntity)),

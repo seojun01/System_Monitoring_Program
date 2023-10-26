@@ -13,7 +13,7 @@ exports.PsinfoController = void 0;
 const common_1 = require("@nestjs/common");
 const psinfo_service_1 = require("./psinfo.service");
 const rxjs_1 = require("rxjs");
-let PsinfoController = exports.PsinfoController = class PsinfoController {
+let PsinfoController = class PsinfoController {
     constructor(psinfoService) {
         this.psinfoService = psinfoService;
         this.data = null;
@@ -32,6 +32,7 @@ let PsinfoController = exports.PsinfoController = class PsinfoController {
     }
     ;
 };
+exports.PsinfoController = PsinfoController;
 __decorate([
     (0, common_1.Sse)('/psinfo'),
     __metadata("design:type", Function),
