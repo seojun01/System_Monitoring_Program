@@ -5,9 +5,6 @@ import NetworkPacket from '../../pages/Menupages/Network';
 import Attack from '../../pages/HomePage/Attack';
 import Live from '../../pages/Menupages/Live';
 import Perfmon from '../../pages/Menupages/Perfmon';
-import MyPage from '../../pages/Menupages/MyPage';
-import SignUpForm from '../../pages/Loginpages/SignUpForm';
-import LoginForm from '../../pages/Loginpages/LoginForm';
 import './App.css';
 
 function App(): JSX.Element {
@@ -49,21 +46,6 @@ function App(): JSX.Element {
             </Routes>
             <Routes>
                 <Route path="/perfmon" element={<Perfmon />} />
-            </Routes>
-            <Routes>
-                <Route path="/mypage" element={<Header />} />
-            </Routes>
-            <Routes>
-                <Route path="/mypage" element={<Menu />} />
-            </Routes>
-            <Routes>
-                <Route path="/mypage" element={<MyPage />} />
-            </Routes>
-            <Routes>
-                <Route path="/signup" element={<SignUpForm />} />
-            </Routes>
-            <Routes>
-                <Route path="/login" element={<LoginForm />} />
             </Routes>
         </Router>
     );

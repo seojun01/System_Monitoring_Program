@@ -19,21 +19,6 @@ function Perfmon(): JSX.Element {
     const [cpuTime, setCpuTime] = useState([]);
 
     useEffect(() => {
-        const eventSource = new EventSource('/cpuinfo');
-        eventSource.onmessage = (event) => {
-            try {
-                const data = JSON.parse(event.data);
-                setCpuTemp(data?.map((item: any) => item.cpuTemp));
-                setCpuUsage(data?.map((item: any) => item.cpuUsage));
-                setCpuTime(data?.map((item: any) => item._time));
-            } catch (error) {
-                console.log(error);
-            }
-        };
-    }, []);
-    /*사용 방법: cpuUsage, cpuTemp*/
-
-    useEffect(() => {
         const getData = async () => {
             const url = '/fixedinfo';
             try {
@@ -48,11 +33,22 @@ function Perfmon(): JSX.Element {
             }
         };
         getData();
-    }, []);
 
-    useEffect(() => {
-        const eventSource = new EventSource('/varinfo');
-        eventSource.onmessage = (event) => {
+        const eventSource1 = new EventSource('/cpuinfo');
+        eventSource1.onmessage = (event) => {
+            try {
+                const data = JSON.parse(event.data);
+                console.log(event.data);
+                setCpuTemp(data?.map((item: any) => item.cpuTemp));
+                setCpuUsage(data?.map((item: any) => item.cpuUsage));
+                setCpuTime(data?.map((item: any) => item._time));
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        const eventSource2 = new EventSource('/varinfo');
+        eventSource2.onmessage = (event) => {
             try {
                 const data = JSON.parse(event.data);
                 setMemavail(data?.map((item: any) => item.memavail));
@@ -63,11 +59,9 @@ function Perfmon(): JSX.Element {
                 console.log(error);
             }
         };
-    }, []);
 
-    useEffect(() => {
-        const eventSource = new EventSource('/psinfo');
-        eventSource.onmessage = (event) => {
+        const eventSource3 = new EventSource('/psinfo');
+        eventSource3.onmessage = (event) => {
             try {
                 const data = JSON.parse(event.data);
                 setCpuUsageDetail(data?.map((item: any) => item.cpuUsageDetail));

@@ -33,19 +33,19 @@ function Menu(): JSX.Element {
                                 </div>
                                 Performance Monitor
                             </a>
-                            <div className="sb-sidenav-menu-heading">crust</div>
+                            {/* <div className="sb-sidenav-menu-heading">crust</div>
                             <a className="nav-link" href="/mypage">
                                 <div className="sb-nav-link-icon">
                                     <i className="fa-solid fa-file"></i>
                                 </div>
                                 MyPage
-                            </a>
+                            </a> */}
                         </div>
                     </div>
-                    <div className="sb-sidenav-footer">
-                        {/* <div className="small">Logged in as</div>
-                        <div className="name">최정헌</div> */}
-                    </div>
+                    {/* <div className="sb-sidenav-footer">
+                        <div className="small">Logged in as</div>
+                        <div className="name">최정헌</div>
+                    </div> */}
                 </nav>
             </div>
         </div>
