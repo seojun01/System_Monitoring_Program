@@ -177,7 +177,7 @@ function Perfmon(): JSX.Element {
         series: [memUsage],
         options: {
             chart: {
-                height: 350,
+                height: 315,
                 type: 'radialBar',
                 offsetY: -20,
             },
@@ -225,7 +225,7 @@ function Perfmon(): JSX.Element {
         series: [memAvail],
         options: {
             chart: {
-                height: 350,
+                height: 315,
                 type: 'radialBar',
                 offsetY: -20,
             },
@@ -278,7 +278,7 @@ function Perfmon(): JSX.Element {
         ],
         options: {
             chart: {
-                height: 350,
+                height: 315,
                 type: 'bar',
                 toolbar: {
                     show: false,
@@ -321,7 +321,7 @@ function Perfmon(): JSX.Element {
         ],
         options: {
             chart: {
-                height: 350,
+                height: 315,
                 type: 'bar',
                 toolbar: {
                     show: false,
@@ -359,7 +359,7 @@ function Perfmon(): JSX.Element {
         series: [totalDisk, diskUsage],
         options: {
             chart: {
-                height: 390,
+                height: 315,
                 type: 'radialBar',
             },
             title: {
