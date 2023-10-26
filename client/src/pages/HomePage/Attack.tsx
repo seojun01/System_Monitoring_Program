@@ -36,8 +36,6 @@ function Attack(): JSX.Element {
         };
     }, []);
 
-
-    
     const conn_chart: any = {
         options: {
             chart: {
@@ -60,7 +58,7 @@ function Attack(): JSX.Element {
                 size: 0,
             },
             title: {
-                text: 'Communications',
+                text: 'Network Packet',
                 align: 'left',
             },
             fill: {
@@ -79,7 +77,7 @@ function Attack(): JSX.Element {
             yaxis: {
                 min: 0,
             },
-            colors: ['#7400b8','#FA2C25','#3739FA'],
+            colors: ['#7400b8', '#FA2C25', '#3739FA'],
         },
         series: [
             {
@@ -96,7 +94,7 @@ function Attack(): JSX.Element {
             },
         ],
     };
-  
+
     const SRC_IP_Packet_Amount_chart: any = {
         options: {
             chart: {
@@ -261,7 +259,7 @@ function Attack(): JSX.Element {
                     enabled: false,
                 },
             },
-            colors : ["#5B0888"],
+            colors: ['#5B0888'],
             title: {
                 text: 'Dst Ip',
                 align: 'left',
@@ -338,7 +336,7 @@ function Attack(): JSX.Element {
                     enabled: false,
                 },
             },
-            colors : ["#DA0C81"],
+            colors: ['#DA0C81'],
             title: {
                 text: 'Dst Port',
                 align: 'left',
@@ -402,72 +400,85 @@ function Attack(): JSX.Element {
             },
         ],
     };
-    
+
     const Event_Type_chart: any = {
-        options : {
+        options: {
             chart: {
-            type: 'bar',
-            height: 280,
-            toolbar: {
-                show: false,
+                type: 'bar',
+                height: 280,
+                toolbar: {
+                    show: false,
+                },
+                zoom: {
+                    enabled: false,
+                },
             },
-            zoom: {
+            title: {
+                text: 'Event Type',
+                align: 'left',
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: 4,
+                    horizontal: true,
+                },
+            },
+            dataLabels: {
                 enabled: false,
             },
-          },
-          title : {
-            text : "Event Type",
-            align : "left"
-          },
-          plotOptions: {
-            bar: {
-              borderRadius: 4,
-              horizontal: true,
-            }
-          },
-          dataLabels: {
-            enabled: false
-          },
-          xaxis: {
-            categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan',
-              'United States', 'China', 'Germany'
-            ],
-          }
-          },
-          series: [{
-            data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
-          }]
-        };
-    
+            xaxis: {
+                categories: [
+                    'South Korea',
+                    'Canada',
+                    'United Kingdom',
+                    'Netherlands',
+                    'Italy',
+                    'France',
+                    'Japan',
+                    'United States',
+                    'China',
+                    'Germany',
+                ],
+            },
+        },
+        series: [
+            {
+                data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380],
+            },
+        ],
+    };
+
     const Drop_chart: any = {
-        options : {
+        options: {
             chart: {
-            height: 300,
-            type: 'radar',
-            toolbar: {
-                show: false,
+                height: 300,
+                type: 'radar',
+                toolbar: {
+                    show: false,
+                },
+                zoom: {
+                    enabled: false,
+                },
             },
-            zoom: {
-                enabled: false,
+            title: {
+                text: 'Drop',
+                align: 'left',
             },
-          },
-          title: {
-            text: 'Drop',
-            align: 'left'
-          },
-          xaxis: {
-            categories: ['DDOS', 'SQL', 'March', 'April', 'May', 'June']
-          }
-          },
-          series: [{
-            name: 'Series 1',
-            data: [80, 50, 30, 40, 100, 20],
-          }],
-        };
+            xaxis: {
+                categories: ['DDOS', 'SQL', 'March', 'April', 'May', 'June'],
+            },
+        },
+        series: [
+            {
+                name: 'Series 1',
+                data: [80, 50, 30, 40, 100, 20],
+            },
+        ],
+    };
 
     const UDP_TCP_chart: any = {
-            options: {
-              chart: {
+        options: {
+            chart: {
                 height: 300,
                 type: 'donut',
                 toolbar: {
@@ -476,27 +487,29 @@ function Attack(): JSX.Element {
                 zoom: {
                     enabled: false,
                 },
-              },
-              responsive: [{
-                breakpoint: 480,
-                options: {
-                  chart: {
-                    width: 200
-                  },
-                  legend: {
-                    position: 'bottom'
-                  }
-                }
-              }],
-              title: {
-                text : "TCP And UDP",
-                align : "left"
-              },
-              labels: ['TCP', 'UDP'],
             },
-            name: "TCP And UDP",
-            series: [44, 55],
-        };
+            responsive: [
+                {
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 200,
+                        },
+                        legend: {
+                            position: 'bottom',
+                        },
+                    },
+                },
+            ],
+            title: {
+                text: 'TCP And UDP',
+                align: 'left',
+            },
+            labels: ['TCP', 'UDP'],
+        },
+        name: 'TCP And UDP',
+        series: [44, 55],
+    };
 
     return (
         <div id="layoutSidenav">
@@ -534,22 +547,22 @@ function Attack(): JSX.Element {
                     </div>
                     <div id="srcAndPort">
                         <div id="src">
-                                <ReactApexChart
-                                    options={dst_ip.options}
-                                    series={dst_ip.series}
-                                    type={dst_ip.options.chart.type}
-                                    height={dst_ip.options.chart.height}
-                                />
-                            </div>
-                            <div id="port">
-                                <ReactApexChart
-                                    options={dst_port.options}
-                                    series={dst_port.series}
-                                    type={dst_port.options.chart.type}
-                                    height={dst_port.options.chart.height}
-                                />
-                            </div>
+                            <ReactApexChart
+                                options={dst_ip.options}
+                                series={dst_ip.series}
+                                type={dst_ip.options.chart.type}
+                                height={dst_ip.options.chart.height}
+                            />
                         </div>
+                        <div id="port">
+                            <ReactApexChart
+                                options={dst_port.options}
+                                series={dst_port.series}
+                                type={dst_port.options.chart.type}
+                                height={dst_port.options.chart.height}
+                            />
+                        </div>
+                    </div>
                     <div className="container-fluid px-4">
                         <ol className="breadcrumb mb-4"></ol>
                     </div>
@@ -562,22 +575,22 @@ function Attack(): JSX.Element {
                         />
                     </div>
                     <div id="srcAndPort">
-                    <div id="src">
-                        <ReactApexChart
-                            options={UDP_TCP_chart.options}
-                            series={UDP_TCP_chart.series}
-                            type={UDP_TCP_chart.options.chart.type}
-                            height={UDP_TCP_chart.options.chart.height}
-                        />
-                    </div>
-                    <div id="port">
-                        <ReactApexChart
-                            options={Drop_chart.options}
-                            series={Drop_chart.series}
-                            type={Drop_chart.options.chart.type}
-                            height={Drop_chart.options.chart.height}
-                        />
-                    </div>
+                        <div id="src">
+                            <ReactApexChart
+                                options={UDP_TCP_chart.options}
+                                series={UDP_TCP_chart.series}
+                                type={UDP_TCP_chart.options.chart.type}
+                                height={UDP_TCP_chart.options.chart.height}
+                            />
+                        </div>
+                        <div id="port">
+                            <ReactApexChart
+                                options={Drop_chart.options}
+                                series={Drop_chart.series}
+                                type={Drop_chart.options.chart.type}
+                                height={Drop_chart.options.chart.height}
+                            />
+                        </div>
                     </div>
                 </main>
             </div>

@@ -9,7 +9,6 @@ function NetworkPacket(): JSX.Element {
     const [Conn, setConn] = useState([]);
     const [Udp, setUdp] = useState([]);
     const [Tcp, setTcp] = useState([]);
-    
 
     useEffect(() => {
         const eventSource = new EventSource('/packetinfo');
