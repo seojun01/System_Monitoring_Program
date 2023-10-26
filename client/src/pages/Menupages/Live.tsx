@@ -86,7 +86,7 @@ function Live(): JSX.Element {
                                         {users.map((user) => (
                                             <tr>
                                                 <td>{user.event_type}</td>
-                                                <td>{user.timestamp.toLocaleString()}</td>
+                                                <td>{new Date(user.timestamp).toLocaleTimeString()}</td>
                                                 <td>{user.signature}</td>
                                                 <td>{user.src_ip}</td>
                                                 <td>{user.src_port}</td>
