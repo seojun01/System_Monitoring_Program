@@ -3,6 +3,34 @@ import './Css/pages.css';
 import './Css/Live.css';
 
 function Live(): JSX.Element {
+    const [event, setEvent] = useState([]);
+    const [date, setDate] = useState([]);
+    const [attack, setAttack] = useState([]);
+    const [srcIp, setSrcIp] = useState([]);
+    const [dstIp, setDstIp] = useState([]);
+    const [srcPort, setSrcPort] = useState([]);
+    const [dstPort, setDstPort] = useState([]);
+    const [protocol, setProtocol] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('/ips/notificate');
+                const data = await response.json();
+                setEvent(data.map((item: any) => item.event));
+                setDate(data.map((item: any) => item.date));
+                setAttack(data.map((item: any) => item.attack));
+                setSrcIp(data.map((item: any) => item.srcIp));
+                setSrcPort(data.map((item: any) => item.srcPort));
+                setDstIp(data.map((item: any) => item.dstIp));
+                setDstPort(data.map((item: any) => item.dstPort));
+                setProtocol(data.map((item: any) => item.Protocol));
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchData();
+    }, []);
 
     useEffect(() => {
         // Simple-DataTables
@@ -29,9 +57,8 @@ function Live(): JSX.Element {
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>No.</th>
+                                            <th>Event</th>
                                             <th>Date</th>
-                                            <th>Time</th>
                                             <th>Info</th>
                                             <th>Src</th>
                                             <th>Src Port</th>
@@ -42,9 +69,8 @@ function Live(): JSX.Element {
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>No.</th>
+                                            <th>Event</th>
                                             <th>Date</th>
-                                            <th>Time</th>
                                             <th>Info</th>
                                             <th>Src</th>
                                             <th>Src Port</th>
@@ -54,116 +80,18 @@ function Live(): JSX.Element {
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>23/08/22</td>
-                                            <td>22:50</td>
-                                            <td>Dos</td>
-                                            <td>xxx.xxx.xxx.xx</td>
-                                            <td>80</td>
-                                            <td>xxx.xxx.xxx.xx</td>
-                                            <td>8080</td>
-                                            <td>TCP</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>23/08/22</td>
-                                            <td>22:50</td>
-                                            <td>Dos</td>
-                                            <td>xxx.xxx.xxx.xx</td>
-                                            <td>80</td>
-                                            <td>xxx.xxx.xxx.xx</td>
-                                            <td>8080</td>
-                                            <td>TCP</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>23/08/22</td>
-                                            <td>22:50</td>
-                                            <td>Dos</td>
-                                            <td>xxx.xxx.xxx.xx</td>
-                                            <td>80</td>
-                                            <td>xxx.xxx.xxx.xx</td>
-                                            <td>8080</td>
-                                            <td>TCP</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>23/08/22</td>
-                                            <td>22:50</td>
-                                            <td>Dos</td>
-                                            <td>xxx.xxx.xxx.xx</td>
-                                            <td>80</td>
-                                            <td>xxx.xxx.xxx.xx</td>
-                                            <td>8080</td>
-                                            <td>TCP</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>23/08/22</td>
-                                            <td>22:50</td>
-                                            <td>Dos</td>
-                                            <td>xxx.xxx.xxx.xx</td>
-                                            <td>80</td>
-                                            <td>xxx.xxx.xxx.xx</td>
-                                            <td>8080</td>
-                                            <td>TCP</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>23/08/22</td>
-                                            <td>22:50</td>
-                                            <td>Dos</td>
-                                            <td>xxx.xxx.xxx.xx</td>
-                                            <td>80</td>
-                                            <td>xxx.xxx.xxx.xx</td>
-                                            <td>8080</td>
-                                            <td>TCP</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>23/08/22</td>
-                                            <td>22:50</td>
-                                            <td>Dos</td>
-                                            <td>xxx.xxx.xxx.xx</td>
-                                            <td>80</td>
-                                            <td>xxx.xxx.xxx.xx</td>
-                                            <td>8080</td>
-                                            <td>TCP</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>23/08/22</td>
-                                            <td>22:50</td>
-                                            <td>Dos</td>
-                                            <td>xxx.xxx.xxx.xx</td>
-                                            <td>80</td>
-                                            <td>xxx.xxx.xxx.xx</td>
-                                            <td>8080</td>
-                                            <td>TCP</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>23/08/22</td>
-                                            <td>22:50</td>
-                                            <td>Dos</td>
-                                            <td>xxx.xxx.xxx.xx</td>
-                                            <td>80</td>
-                                            <td>xxx.xxx.xxx.xx</td>
-                                            <td>8080</td>
-                                            <td>TCP</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>23/08/22</td>
-                                            <td>22:50</td>
-                                            <td>Dos</td>
-                                            <td>xxx.xxx.xxx.xx</td>
-                                            <td>80</td>
-                                            <td>xxx.xxx.xxx.xx</td>
-                                            <td>8080</td>
-                                            <td>TCP</td>
-                                        </tr>
+                                        {event.map((item, index) => (
+                                            <tr key={index}>
+                                                <td>{item}</td>
+                                                <td>{date[index]}</td>
+                                                <td>{attack[index]}</td>
+                                                <td>{srcIp[index]}</td>
+                                                <td>{srcPort[index]}</td>
+                                                <td>{dstIp[index]}</td>
+                                                <td>{dstPort[index]}</td>
+                                                <td>{protocol[index]}</td>
+                                            </tr>
+                                        ))}
                                     </tbody>
                                 </table>
                             </div>

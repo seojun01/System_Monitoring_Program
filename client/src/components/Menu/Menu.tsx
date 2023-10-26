@@ -42,10 +42,10 @@ function Menu(): JSX.Element {
                             </a> */}
                         </div>
                     </div>
-                    <div className="sb-sidenav-footer">
+                    {/* <div className="sb-sidenav-footer">
                         <div className="small">Logged in as</div>
                         <div className="name">최정헌</div>
-                    </div>
+                    </div> */}
                 </nav>
             </div>
         </div>
