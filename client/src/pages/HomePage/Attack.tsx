@@ -9,19 +9,46 @@ function Attack(): JSX.Element {
     const [AttPacket, setAttPacket] = useState([]);
     const [AttType, setAttType] = useState([]);
     const [AttRisk, setAttRisk] = useState([]);
+    const [time, setTime] = useState([]);
+    const [Reception, setReception] = useState([]);
+    const [Send, setSend] = useState([]);
+    const [Conn, setConn] = useState([]);
+    const [Udp, setUdp] = useState([]);
+    const [Tcp, setTcp] = useState([]);
+
+    useEffect(() => {
+        const eventSource = new EventSource('/packetinfo');
+        eventSource.onmessage = (msg) => {
+            try {
+                const data = JSON.parse(msg.data); // JSON 문자열을 파싱
+                console.log(data);
+
+                // Update the state with the new data
+                setTime(data?.map((item: any) => item._time));
+                setReception(data?.map((item: any) => item.reception));
+                setSend(data?.map((item: any) => item.send));
+                setConn(data?.map((item: any) => item.conn));
+                setUdp(data?.map((item: any) => item.udp));
+                setTcp(data?.map((item: any) => item.tcp));
+            } catch (error) {
+                console.error('Error parsing data:', error);
+            }
+        };
+    }, []);
 
 
-    const Packet_Data_chart: any = {
+    
+    const conn_chart: any = {
         options: {
             chart: {
-                height: 280,
-                type: 'area',
                 toolbar: {
                     show: false,
                 },
                 zoom: {
                     enabled: false,
                 },
+                type: 'area',
+                height: 280,
             },
             dataLabels: {
                 enabled: false,
@@ -29,40 +56,51 @@ function Attack(): JSX.Element {
             stroke: {
                 curve: 'smooth',
             },
-            colors: ['#2828CD'],
+            markers: {
+                size: 0,
+            },
             title: {
-                text: 'Packet Data',
+                text: 'Communications',
                 align: 'left',
             },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shadeIntensity: 1,
+                    inverseColors: false,
+                    opacityFrom: 0.5,
+                    opacityTo: 0,
+                    stops: [0, 90, 100],
+                },
+            },
             xaxis: {
-                categories: [
-                    '12:55:06',
-                    '12:55:07',
-                    '12:55:08',
-                    '12:55:09',
-                    '12:55:10',
-                    '12:55:11',
-                    '12:55:12',
-                    '12:55:13',
-                    '12:55:14',
-                    '12:55:15',
-                ],
+                categories: time.slice(0, 10).reverse(),
             },
-            legend: {
-                show: false,
+            yaxis: {
+                min: 0,
             },
+            colors: ['#7400b8','#FA2C25','#3739FA'],
         },
         series: [
             {
-                name: 'Packet',
-                data: [44, 55, 41, 67, 22, 43, 21, 33, 45, 31],
+                name: 'Connection',
+                data: Conn.slice(0, 10).reverse(),
+            },
+            {
+                name: 'Reception',
+                data: Reception.slice(0, 10).reverse(),
+            },
+            {
+                name: 'Send',
+                data: Send.slice(0, 10).reverse(),
             },
         ],
     };
+  
     const SRC_IP_Packet_Amount_chart: any = {
         options: {
             chart: {
-                height: 350,
+                height: 360,
                 type: 'bar',
                 toolbar: {
                     show: false,
@@ -72,7 +110,7 @@ function Attack(): JSX.Element {
                 },
             },
             title: {
-                text: 'SRC IP Packet Amount',
+                text: 'SRC IP Packet',
                 align: 'left',
             },
             colors: ['#D25A5A'],
@@ -138,7 +176,7 @@ function Attack(): JSX.Element {
     const Port_Packet_Amount_chart: any = {
         options: {
             chart: {
-                height: 350,
+                height: 300,
                 type: 'bar',
                 toolbar: {
                     show: false,
@@ -148,7 +186,7 @@ function Attack(): JSX.Element {
                 },
             },
             title: {
-                text: 'Port Packet Amount',
+                text: 'Port Packet',
                 align: 'left',
             },
             plotOptions: {
@@ -210,12 +248,12 @@ function Attack(): JSX.Element {
             },
         ],
     };
-    const Attack_Packet_Data_Amount_chart: any = {
+
+    const dst_ip: any = {
         options: {
             chart: {
-                id: 'chartyear',
-                type: 'area',
-                height: 280,
+                height: 315,
+                type: 'bar',
                 toolbar: {
                     show: false,
                 },
@@ -223,41 +261,61 @@ function Attack(): JSX.Element {
                     enabled: false,
                 },
             },
+            colors : ["#5B0888"],
             title: {
-                text: 'Attack Packet Data Amount',
+                text: 'Dst Ip',
                 align: 'left',
             },
-            colors: ['#FF7F00'],
-            stroke: {
-                width: 0,
-                curve: 'smooth',
+            plotOptions: {
+                bar: {
+                    columnWidth: '50%',
+                },
             },
             dataLabels: {
                 enabled: false,
             },
-            fill: {
-                opacity: 1,
-                type: 'solid',
+            stroke: {
+                curve: 'smooth',
             },
-            yaxis: {
-                tickAmount: 3,
+
+            grid: {
+                row: {
+                    colors: ['#fff', '#f2f2f2'],
+                },
             },
             xaxis: {
+                labels: {
+                    rotate: -45,
+                },
                 categories: [
-                    '12:55:06',
-                    '12:55:07',
-                    '12:55:08',
-                    '12:55:09',
-                    '12:55:10',
-                    '12:55:11',
-                    '12:55:12',
-                    '12:55:13',
-                    '12:55:14',
-                    '12:55:15',
-                    '12:55:16',
-                    '12:55:17',
-                    '12:55:18',
+                    '80',
+                    '22',
+                    '8080',
+                    '1234',
+                    '443',
+                    '3389',
+                    '5678',
+                    '8000',
+                    '9000',
+                    '8888',
+                    '9999',
+                    '1111',
+                    '2222',
                 ],
+                tickPlacement: 'on',
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shade: 'light',
+                    type: 'horizontal',
+                    shadeIntensity: 0.25,
+                    gradientToColors: undefined,
+                    inverseColors: true,
+                    opacityFrom: 0.85,
+                    opacityTo: 0.85,
+                    stops: [50, 0, 100],
+                },
             },
         },
         series: [
@@ -268,83 +326,188 @@ function Attack(): JSX.Element {
         ],
     };
 
-    const Type_of_attack_chart: any = {
+    const dst_port: any = {
         options: {
             chart: {
+                height: 315,
+                type: 'bar',
                 toolbar: {
                     show: false,
                 },
-                type: 'radar',
-                height: 350,
+                zoom: {
+                    enabled: false,
+                },
+            },
+            colors : ["#DA0C81"],
+            title: {
+                text: 'Dst Port',
+                align: 'left',
+            },
+            plotOptions: {
+                bar: {
+                    columnWidth: '50%',
+                },
+            },
+            dataLabels: {
+                enabled: false,
             },
             stroke: {
                 curve: 'smooth',
             },
-            title: {
-                text: 'Type of attack',
-                align: 'left',
-                style: {
-                    color: 'black',
+
+            grid: {
+                row: {
+                    colors: ['#fff', '#f2f2f2'],
                 },
             },
             xaxis: {
-                categories: ['SQL 인젝션', '커맨드 인젝션', 'Xpath 인젝션', 'XSS', 'CSRF'],
+                labels: {
+                    rotate: -45,
+                },
+                categories: [
+                    '80',
+                    '22',
+                    '8080',
+                    '1234',
+                    '443',
+                    '3389',
+                    '5678',
+                    '8000',
+                    '9000',
+                    '8888',
+                    '9999',
+                    '1111',
+                    '2222',
+                ],
+                tickPlacement: 'on',
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shade: 'light',
+                    type: 'horizontal',
+                    shadeIntensity: 0.25,
+                    gradientToColors: undefined,
+                    inverseColors: true,
+                    opacityFrom: 0.85,
+                    opacityTo: 0.85,
+                    stops: [50, 0, 100],
+                },
             },
         },
         series: [
             {
-                name: '공격종류',
-                data: [19, 25, 20, 9, 2],
+                name: 'Servings',
+                data: [44, 55, 41, 67, 22, 43, 21, 33, 45, 31, 87, 65, 35],
             },
         ],
     };
-
-    const Attack_Risk_chart: any = {
-        options: {
+    
+    const Packet_Data_chart: any = {
+        options : {
             chart: {
-                width: 380,
-                type: 'pie',
-                height: 350,
+            type: 'bar',
+            height: 280,
+            toolbar: {
+                show: false,
             },
-            title: {
-                text: 'Attack Risk',
-                align: 'left',
-                style: {
-                    color: 'black',
-                },
+            zoom: {
+                enabled: false,
             },
-            stroke: {
-                curve: 'smooth',
-            },
-            labels: ['관심', '주의', '경고', '위험'],
-            responsive: [
-                {
-                    breakpoint: 480,
-                    options: {
-                        toolbar: {
-                            show: false,
-                        },
-                    },
-                },
+          },
+          plotOptions: {
+            bar: {
+              borderRadius: 4,
+              horizontal: true,
+            }
+          },
+          dataLabels: {
+            enabled: false
+          },
+          xaxis: {
+            categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan',
+              'United States', 'China', 'Germany'
             ],
-        },
-        name: '위험도',
-        series: [44, 55, 13, 13],
-    };
+          }
+          },
+          series: [{
+            data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
+          }]
+        };
+    
+    const Drop_chart: any = {
+        options : {
+            chart: {
+            height: 300,
+            type: 'radar',
+            toolbar: {
+                show: false,
+            },
+            zoom: {
+                enabled: false,
+            },
+          },
+          title: {
+            text: 'Drop',
+            align: 'left'
+          },
+          xaxis: {
+            categories: ['DDOS', 'SQL', 'March', 'April', 'May', 'June']
+          }
+          },
+          series: [{
+            name: 'Series 1',
+            data: [80, 50, 30, 40, 100, 20],
+          }],
+        };
+
+    const UDP_TCP_chart: any = {
+            options: {
+              chart: {
+                height: 300,
+                type: 'donut',
+                toolbar: {
+                    show: false,
+                },
+                zoom: {
+                    enabled: false,
+                },
+              },
+              responsive: [{
+                breakpoint: 480,
+                options: {
+                  chart: {
+                    width: 200
+                  },
+                  legend: {
+                    position: 'bottom'
+                  }
+                }
+              }],
+              title: {
+                text : "TCP And UDP",
+                align : "left"
+              },
+              labels: ['TCP', 'UDP'],
+            },
+            name: "TCP And UDP",
+            series: [44, 55],
+        };
+
     return (
         <div id="layoutSidenav">
             <div id="layoutSidenav_content">
                 <main>
                     <div className="container-fluid px-4">
-                        <h1 className="mt-4">Attack Packet</h1>
+                        <h1 className="mt-4">Network</h1>
                         <ol className="breadcrumb mb-4"></ol>
                     </div>
-                    <div id="allPacket">
+                    <div id="conn">
                         <ReactApexChart
-                            options={Packet_Data_chart.options}
-                            series={Packet_Data_chart.series}
-                            type={Packet_Data_chart.options.chart.type}
-                            height={Packet_Data_chart.options.chart.height}
+                            options={conn_chart.options}
+                            series={conn_chart.series}
+                            type={conn_chart.options.chart.type}
+                            height={conn_chart.options.chart.height}
                         />
                     </div>
                     <div id="srcAndPort">
@@ -365,31 +528,52 @@ function Attack(): JSX.Element {
                             />
                         </div>
                     </div>
-                    <div id="attack">
+                    <div id="srcAndPort">
+                        <div id="src">
+                                <ReactApexChart
+                                    options={dst_ip.options}
+                                    series={dst_ip.series}
+                                    type={dst_ip.options.chart.type}
+                                    height={dst_ip.options.chart.height}
+                                />
+                            </div>
+                            <div id="port">
+                                <ReactApexChart
+                                    options={dst_port.options}
+                                    series={dst_port.series}
+                                    type={dst_port.options.chart.type}
+                                    height={dst_port.options.chart.height}
+                                />
+                            </div>
+                        </div>
+                    <div className="container-fluid px-4">
+                        <ol className="breadcrumb mb-4"></ol>
+                    </div>
+                    <div id="allPacket">
                         <ReactApexChart
-                            options={Attack_Packet_Data_Amount_chart.options}
-                            series={Attack_Packet_Data_Amount_chart.series}
-                            type={Attack_Packet_Data_Amount_chart.options.chart.type}
-                            height={Attack_Packet_Data_Amount_chart.options.chart.height}
+                            options={Packet_Data_chart.options}
+                            series={Packet_Data_chart.series}
+                            type={Packet_Data_chart.options.chart.type}
+                            height={Packet_Data_chart.options.chart.height}
                         />
                     </div>
-                    <div id="attackTypeAndRisk">
-                        <div id="attackType">
-                            <ReactApexChart
-                                options={Type_of_attack_chart.options}
-                                series={Type_of_attack_chart.series}
-                                type={Type_of_attack_chart.options.chart.type}
-                                height={Type_of_attack_chart.options.chart.height}
-                            />
-                        </div>
-                        <div id="attackRisk">
-                            <ReactApexChart
-                                options={Attack_Risk_chart.options}
-                                series={Attack_Risk_chart.series}
-                                type={Attack_Risk_chart.options.chart.type}
-                                height={Attack_Risk_chart.options.chart.height}
-                            />
-                        </div>
+                    <div id="srcAndPort">
+                    <div id="src">
+                        <ReactApexChart
+                            options={UDP_TCP_chart.options}
+                            series={UDP_TCP_chart.series}
+                            type={UDP_TCP_chart.options.chart.type}
+                            height={UDP_TCP_chart.options.chart.height}
+                        />
+                    </div>
+                    <div id="port">
+                        <ReactApexChart
+                            options={Drop_chart.options}
+                            series={Drop_chart.series}
+                            type={Drop_chart.options.chart.type}
+                            height={Drop_chart.options.chart.height}
+                        />
+                    </div>
                     </div>
                 </main>
             </div>

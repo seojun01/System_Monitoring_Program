@@ -53,7 +53,7 @@ function NetworkPacket(): JSX.Element {
                 size: 0,
             },
             title: {
-                text: 'Connection',
+                text: '연결',
                 align: 'left',
             },
             fill: {
@@ -104,7 +104,7 @@ function NetworkPacket(): JSX.Element {
                 size: 0,
             },
             title: {
-                text: 'Reception',
+                text: '수신',
                 align: 'left',
             },
             fill: {
@@ -154,7 +154,7 @@ function NetworkPacket(): JSX.Element {
                 size: 0,
             },
             title: {
-                text: 'Send',
+                text: '송신',
                 align: 'left',
             },
             fill: {
