@@ -3,24 +3,6 @@ import './Css/pages.css';
 import './Css/Live.css';
 
 function Live(): JSX.Element {
-    // const [event_type, setEvent] = useState([]);
-    // const [timestamp, setDate] = useState([]);
-    // const [signature, setAttack] = useState([]);
-    // const [src_ip, setSrcIp] = useState([]);
-    // const [dest_ip, setDstIp] = useState([]);
-    // const [src_port, setSrcPort] = useState([]);
-    // const [dest_port, setDstPort] = useState([]);
-    // const [proto, setProtocol] = useState([]);
-
-    // setEvent(data?.map((item: any) => item.event_type));
-    // setDate(data?.map((item: any) => item.timestamp));
-    // setAttack(data?.map((item: any) => item.signature));
-    // setSrcIp(data?.map((item: any) => item.src_ip));
-    // setSrcPort(data?.map((item: any) => item.src_port));
-    // setDstIp(data?.map((item: any) => item.dest_ip));
-    // setDstPort(data?.map((item: any) => item.dest_port));
-    // setProtocol(data?.map((item: any) => item.proto));
-
     type User = {
         id: string;
         event_type: string;
