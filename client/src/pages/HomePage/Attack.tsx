@@ -3,38 +3,122 @@ import { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 
 function Attack(): JSX.Element {
-    const [Packet, setPacket] = useState([]);
-    const [Src, setSrc] = useState([]);
-    const [PortPacket, setPortPacket] = useState([]);
-    const [AttPacket, setAttPacket] = useState([]);
-    const [AttType, setAttType] = useState([]);
-    const [AttRisk, setAttRisk] = useState([]);
+    const [SrcIp, setSrcIp] = useState([]);
+    const [SrcPort, setSrcPort] = useState([]);
+    const [DstIp, setDstIp] = useState([]);
+    const [DstPort, setDstPort] = useState([]);
     const [time, setTime] = useState([]);
     const [Reception, setReception] = useState([]);
     const [Send, setSend] = useState([]);
     const [Conn, setConn] = useState([]);
     const [Udp, setUdp] = useState([]);
     const [Tcp, setTcp] = useState([]);
+    const [Drop, setDrop] = useState([]);
+    const [Flow, setFlow] = useState([]);
+    const [Alert, setAlert] = useState([]);
+    const [Stats, setStats] = useState([]);
+    const [Ssh, setSsh] = useState([]);
+    const [Dns, setDns] = useState([]);
+    const [Http, setHttp] = useState([]);
+    const [Rdp, setRdp] = useState([]);
+    const [SysScan, setSysScan] = useState([]);
+    const [SysFlood, setSysFlood] = useState([]);
+    const [FinScan, setFinScan] = useState([]);
+    const [XmasScan, setXmasScan] = useState([]);
+    const [NullScan, setNullScan] = useState([]);
+
 
     useEffect(() => {
         const eventSource = new EventSource('/packetinfo');
         eventSource.onmessage = (msg) => {
             try {
                 const data = JSON.parse(msg.data); // JSON 문자열을 파싱
-                console.log(data);
+                //console.log(data);
 
                 // Update the state with the new data
                 setTime(data?.map((item: any) => item._time));
                 setReception(data?.map((item: any) => item.reception));
                 setSend(data?.map((item: any) => item.send));
                 setConn(data?.map((item: any) => item.conn));
-                setUdp(data?.map((item: any) => item.udp));
-                setTcp(data?.map((item: any) => item.tcp));
             } catch (error) {
                 console.error('Error parsing data:', error);
             }
         };
+            const Iport = async () => {
+                try {
+                    const response = await fetch('/ips/iport');
+                    const data = await response.json();
+                    setSrcIp(data?.map((item: any) => item.src_ip));
+                    setSrcPort(data?.map((item: any) => item.src_port));
+                    setDstIp(data?.map((item: any) => item.dest_ip));
+                    setDstPort(data?.map((item: any) => item.dest_port));
+                    // const srcIpCounts: Map<string, number> = new Map();
+                    // for (const entry of data) {
+                    //     const srcIp = data.src_ip;
+                    //     if (srcIp && srcIp !== "") {
+                    //         if (srcIpCounts.has(srcIp)) {
+                    //             srcIpCounts.set(srcIp, srcIpCounts.get(srcIp)! + 1);
+                    //         } else {
+                    //             srcIpCounts.set(srcIp, 1);
+                    //         }
+                    //     }
+                    // }
+                    
+                    // for (const [srcIp, count] of srcIpCounts.entries()) {
+                    //     if (count > 1) {
+                    //         console.log(`src_ip: ${srcIp} 중복 횟수: ${count}`);
+                    //     }
+                    // }
+                } catch (error) {
+                    console.error("/ips/iport",error);
+                }
+            };
+            Iport();
+            const proto = async () => {
+                try {
+                    const response = await fetch('/ips/proto');
+                    const data = await response.json();
+                    setUdp(data?.udp);
+                    setTcp(data?.tcp);
+                } catch (error) {
+                    console.error("proto",error);
+                }
+            };
+            proto();
+
+            const Eventtype = async () => {
+                try {
+                    const response = await fetch('/ips/eventtype');
+                    const data = await response.json();
+                    setDrop(data?.drop);
+                    setFlow(data?.flow);
+                    setAlert(data?.alert);
+                    setStats(data?.stats);
+                    setSsh(data?.ssh);
+                    setDns(data?.dns);
+                    setHttp(data?.http);
+                    setRdp(data?.rdp);
+                } catch (error) {
+                    console.error("proto",error);
+                }
+            };
+            Eventtype();
+            const Attacks = async () => {
+                try {
+                    const response = await fetch('/ips/attacks');
+                    const data = await response.json();
+                    setSysScan(data?.synScan);
+                    setSysFlood(data?.synFlood);
+                    setFinScan(data?.finScan);
+                    setXmasScan(data?.xmasScan);
+                    setNullScan(data?.nullScan);
+                } catch (error) {
+                    console.error("proto",error);
+                }
+            };
+            Attacks();
     }, []);
+
 
     const conn_chart: any = {
         options: {
@@ -428,22 +512,20 @@ function Attack(): JSX.Element {
             },
             xaxis: {
                 categories: [
-                    'South Korea',
-                    'Canada',
-                    'United Kingdom',
-                    'Netherlands',
-                    'Italy',
-                    'France',
-                    'Japan',
-                    'United States',
-                    'China',
-                    'Germany',
+                    'Drop',
+                    'Flow',
+                    'Alert',
+                    'Stats',
+                    'Ssh',
+                    'Dns',
+                    'Http',
+                    'Rdp',
                 ],
             },
         },
         series: [
             {
-                data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380],
+                data: [Drop,Flow,Alert,Stats,Ssh,Dns,Http,Rdp],
             },
         ],
     };
@@ -465,13 +547,13 @@ function Attack(): JSX.Element {
                 align: 'left',
             },
             xaxis: {
-                categories: ['DDOS', 'SQL', 'March', 'April', 'May', 'June'],
+                categories: ['SynScan', 'SynFlood', 'FinScan', 'XmasScan', 'NullScan'],
             },
         },
         series: [
             {
                 name: 'Series 1',
-                data: [80, 50, 30, 40, 100, 20],
+                data: [SysScan, SysFlood, FinScan, XmasScan, NullScan],
             },
         ],
     };
@@ -508,7 +590,7 @@ function Attack(): JSX.Element {
             labels: ['TCP', 'UDP'],
         },
         name: 'TCP And UDP',
-        series: [44, 55],
+        series: [Tcp, Udp],
     };
 
     return (
