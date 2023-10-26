@@ -108,7 +108,7 @@ function Attack(): JSX.Element {
                 },
             },
             title: {
-                text: 'SRC IP Packet',
+                text: 'Src IP',
                 align: 'left',
             },
             colors: ['#D25A5A'],
@@ -184,7 +184,7 @@ function Attack(): JSX.Element {
                 },
             },
             title: {
-                text: 'Port Packet',
+                text: 'Src Port',
                 align: 'left',
             },
             plotOptions: {
@@ -261,7 +261,7 @@ function Attack(): JSX.Element {
             },
             colors: ['#5B0888'],
             title: {
-                text: 'Dst Ip',
+                text: 'Dst IP',
                 align: 'left',
             },
             plotOptions: {
@@ -516,7 +516,7 @@ function Attack(): JSX.Element {
             <div id="layoutSidenav_content">
                 <main>
                     <div className="container-fluid px-4">
-                        <h1 className="mt-4">Network</h1>
+                        <h1 className="mt-4">Network Packet</h1>
                         <ol className="breadcrumb mb-4"></ol>
                     </div>
                     <div id="conn">
