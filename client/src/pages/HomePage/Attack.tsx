@@ -8,8 +8,6 @@ function Attack(): JSX.Element {
     const [SrcPort, setSrcPort] = useState([]);
     const [DstIp, setDstIp] = useState([]);
     const [DstPort, setDstPort] = useState([]);
-    const [ipro, setipro] = useState([]);
-    const [Evetype, setEvetype] = useState([]);
     const [time, setTime] = useState([]);
     const [Reception, setReception] = useState([]);
     const [Send, setSend] = useState([]);
@@ -31,8 +29,8 @@ function Attack(): JSX.Element {
     const [NullScan, setNullScan] = useState([]);
     let cnt80:any,cnt52684:any,cnt59011:any,cnt65419:any,cnt22:any,cnt3389: any;
     let dcnt80:any,dcnt52684:any,dcnt59011:any,dcnt65419:any,dcnt22:any,dcnt3389:any;
-    let a,b,c;
-    let da,db,dc;
+    let ip1,ip2,ip3,ip4,ip5,ip6;
+    let dip1,dip2,dip3,dip4,dip5,dip6;
 
     useEffect(() => {
         const eventSource = new EventSource('/packetinfo');
@@ -68,8 +66,6 @@ function Attack(): JSX.Element {
               setSrcPort(srcPorts);
               setDstIp(dstIps);
               setDstPort(dstPorts);
-              setipro(pro)
-              setEvetype(evetype)
             //   console.log(srcIps)
               
               
@@ -135,10 +131,21 @@ function Attack(): JSX.Element {
               dcnt65419 = DstPort.filter(element => 65419 === element).length;
               dcnt22 = DstPort.filter(element => 22 === element).length;
               dcnt3389 = DstPort.filter(element => 3389 === element).length;
-                let arr = [];
-              for(let i = 0; i < SrcIp.length; i++){
-                 arr = SrcIp[i]
-              }
+
+              ip1 = SrcIp.filter(element => "192.168.0.107" === element).length;
+              ip2 = SrcIp.filter(element => "147.28.187.214" === element).length;
+              ip3 = SrcIp.filter(element => "192.168.0.1" === element).length;
+              ip4 = SrcIp.filter(element => "211.195.12.154" === element).length;
+              ip5 = SrcIp.filter(element => "216.218.206.94" === element).length;
+              ip6 = SrcIp.filter(element => "224.0.0.251" === element).length;
+
+              dip1 = DstIp.filter(element => "192.168.0.107" === element).length;
+              dip2 = DstIp.filter(element => "147.28.187.214" === element).length;
+              dip3 = DstIp.filter(element => "192.168.0.1" === element).length;
+              dip4 = DstIp.filter(element => "211.195.12.154" === element).length;
+              dip5 = DstIp.filter(element => "216.218.206.94" === element).length;
+              dip6 = DstIp.filter(element => "224.0.0.251" === element).length;
+              
 
     const conn_chart: any = {
         options: {
@@ -238,19 +245,7 @@ function Attack(): JSX.Element {
                     rotate: -45,
                 },
                 categories: [
-                    '192.168.0.1',
-                    '192.168.0.2',
-                    '192.168.0.3',
-                    '192.168.0.4',
-                    '192.168.0.5',
-                    '192.168.0.6',
-                    '192.168.0.7',
-                    '192.168.0.8',
-                    '192.168.0.9',
-                    '192.168.0.10',
-                    '192.168.0.11',
-                    '192.168.0.12',
-                    '192.168.0.13',
+                    "192.168.0.107","147.28.187.214","192.168.0.1","211.195.12.154","216.218.206.94","224.0.0.251"
                 ],
                 tickPlacement: 'on',
             },
@@ -271,7 +266,7 @@ function Attack(): JSX.Element {
         series: [
             {
                 name: 'Servings',
-                data: [44, 55, 41, 67, 22, 43, 21, 33, 45, 31, 87, 65, 35],
+                data: [ip1,ip2,ip3,ip4,ip5,ip6],
             },
         ],
     };
@@ -378,7 +373,7 @@ function Attack(): JSX.Element {
                     rotate: -45,
                 },
                 categories: [
-                    '80','52684','59011','65419','22','3389'
+                    "192.168.0.107","147.28.187.214","192.168.0.1","211.195.12.154","216.218.206.94","224.0.0.251"
                 ],
                 tickPlacement: 'on',
             },
@@ -399,7 +394,7 @@ function Attack(): JSX.Element {
         series: [
             {
                 name: 'Servings',
-                data: [cnt80,cnt52684,cnt59011,cnt65419,cnt22,cnt3389],
+                data: [dip1,dip2,dip3,dip4,dip5,dip6],
             },
         ],
     };
