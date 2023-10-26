@@ -12,14 +12,14 @@ function Menu(): JSX.Element {
                                 <div className="sb-nav-link-icon">
                                     <i className="fa-brands fa-watchman-monitoring"></i>
                                 </div>
-                                Attack Packet
+                                Network Packet
                             </a>
-                            <a className="nav-link" href="/network">
+                            {/* <a className="nav-link" href="/network">
                                 <div className="sb-nav-link-icon">
                                     <i className="fas fa-tachometer-alt"></i>
                                 </div>
                                 Network Packet
-                            </a>
+                            </a> */}
                             <a className="nav-link" href="/realtime">
                                 <div className="sb-nav-link-icon">
                                     <i className="fa-solid fa-circle-info"></i>
