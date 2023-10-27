@@ -209,7 +209,7 @@ function Attack(): JSX.Element {
     const SRC_IP_Packet_Amount_chart: any = {
         options: {
             chart: {
-                height: 360,
+                height: 315,
                 type: 'bar',
                 toolbar: {
                     show: false,
@@ -273,7 +273,7 @@ function Attack(): JSX.Element {
     const Port_Packet_Amount_chart: any = {
         options: {
             chart: {
-                height: 300,
+                height: 315,
                 type: 'bar',
                 toolbar: {
                     show: false,
