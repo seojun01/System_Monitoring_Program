@@ -58,16 +58,14 @@ function Attack(): JSX.Element {
               const srcPorts = data.map((item : any) => item.src_port);
               const dstIps = data.map((item : any) => item.dest_ip);
               const dstPorts = data.map((item : any) => item.dest_port);
-              const evetype = data.map((item : any) => item.event_type);
-              const pro = data.map((item : any) => item.proto);
-          
+            
               // 이제 상태에 할당
               setSrcIp(srcIps);
               setSrcPort(srcPorts);
               setDstIp(dstIps);
               setDstPort(dstPorts);
             //   console.log(srcIps)
-              
+              console.log(typeof(SrcIp))
               
             } catch (error) {
               console.error("/ips/iport", error);
@@ -132,18 +130,18 @@ function Attack(): JSX.Element {
               dcnt22 = DstPort.filter(element => 22 === element).length;
               dcnt3389 = DstPort.filter(element => 3389 === element).length;
 
-              ip1 = SrcIp.filter(element => "192.168.0.107" === element).length;
-              ip2 = SrcIp.filter(element => "147.28.187.214" === element).length;
-              ip3 = SrcIp.filter(element => "192.168.0.1" === element).length;
-              ip4 = SrcIp.filter(element => "211.195.12.154" === element).length;
-              ip5 = SrcIp.filter(element => "216.218.206.94" === element).length;
-              ip6 = SrcIp.filter(element => "224.0.0.251" === element).length;
+              ip1 = SrcIp.filter(element => "147.28.187.214" === element).length;
+              ip2 = SrcIp.filter(element => "157.230.36.150" === element).length;
+              ip3 = SrcIp.filter(element => "185.65.245.166" === element).length;
+              ip4 = SrcIp.filter(element => "192.168.0.107" === element).length;
+              ip5 = SrcIp.filter(element => "192.168.0.1" === element).length;
+              ip6 = SrcIp.filter(element => "211.195.12.154" === element).length;
 
-              dip1 = DstIp.filter(element => "192.168.0.107" === element).length;
+              dip1 = DstIp.filter(element => "127.0.0.53" === element).length;
               dip2 = DstIp.filter(element => "147.28.187.214" === element).length;
               dip3 = DstIp.filter(element => "192.168.0.1" === element).length;
-              dip4 = DstIp.filter(element => "211.195.12.154" === element).length;
-              dip5 = DstIp.filter(element => "216.218.206.94" === element).length;
+              dip4 = DstIp.filter(element => "192.168.0.107" === element).length;
+              dip5 = DstIp.filter(element => "211.195.12.154" === element).length;
               dip6 = DstIp.filter(element => "224.0.0.251" === element).length;
               
 
@@ -245,7 +243,12 @@ function Attack(): JSX.Element {
                     rotate: -45,
                 },
                 categories: [
-                    "192.168.0.107","147.28.187.214","192.168.0.1","211.195.12.154","216.218.206.94","224.0.0.251"
+                    "147.28.x.x",
+                    "157.x.x.150",
+                    "185.x.245.x",
+                    "192.168.x.x",
+                    "192.x.x.1",
+                    "211.x.12.x",
                 ],
                 tickPlacement: 'on',
             },
@@ -265,7 +268,7 @@ function Attack(): JSX.Element {
         },
         series: [
             {
-                name: 'Servings',
+                name: 'Src IP',
                 data: [ip1,ip2,ip3,ip4,ip5,ip6],
             },
         ],
@@ -328,7 +331,7 @@ function Attack(): JSX.Element {
         },
         series: [
             {
-                name: 'Servings',
+                name: 'Src Port',
                 data: [cnt80,cnt52684,cnt59011,cnt65419,cnt22,cnt3389],
             },
         ],
@@ -373,7 +376,12 @@ function Attack(): JSX.Element {
                     rotate: -45,
                 },
                 categories: [
-                    "192.168.0.107","147.28.187.214","192.168.0.1","211.195.12.154","216.218.206.94","224.0.0.251"
+                    "127.0.x.x",
+                    "147.x.x.214",
+                    "192.x.x.1",
+                    "192.168.x.x",
+                    "211.195.x.x",
+                    "224.x.x.251"
                 ],
                 tickPlacement: 'on',
             },
@@ -393,7 +401,7 @@ function Attack(): JSX.Element {
         },
         series: [
             {
-                name: 'Servings',
+                name: 'Dst IP',
                 data: [dip1,dip2,dip3,dip4,dip5,dip6],
             },
         ],
@@ -458,7 +466,7 @@ function Attack(): JSX.Element {
         },
         series: [
             {
-                name: 'Servings',
+                name: 'Dst Port',
                 data: [dcnt80,dcnt52684,dcnt59011,dcnt65419,dcnt22,dcnt3389],
             },
         ],
@@ -504,6 +512,7 @@ function Attack(): JSX.Element {
         },
         series: [
             {
+                name : 'Event Type',
                 data: [Drop,Flow,Alert,Stats,Ssh,Dns,Http,Rdp],
             },
         ],
