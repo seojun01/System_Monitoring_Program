@@ -38,7 +38,6 @@ function Perfmon(): JSX.Element {
         eventSource1.onmessage = (event) => {
             try {
                 const data = JSON.parse(event.data);
-                console.log(event.data);
                 setCpuTemp(data?.map((item: any) => item.cpuTemp));
                 setCpuUsage(data?.map((item: any) => item.cpuUsage));
                 setCpuTime(data?.map((item: any) => item._time));

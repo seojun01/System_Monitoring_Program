@@ -1,3 +1,4 @@
+import { dir } from 'console';
 import '../Menupages/Css/pages.css';
 import { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
@@ -26,6 +27,10 @@ function Attack(): JSX.Element {
     const [FinScan, setFinScan] = useState([]);
     const [XmasScan, setXmasScan] = useState([]);
     const [NullScan, setNullScan] = useState([]);
+    let cnt80:any,cnt52684:any,cnt59011:any,cnt65419:any,cnt22:any,cnt3389: any;
+    let dcnt80:any,dcnt52684:any,dcnt59011:any,dcnt65419:any,dcnt22:any,dcnt3389:any;
+    let ip1,ip2,ip3,ip4,ip5,ip6;
+    let dip1,dip2,dip3,dip4,dip5,dip6;
 
     useEffect(() => {
         const eventSource = new EventSource('/packetinfo');
@@ -45,78 +50,100 @@ function Attack(): JSX.Element {
         };
         const Iport = async () => {
             try {
-                const response = await fetch('/ips/iport');
-                const data = await response.json();
-                setSrcIp(data?.map((item: any) => item.src_ip));
-                setSrcPort(data?.map((item: any) => item.src_port));
-                setDstIp(data?.map((item: any) => item.dest_ip));
-                setDstPort(data?.map((item: any) => item.dest_port));
-                // const srcIpCounts: Map<string, number> = new Map();
-                // for (const entry of data) {
-                //     const srcIp = data.src_ip;
-                //     if (srcIp && srcIp !== "") {
-                //         if (srcIpCounts.has(srcIp)) {
-                //             srcIpCounts.set(srcIp, srcIpCounts.get(srcIp)! + 1);
-                //         } else {
-                //             srcIpCounts.set(srcIp, 1);
-                //         }
-                //     }
-                // }
+              const response = await fetch('/ips/iport');
+              const data = await response.json();
+          
+              // 데이터를 활용하여 필요한 상태를 설정
+              const srcIps = data.map((item : any) => item.src_ip);
+              const srcPorts = data.map((item : any) => item.src_port);
+              const dstIps = data.map((item : any) => item.dest_ip);
+              const dstPorts = data.map((item : any) => item.dest_port);
+            
+              // 이제 상태에 할당
+              setSrcIp(srcIps);
+              setSrcPort(srcPorts);
+              setDstIp(dstIps);
+              setDstPort(dstPorts);
+            //   console.log(srcIps)
+              console.log(typeof(SrcIp))
+              
+            } catch (error) {
+              console.error("/ips/iport", error);
+            }
+          };
+            Iport();
+            const proto = async () => {
+                try {
+                    const response = await fetch('/ips/proto');
+                    const data = await response.json();
+                    setUdp(data?.udp);
+                    setTcp(data?.tcp);
+                } catch (error) {
+                    console.error("proto",error);
+                }
+            };
+            proto();
 
-                // for (const [srcIp, count] of srcIpCounts.entries()) {
-                //     if (count > 1) {
-                //         console.log(`src_ip: ${srcIp} 중복 횟수: ${count}`);
-                //     }
-                // }
-            } catch (error) {
-                console.error('/ips/iport', error);
-            }
-        };
-        Iport();
-        const proto = async () => {
-            try {
-                const response = await fetch('/ips/proto');
-                const data = await response.json();
-                setUdp(data?.udp);
-                setTcp(data?.tcp);
-            } catch (error) {
-                console.error('proto', error);
-            }
-        };
-        proto();
-
-        const Eventtype = async () => {
-            try {
-                const response = await fetch('/ips/eventtype');
-                const data = await response.json();
-                setDrop(data?.drop);
-                setFlow(data?.flow);
-                setAlert(data?.alert);
-                setStats(data?.stats);
-                setSsh(data?.ssh);
-                setDns(data?.dns);
-                setHttp(data?.http);
-                setRdp(data?.rdp);
-            } catch (error) {
-                console.error('proto', error);
-            }
-        };
-        Eventtype();
-        const Attacks = async () => {
-            try {
-                const response = await fetch('/ips/attacks');
-                const data = await response.json();
-                setSysScan(data?.synScan);
-                setSysFlood(data?.synFlood);
-                setFinScan(data?.finScan);
-                setXmasScan(data?.xmasScan);
-                setNullScan(data?.nullScan);
-            } catch (error) {
-                console.error('proto', error);
-            }
-        };
-        Attacks();
+            const Eventtype = async () => {
+                try {
+                    const response = await fetch('/ips/eventtype');
+                    const data = await response.json();
+                    setDrop(data?.drop);
+                    setFlow(data?.flow);
+                    setAlert(data?.alert);
+                    setStats(data?.stats);
+                    setSsh(data?.ssh);
+                    setDns(data?.dns);
+                    setHttp(data?.http);
+                    setRdp(data?.rdp);            
+                } catch (error) {
+                    console.error("proto",error);
+                }
+            };
+            Eventtype();
+            const Attacks = async () => {
+                try {
+                    const response = await fetch('/ips/attacks');
+                    const data = await response.json();
+                    setSysScan(data?.synScan);
+                    setSysFlood(data?.synFlood);
+                    setFinScan(data?.finScan);
+                    setXmasScan(data?.xmasScan);
+                    setNullScan(data?.nullScan);
+                } catch (error) {
+                    console.error("proto",error);
+                }
+            };
+            Attacks();
     }, []);
+              cnt80 = SrcPort.filter(element => 80 === element).length;
+              cnt52684 = SrcPort.filter(element => 52684 === element).length;
+              cnt59011 = SrcPort.filter(element => 59011 === element).length;
+              cnt65419 = SrcPort.filter(element => 65419 === element).length;
+              cnt22 = SrcPort.filter(element => 22 === element).length;
+              cnt3389 = SrcPort.filter(element => 3389 === element).length;
+
+              dcnt80 = DstPort.filter(element => 80 === element).length;
+              dcnt52684 = DstPort.filter(element => 52684 === element).length;
+              dcnt59011 = DstPort.filter(element => 59011 === element).length;
+              dcnt65419 = DstPort.filter(element => 65419 === element).length;
+              dcnt22 = DstPort.filter(element => 22 === element).length;
+              dcnt3389 = DstPort.filter(element => 3389 === element).length;
+
+              ip1 = SrcIp.filter(element => "147.28.187.214" === element).length;
+              ip2 = SrcIp.filter(element => "157.230.36.150" === element).length;
+              ip3 = SrcIp.filter(element => "185.65.245.166" === element).length;
+              ip4 = SrcIp.filter(element => "192.168.0.107" === element).length;
+              ip5 = SrcIp.filter(element => "192.168.0.1" === element).length;
+              ip6 = SrcIp.filter(element => "211.195.12.154" === element).length;
+
+              dip1 = DstIp.filter(element => "127.0.0.53" === element).length;
+              dip2 = DstIp.filter(element => "147.28.187.214" === element).length;
+              dip3 = DstIp.filter(element => "192.168.0.1" === element).length;
+              dip4 = DstIp.filter(element => "192.168.0.107" === element).length;
+              dip5 = DstIp.filter(element => "211.195.12.154" === element).length;
+              dip6 = DstIp.filter(element => "224.0.0.251" === element).length;
+              
 
     const conn_chart: any = {
         options: {
@@ -180,7 +207,7 @@ function Attack(): JSX.Element {
     const SRC_IP_Packet_Amount_chart: any = {
         options: {
             chart: {
-                height: 360,
+                height: 315,
                 type: 'bar',
                 toolbar: {
                     show: false,
@@ -216,19 +243,12 @@ function Attack(): JSX.Element {
                     rotate: -45,
                 },
                 categories: [
-                    '192.168.0.1',
-                    '192.168.0.2',
-                    '192.168.0.3',
-                    '192.168.0.4',
-                    '192.168.0.5',
-                    '192.168.0.6',
-                    '192.168.0.7',
-                    '192.168.0.8',
-                    '192.168.0.9',
-                    '192.168.0.10',
-                    '192.168.0.11',
-                    '192.168.0.12',
-                    '192.168.0.13',
+                    "147.28.x.x",
+                    "157.x.x.150",
+                    "185.x.245.x",
+                    "192.168.x.x",
+                    "192.x.x.1",
+                    "211.x.12.x",
                 ],
                 tickPlacement: 'on',
             },
@@ -248,15 +268,15 @@ function Attack(): JSX.Element {
         },
         series: [
             {
-                name: 'Servings',
-                data: [44, 55, 41, 67, 22, 43, 21, 33, 45, 31, 87, 65, 35],
+                name: 'Src IP',
+                data: [ip1,ip2,ip3,ip4,ip5,ip6],
             },
         ],
     };
     const Port_Packet_Amount_chart: any = {
         options: {
             chart: {
-                height: 300,
+                height: 315,
                 type: 'bar',
                 toolbar: {
                     show: false,
@@ -291,19 +311,7 @@ function Attack(): JSX.Element {
                     rotate: -45,
                 },
                 categories: [
-                    '80',
-                    '22',
-                    '8080',
-                    '1234',
-                    '443',
-                    '3389',
-                    '5678',
-                    '8000',
-                    '9000',
-                    '8888',
-                    '9999',
-                    '1111',
-                    '2222',
+                    '80','52684','59011','65419','22','3389'
                 ],
                 tickPlacement: 'on',
             },
@@ -323,8 +331,8 @@ function Attack(): JSX.Element {
         },
         series: [
             {
-                name: 'Servings',
-                data: [44, 55, 41, 67, 22, 43, 21, 33, 45, 31, 87, 65, 35],
+                name: 'Src Port',
+                data: [cnt80,cnt52684,cnt59011,cnt65419,cnt22,cnt3389],
             },
         ],
     };
@@ -368,19 +376,12 @@ function Attack(): JSX.Element {
                     rotate: -45,
                 },
                 categories: [
-                    '80',
-                    '22',
-                    '8080',
-                    '1234',
-                    '443',
-                    '3389',
-                    '5678',
-                    '8000',
-                    '9000',
-                    '8888',
-                    '9999',
-                    '1111',
-                    '2222',
+                    "127.0.x.x",
+                    "147.x.x.214",
+                    "192.x.x.1",
+                    "192.168.x.x",
+                    "211.195.x.x",
+                    "224.x.x.251"
                 ],
                 tickPlacement: 'on',
             },
@@ -400,8 +401,8 @@ function Attack(): JSX.Element {
         },
         series: [
             {
-                name: 'Servings',
-                data: [44, 55, 41, 67, 22, 43, 21, 33, 45, 31, 87, 65, 35],
+                name: 'Dst IP',
+                data: [dip1,dip2,dip3,dip4,dip5,dip6],
             },
         ],
     };
@@ -445,19 +446,7 @@ function Attack(): JSX.Element {
                     rotate: -45,
                 },
                 categories: [
-                    '80',
-                    '22',
-                    '8080',
-                    '1234',
-                    '443',
-                    '3389',
-                    '5678',
-                    '8000',
-                    '9000',
-                    '8888',
-                    '9999',
-                    '1111',
-                    '2222',
+                    '80','52684','59011','65419','22','3389'
                 ],
                 tickPlacement: 'on',
             },
@@ -477,8 +466,8 @@ function Attack(): JSX.Element {
         },
         series: [
             {
-                name: 'Servings',
-                data: [44, 55, 41, 67, 22, 43, 21, 33, 45, 31, 87, 65, 35],
+                name: 'Dst Port',
+                data: [dcnt80,dcnt52684,dcnt59011,dcnt65419,dcnt22,dcnt3389],
             },
         ],
     };
@@ -514,7 +503,8 @@ function Attack(): JSX.Element {
         },
         series: [
             {
-                data: [Drop, Flow, Alert, Stats, Ssh, Dns, Http, Rdp],
+                name : 'Event Type',
+                data: [Drop,Flow,Alert,Stats,Ssh,Dns,Http,Rdp],
             },
         ],
     };
