@@ -1,13 +1,18 @@
 import { IpsService } from './ips.service';
-import { IpsEntity } from './entities/ips.entity';
+import { Observable } from 'rxjs';
+interface MessageEvent {
+    protoData: string;
+    eventData: string;
+    attackData: string;
+    ipnportData: string;
+}
 export declare class IpsController {
     private readonly ipsService;
-    private data;
+    private protoData;
+    private eventData;
+    private attackData;
+    private ipnportData;
     constructor(ipsService: IpsService);
-    getNoti(): Promise<IpsEntity[]>;
-    getCount(): Promise<{
-        tcp: number;
-        udp: number;
-    }>;
-    getEventType(): Promise<number>;
+    getEvents(): Promise<Observable<MessageEvent>>;
 }
+export {};

@@ -27,7 +27,6 @@ function Attack(): JSX.Element {
     const [XmasScan, setXmasScan] = useState([]);
     const [NullScan, setNullScan] = useState([]);
 
-
     useEffect(() => {
         const eventSource = new EventSource('/packetinfo');
         eventSource.onmessage = (msg) => {
@@ -44,81 +43,80 @@ function Attack(): JSX.Element {
                 console.error('Error parsing data:', error);
             }
         };
-            const Iport = async () => {
-                try {
-                    const response = await fetch('/ips/iport');
-                    const data = await response.json();
-                    setSrcIp(data?.map((item: any) => item.src_ip));
-                    setSrcPort(data?.map((item: any) => item.src_port));
-                    setDstIp(data?.map((item: any) => item.dest_ip));
-                    setDstPort(data?.map((item: any) => item.dest_port));
-                    // const srcIpCounts: Map<string, number> = new Map();
-                    // for (const entry of data) {
-                    //     const srcIp = data.src_ip;
-                    //     if (srcIp && srcIp !== "") {
-                    //         if (srcIpCounts.has(srcIp)) {
-                    //             srcIpCounts.set(srcIp, srcIpCounts.get(srcIp)! + 1);
-                    //         } else {
-                    //             srcIpCounts.set(srcIp, 1);
-                    //         }
-                    //     }
-                    // }
-                    
-                    // for (const [srcIp, count] of srcIpCounts.entries()) {
-                    //     if (count > 1) {
-                    //         console.log(`src_ip: ${srcIp} 중복 횟수: ${count}`);
-                    //     }
-                    // }
-                } catch (error) {
-                    console.error("/ips/iport",error);
-                }
-            };
-            Iport();
-            const proto = async () => {
-                try {
-                    const response = await fetch('/ips/proto');
-                    const data = await response.json();
-                    setUdp(data?.udp);
-                    setTcp(data?.tcp);
-                } catch (error) {
-                    console.error("proto",error);
-                }
-            };
-            proto();
+        const Iport = async () => {
+            try {
+                const response = await fetch('/ips/iport');
+                const data = await response.json();
+                setSrcIp(data?.map((item: any) => item.src_ip));
+                setSrcPort(data?.map((item: any) => item.src_port));
+                setDstIp(data?.map((item: any) => item.dest_ip));
+                setDstPort(data?.map((item: any) => item.dest_port));
+                // const srcIpCounts: Map<string, number> = new Map();
+                // for (const entry of data) {
+                //     const srcIp = data.src_ip;
+                //     if (srcIp && srcIp !== "") {
+                //         if (srcIpCounts.has(srcIp)) {
+                //             srcIpCounts.set(srcIp, srcIpCounts.get(srcIp)! + 1);
+                //         } else {
+                //             srcIpCounts.set(srcIp, 1);
+                //         }
+                //     }
+                // }
 
-            const Eventtype = async () => {
-                try {
-                    const response = await fetch('/ips/eventtype');
-                    const data = await response.json();
-                    setDrop(data?.drop);
-                    setFlow(data?.flow);
-                    setAlert(data?.alert);
-                    setStats(data?.stats);
-                    setSsh(data?.ssh);
-                    setDns(data?.dns);
-                    setHttp(data?.http);
-                    setRdp(data?.rdp);
-                } catch (error) {
-                    console.error("proto",error);
-                }
-            };
-            Eventtype();
-            const Attacks = async () => {
-                try {
-                    const response = await fetch('/ips/attacks');
-                    const data = await response.json();
-                    setSysScan(data?.synScan);
-                    setSysFlood(data?.synFlood);
-                    setFinScan(data?.finScan);
-                    setXmasScan(data?.xmasScan);
-                    setNullScan(data?.nullScan);
-                } catch (error) {
-                    console.error("proto",error);
-                }
-            };
-            Attacks();
+                // for (const [srcIp, count] of srcIpCounts.entries()) {
+                //     if (count > 1) {
+                //         console.log(`src_ip: ${srcIp} 중복 횟수: ${count}`);
+                //     }
+                // }
+            } catch (error) {
+                console.error('/ips/iport', error);
+            }
+        };
+        Iport();
+        const proto = async () => {
+            try {
+                const response = await fetch('/ips/proto');
+                const data = await response.json();
+                setUdp(data?.udp);
+                setTcp(data?.tcp);
+            } catch (error) {
+                console.error('proto', error);
+            }
+        };
+        proto();
+
+        const Eventtype = async () => {
+            try {
+                const response = await fetch('/ips/eventtype');
+                const data = await response.json();
+                setDrop(data?.drop);
+                setFlow(data?.flow);
+                setAlert(data?.alert);
+                setStats(data?.stats);
+                setSsh(data?.ssh);
+                setDns(data?.dns);
+                setHttp(data?.http);
+                setRdp(data?.rdp);
+            } catch (error) {
+                console.error('proto', error);
+            }
+        };
+        Eventtype();
+        const Attacks = async () => {
+            try {
+                const response = await fetch('/ips/attacks');
+                const data = await response.json();
+                setSysScan(data?.synScan);
+                setSysFlood(data?.synFlood);
+                setFinScan(data?.finScan);
+                setXmasScan(data?.xmasScan);
+                setNullScan(data?.nullScan);
+            } catch (error) {
+                console.error('proto', error);
+            }
+        };
+        Attacks();
     }, []);
-
 
     const conn_chart: any = {
         options: {
@@ -511,21 +509,12 @@ function Attack(): JSX.Element {
                 enabled: false,
             },
             xaxis: {
-                categories: [
-                    'Drop',
-                    'Flow',
-                    'Alert',
-                    'Stats',
-                    'Ssh',
-                    'Dns',
-                    'Http',
-                    'Rdp',
-                ],
+                categories: ['Drop', 'Flow', 'Alert', 'Stats', 'Ssh', 'Dns', 'Http', 'Rdp'],
             },
         },
         series: [
             {
-                data: [Drop,Flow,Alert,Stats,Ssh,Dns,Http,Rdp],
+                data: [Drop, Flow, Alert, Stats, Ssh, Dns, Http, Rdp],
             },
         ],
     };

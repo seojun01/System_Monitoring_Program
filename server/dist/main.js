@@ -5,7 +5,10 @@ const app_module_1 = require("./app.module");
 const cookieParser = require("cookie-parser");
 const common_1 = require("@nestjs/common");
 async function bootstrap() {
-    const app = await core_1.NestFactory.create(app_module_1.AppModule);
+    const app = await core_1.NestFactory.create(app_module_1.AppModule, {
+        forceCloseConnections: true,
+    });
+    app.enableShutdownHooks();
     app.enableCors({
         origin: true,
         credentials: true,
@@ -16,9 +19,6 @@ async function bootstrap() {
         forbidNonWhitelisted: true,
         transform: true,
     }));
-    console.log("*****************************");
-    console.log("SERVER START : ", process.env.NODE_ENV, process.env.PORT);
-    console.log("*****************************");
     await app.listen(process.env.PORT);
 }
 bootstrap();

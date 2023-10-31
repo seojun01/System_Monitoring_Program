@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import './Header.css';
 
 function Header(): JSX.Element {
+    const navigate = useNavigate();
+
     const handleSideBarToggle = () => {
         const body = document.body;
         body.classList.toggle('sb-sidenav-toggled');
@@ -10,8 +13,13 @@ function Header(): JSX.Element {
     };
     return (
         <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a className="navbar-brand ps-3" href="/">
-                JST Realtime IPS
+            <a
+                onClick={() => {
+                    navigate('/');
+                }}
+                className="navbar-brand ps-3"
+            >
+                Monitoring Dashboard
             </a>
             <a className="order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" onClick={handleSideBarToggle}>
                 <i className="fas fa-bars"></i>
@@ -27,7 +35,7 @@ function Header(): JSX.Element {
                     >
                         <i className="fas fa-user fa-fw"></i>
                     </a> */}
-                    <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    {/* <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li>
                             <a className="dropdown-item" href="/mypage">
                                 MyPage
@@ -37,7 +45,7 @@ function Header(): JSX.Element {
                                 Logout
                             </a>
                         </li>
-                    </ul>
+                    </ul> */}
                 </li>
             </ul>
         </nav>

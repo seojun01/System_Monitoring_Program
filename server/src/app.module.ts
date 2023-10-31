@@ -13,6 +13,11 @@ import { UserModule } from './login/modules/user/user.module';
 import { AuthModule } from './login/modules/auth/auth.module';
 import { PsinfoModule } from './psinfo/psinfo.module';
 import { IpsModule } from './ips/ips.module';
+import { NotiModule } from './noti/noti.module';
+import { ProtoModule } from './proto/proto.module';
+import { EventtypeModule } from './eventtype/eventtype.module';
+import { AttacksModule } from './attacks/attacks.module';
+import { IportModule } from './iport/iport.module';
 import * as Joi from 'joi';
 
 @Module({
@@ -51,6 +56,11 @@ import * as Joi from 'joi';
     VarinfoModule,
     PsinfoModule,
     IpsModule,
+    NotiModule,
+    ProtoModule,
+    EventtypeModule,
+    AttacksModule,
+    IportModule,
   ],
   controllers: [AppController],
   providers: [AppService],

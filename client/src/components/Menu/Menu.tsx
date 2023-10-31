@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import './Menu.css';
 
 function Menu(): JSX.Element {
+    const navigate = useNavigate();
+
     return (
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
@@ -8,7 +11,12 @@ function Menu(): JSX.Element {
                     <div className="sb-sidenav-menu">
                         <div className="nav">
                             <div className="sb-sidenav-menu-heading">core</div>
-                            <a className="nav-link" href="/">
+                            <a
+                                onClick={() => {
+                                    navigate('/');
+                                }}
+                                className="nav-link"
+                            >
                                 <div className="sb-nav-link-icon">
                                     <i className="fa-brands fa-watchman-monitoring"></i>
                                 </div>
@@ -20,14 +28,24 @@ function Menu(): JSX.Element {
                                 </div>
                                 Network Packet
                             </a> */}
-                            <a className="nav-link" href="/realtime">
+                            <a
+                                onClick={() => {
+                                    navigate('/realtime');
+                                }}
+                                className="nav-link"
+                            >
                                 <div className="sb-nav-link-icon">
                                     <i className="fa-solid fa-circle-info"></i>
                                 </div>
                                 Real-time Notification
                             </a>
                             <div className="sb-sidenav-menu-heading">mantle</div>
-                            <a className="nav-link" href="/perfmon">
+                            <a
+                                onClick={() => {
+                                    navigate('/perfmon');
+                                }}
+                                className="nav-link"
+                            >
                                 <div className="sb-nav-link-icon">
                                     <i className="fa-solid fa-microchip"></i>
                                 </div>

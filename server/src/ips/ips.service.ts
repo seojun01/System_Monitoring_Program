@@ -13,11 +13,12 @@ export class IpsService {
     private ipsRepository: Repository<IpsEntity>,
   ) {}
 
-  async getNoti(): Promise<IpsEntity[]> {
+  async getNoti() {
     return this.ipsRepository.find({
       where: {
         event_type: 'drop',
       },
+      take: 50,
     });
   }
 

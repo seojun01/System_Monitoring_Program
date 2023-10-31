@@ -28,14 +28,14 @@ export class PacketinfoController {
       try {
         const newData = await this.packetinfoService.getMany();
         this.data = JSON.stringify(newData);
-      } catch(error) {
+      } catch (error) {
         console.error('data select error', error);
       }
-    }, 1000)
+    }, 1000);
   }
 
   @Sse('/packetinfo')
   async getMany(): Promise<Observable<MessageEvent>> {
-    return interval(1000).pipe(map(() => ({ data: this.data })))
-  };
+    return interval(1000).pipe(map(() => ({ data: this.data })));
+  }
 }

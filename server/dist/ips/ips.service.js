@@ -26,6 +26,7 @@ let IpsService = class IpsService {
             where: {
                 event_type: 'drop',
             },
+            take: 50,
         });
     }
     async getProtocolCount() {
@@ -40,16 +41,65 @@ let IpsService = class IpsService {
         let dropCount = await this.ipsRepository.count({
             where: { event_type: 'drop' },
         });
-        let flowCount;
-        let alertCount;
-        let statsCount;
-        let sshCount;
-        let dnsCount;
-        let httpCount;
-        let rdpCount;
-        return dropCount;
+        let flowCount = await this.ipsRepository.count({
+            where: { event_type: 'flow' },
+        });
+        let alertCount = await this.ipsRepository.count({
+            where: { event_type: 'alert' },
+        });
+        let statsCount = await this.ipsRepository.count({
+            where: { event_type: 'stats' },
+        });
+        let sshCount = await this.ipsRepository.count({
+            where: { event_type: 'ssh' },
+        });
+        let dnsCount = await this.ipsRepository.count({
+            where: { event_type: 'dns' },
+        });
+        let httpCount = await this.ipsRepository.count({
+            where: { event_type: 'http' },
+        });
+        let rdpCount = await this.ipsRepository.count({
+            where: { event_type: 'rdp' },
+        });
+        return {
+            drop: dropCount,
+            flow: flowCount,
+            alert: alertCount,
+            stats: statsCount,
+            ssh: sshCount,
+            dns: dnsCount,
+            http: httpCount,
+            rdp: rdpCount,
+        };
     }
-    async getIpAndPort() { }
+    async getIpAndPort() {
+        return await this.ipsRepository.find();
+    }
+    async getAttack() {
+        let synScanCount = this.ipsRepository.count({
+            where: { signature: 'SYN Scanning' },
+        });
+        let synFloodCount = this.ipsRepository.count({
+            where: { signature: 'SYN Flooding' },
+        });
+        let finScanCount = this.ipsRepository.count({
+            where: { signature: 'FIN Scanning' },
+        });
+        let xmasScanCount = this.ipsRepository.count({
+            where: { signature: 'X-MAS Scanning' },
+        });
+        let nullScanCount = this.ipsRepository.count({
+            where: { signature: 'NULL Scanning' },
+        });
+        return {
+            synScan: synScanCount,
+            synFlood: synFloodCount,
+            finScan: finScanCount,
+            xmasScan: xmasScanCount,
+            nullScan: nullScanCount,
+        };
+    }
 };
 exports.IpsService = IpsService;
 exports.IpsService = IpsService = __decorate([

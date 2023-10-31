@@ -4,8 +4,12 @@ import * as cookieParser from 'cookie-parser';
 import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  
+  const app = await NestFactory.create(AppModule, {
+    forceCloseConnections: true,
+  });
+
+  app.enableShutdownHooks();
+
   app.enableCors({
     origin: true,
     credentials: true,
@@ -20,10 +24,6 @@ async function bootstrap() {
       transform: true,
     }),
   );
-
-  console.log("*****************************");
-  console.log("SERVER START : ", process.env.NODE_ENV, process.env.PORT);
-  console.log("*****************************");
 
   await app.listen(process.env.PORT);
 }

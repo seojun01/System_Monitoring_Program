@@ -17,47 +17,31 @@ import { fromEvent, interval, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IpsEntity } from './entities/ips.entity';
 
-interface MessageEvent {
-  data: string;
-}
-
 @Controller('ips')
 export class IpsController {
-  private data: string;
-  constructor(private readonly ipsService: IpsService) {
-    this.data = null;
+  constructor(private readonly ipsService: IpsService) {}
 
-    setInterval(async () => {
-      try {
-        const newData = await this.ipsService.getNoti();
-        this.data = JSON.stringify(newData);
-      } catch (error) {
-        console.error('data select error', error);
-      }
-    }, 3000);
-  }
-
-  @Get('/notificate')
-  async getNoti(): Promise<IpsEntity[]> {
+  @Get('/notification')
+  async getNoti() {
     return this.ipsService.getNoti();
   }
 
-  @Get('/proto')
-  async getCount() {
-    return this.ipsService.getProtocolCount();
-  }
-
-  @Get('/eventtype')
+  @Get('/eventype')
   async getEventType() {
     return this.ipsService.getEventType();
   }
 
-  @Get('/attacks')
-  async getAttack() {
+  @Get('/protocol')
+  async getProtocol() {
+    return this.ipsService.getProtocolCount();
+  }
+
+  @Get('attacks')
+  async getAttackInfo() {
     return this.ipsService.getAttack();
   }
 
-  @Get('/iport')
+  @Get('iport')
   async getIpAndPort() {
     return this.ipsService.getIpAndPort();
   }

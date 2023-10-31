@@ -30,7 +30,6 @@ let PacketinfoController = class PacketinfoController {
     async getMany() {
         return (0, rxjs_1.interval)(1000).pipe((0, rxjs_1.map)(() => ({ data: this.data })));
     }
-    ;
 };
 exports.PacketinfoController = PacketinfoController;
 __decorate([

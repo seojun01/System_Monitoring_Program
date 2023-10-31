@@ -20,6 +20,11 @@ const user_module_1 = require("./login/modules/user/user.module");
 const auth_module_1 = require("./login/modules/auth/auth.module");
 const psinfo_module_1 = require("./psinfo/psinfo.module");
 const ips_module_1 = require("./ips/ips.module");
+const noti_module_1 = require("./noti/noti.module");
+const proto_module_1 = require("./proto/proto.module");
+const eventtype_module_1 = require("./eventtype/eventtype.module");
+const attacks_module_1 = require("./attacks/attacks.module");
+const iport_module_1 = require("./iport/iport.module");
 const Joi = require("joi");
 let AppModule = class AppModule {
 };
@@ -61,6 +66,11 @@ exports.AppModule = AppModule = __decorate([
             varinfo_module_1.VarinfoModule,
             psinfo_module_1.PsinfoModule,
             ips_module_1.IpsModule,
+            noti_module_1.NotiModule,
+            proto_module_1.ProtoModule,
+            eventtype_module_1.EventtypeModule,
+            attacks_module_1.AttacksModule,
+            iport_module_1.IportModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

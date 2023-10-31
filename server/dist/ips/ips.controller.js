@@ -12,49 +12,47 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.IpsController = void 0;
 const common_1 = require("@nestjs/common");
 const ips_service_1 = require("./ips.service");
+const rxjs_1 = require("rxjs");
+const operators_1 = require("rxjs/operators");
 let IpsController = class IpsController {
     constructor(ipsService) {
         this.ipsService = ipsService;
-        this.data = null;
+        this.protoData = null;
+        this.eventData = null;
+        this.attackData = null;
+        this.ipnportData = null;
         setInterval(async () => {
             try {
-                const newData = await this.ipsService.getNoti();
-                this.data = JSON.stringify(newData);
+                const newProtoData = await this.ipsService.getProtocolCount();
+                const newEventData = await this.ipsService.getEventType();
+                const newAttackData = await this.ipsService.getAttack();
+                const newipnportData = await this.ipsService.getIpAndPort();
+                this.protoData = JSON.stringify(newProtoData);
+                this.eventData = JSON.stringify(newEventData);
+                this.attackData = JSON.stringify(newAttackData);
+                this.ipnportData = JSON.stringify(newipnportData);
             }
             catch (error) {
                 console.error('data select error', error);
             }
-        }, 3000);
+        }, 10000);
     }
-    async getNoti() {
-        return this.ipsService.getNoti();
-    }
-    async getCount() {
-        return this.ipsService.getProtocolCount();
-    }
-    async getEventType() {
-        return this.ipsService.getEventType();
+    async getEvents() {
+        return (0, rxjs_1.interval)(10000).pipe((0, operators_1.map)((_) => ({
+            protoData: this.protoData,
+            eventData: this.eventData,
+            attackData: this.attackData,
+            ipnportData: this.ipnportData,
+        })));
     }
 };
 exports.IpsController = IpsController;
 __decorate([
-    (0, common_1.Get)('/notificate'),
+    (0, common_1.Sse)('/events'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], IpsController.prototype, "getNoti", null);
-__decorate([
-    (0, common_1.Get)('/proto'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], IpsController.prototype, "getCount", null);
-__decorate([
-    (0, common_1.Get)('/eventtype'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], IpsController.prototype, "getEventType", null);
+], IpsController.prototype, "getEvents", null);
 exports.IpsController = IpsController = __decorate([
     (0, common_1.Controller)('ips'),
     __metadata("design:paramtypes", [ips_service_1.IpsService])

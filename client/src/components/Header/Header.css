@@ -655,6 +655,7 @@ a:not([href]):not([class]):hover {
     margin: 0;
 }
 .sb-topnav.navbar-dark #sidebarToggle {
+    padding-left: 15px;
     color: rgba(255, 255, 255, 0.5);
 }
 .sb-topnav.navbar-light #sidebarToggle {
