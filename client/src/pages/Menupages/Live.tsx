@@ -17,7 +17,7 @@ function Live(): JSX.Element {
 
     const [users, setUsers] = useState<User[]>([]);
     useEffect(() => {
-        fetch('/ips/notificate')
+        fetch('/ips/notification')
             .then((response) => response.json())
             .then((json: any) => setUsers(json));
     }, []);

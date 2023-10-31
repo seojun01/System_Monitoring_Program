@@ -36,12 +36,12 @@ export class IpsController {
     return this.ipsService.getProtocolCount();
   }
 
-  @Get('attacks')
+  @Get('/attacks')
   async getAttackInfo() {
     return this.ipsService.getAttack();
   }
 
-  @Get('iport')
+  @Get('/iport')
   async getIpAndPort() {
     return this.ipsService.getIpAndPort();
   }
