@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Loading from '../../components/Loading';
 import './Css/pages.css';
 import './Css/Live.css';
 
@@ -16,10 +17,22 @@ function Live(): JSX.Element {
     };
 
     const [users, setUsers] = useState<User[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    const callApi = () => {
+        setLoading(true);
+        try {
+            fetch('/ips/notification')
+                .then((response) => response.json())
+                .then((json: any) => setUsers(json));
+            setLoading(false);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     useEffect(() => {
-        fetch('/ips/notification')
-            .then((response) => response.json())
-            .then((json: any) => setUsers(json));
+        callApi();
     }, []);
 
     const datatablesSimple = document.getElementById('datatablesSimple');
@@ -31,10 +44,11 @@ function Live(): JSX.Element {
 
     return (
         <div id="layoutSidenav">
+            {loading ? <Loading /> : null}
             <div id="layoutSidenav_content">
                 <main>
                     <div className="container-fluid px-4">
-                        <h1 className="mt-4">Real-time Notification</h1>
+                        <h1 className="mt-4">Attack Notification</h1>
                         <ol className="breadcrumb mb-4"></ol>
                         <div className="card mb-4">
                             <div className="card-header">

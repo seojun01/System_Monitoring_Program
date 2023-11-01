@@ -15,7 +15,7 @@ function Header(): JSX.Element {
         <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <a
                 onClick={() => {
-                    navigate('/');
+                    window.location.replace('/');
                 }}
                 className="navbar-brand ps-3"
             >

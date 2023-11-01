@@ -2,6 +2,7 @@ import { dir } from 'console';
 import '../Menupages/Css/pages.css';
 import { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
+import Loading from '../../components/Loading';
 
 function Attack(): JSX.Element {
     const [SrcIp, setSrcIp] = useState([]);
@@ -32,7 +33,11 @@ function Attack(): JSX.Element {
     let ip1, ip2, ip3, ip4, ip5, ip6;
     let dip1, dip2, dip3, dip4, dip5, dip6;
 
-    useEffect(() => {
+    const [loading, setLoading] = useState(true);
+
+    const callApi = async () => {
+        setLoading(true);
+
         const eventSource = new EventSource('/packetinfo');
         eventSource.onmessage = (msg) => {
             try {
@@ -48,73 +53,70 @@ function Attack(): JSX.Element {
                 console.error('Error parsing data:', error);
             }
         };
-        const Iport = async () => {
-            try {
-                const response = await fetch('/ips/iport');
-                const data = await response.json();
 
-                // 데이터를 활용하여 필요한 상태를 설정
-                const srcIps = data.map((item: any) => item.src_ip);
-                const srcPorts = data.map((item: any) => item.src_port);
-                const dstIps = data.map((item: any) => item.dest_ip);
-                const dstPorts = data.map((item: any) => item.dest_port);
+        try {
+            const response = await fetch('/ips/iport');
+            const data = await response.json();
 
-                // 이제 상태에 할당
-                setSrcIp(srcIps);
-                setSrcPort(srcPorts);
-                setDstIp(dstIps);
-                setDstPort(dstPorts);
-                //   console.log(srcIps)
-                console.log(typeof SrcIp);
-            } catch (error) {
-                console.error('/ips/iport', error);
-            }
-        };
-        Iport();
-        const proto = async () => {
-            try {
-                const response = await fetch('/ips/protocol');
-                const data = await response.json();
-                setUdp(data?.udp);
-                setTcp(data?.tcp);
-            } catch (error) {
-                console.error('proto', error);
-            }
-        };
-        proto();
+            // 데이터를 활용하여 필요한 상태를 설정
+            const srcIps = data.map((item: any) => item.src_ip);
+            const srcPorts = data.map((item: any) => item.src_port);
+            const dstIps = data.map((item: any) => item.dest_ip);
+            const dstPorts = data.map((item: any) => item.dest_port);
 
-        const Eventtype = async () => {
-            try {
-                const response = await fetch('/ips/eventype');
-                const data = await response.json();
-                setDrop(data?.drop);
-                setFlow(data?.flow);
-                setAlert(data?.alert);
-                setStats(data?.stats);
-                setSsh(data?.ssh);
-                setDns(data?.dns);
-                setHttp(data?.http);
-                setRdp(data?.rdp);
-            } catch (error) {
-                console.error('proto', error);
-            }
-        };
-        Eventtype();
-        const Attacks = async () => {
-            try {
-                const response = await fetch('/ips/attacks');
-                const data = await response.json();
-                setSysScan(data?.synScan);
-                setSysFlood(data?.synFlood);
-                setFinScan(data?.finScan);
-                setXmasScan(data?.xmasScan);
-                setNullScan(data?.nullScan);
-            } catch (error) {
-                console.error('proto', error);
-            }
-        };
-        Attacks();
+            // 이제 상태에 할당
+            setSrcIp(srcIps);
+            setSrcPort(srcPorts);
+            setDstIp(dstIps);
+            setDstPort(dstPorts);
+            //   console.log(srcIps)
+            console.log(typeof SrcIp);
+        } catch (error) {
+            console.error('/ips/iport', error);
+        }
+
+        try {
+            const response = await fetch('/ips/protocol');
+            const data = await response.json();
+            setUdp(data?.udp);
+            setTcp(data?.tcp);
+        } catch (error) {
+            console.error('proto', error);
+        }
+
+        try {
+            const response = await fetch('/ips/eventype');
+            const data = await response.json();
+            setDrop(data?.drop);
+            setFlow(data?.flow);
+            setAlert(data?.alert);
+            setStats(data?.stats);
+            setSsh(data?.ssh);
+            setDns(data?.dns);
+            setHttp(data?.http);
+            setRdp(data?.rdp);
+        } catch (error) {
+            console.error('proto', error);
+        }
+
+        try {
+            const response = await fetch('/ips/attacks');
+            const data = await response.json();
+            setSysScan(data?.synScan);
+            setSysFlood(data?.synFlood);
+            setFinScan(data?.finScan);
+            setXmasScan(data?.xmasScan);
+            setNullScan(data?.nullScan);
+        } catch (error) {
+            console.error('proto', error);
+        }
+        setLoading(false);
+    };
+
+    useEffect(() => {
+        callApi();
     }, []);
+
     cnt80 = SrcPort.filter((element) => 80 === element).length;
     cnt52684 = SrcPort.filter((element) => 52684 === element).length;
     cnt59011 = SrcPort.filter((element) => 59011 === element).length;
@@ -215,7 +217,7 @@ function Attack(): JSX.Element {
                 },
             },
             title: {
-                text: 'Src IP',
+                text: 'Source IP',
                 align: 'left',
             },
             colors: ['#D25A5A'],
@@ -259,7 +261,7 @@ function Attack(): JSX.Element {
         },
         series: [
             {
-                name: 'Src IP',
+                name: 'Source IP',
                 data: [ip1, ip2, ip3, ip4, ip5, ip6],
             },
         ],
@@ -277,7 +279,7 @@ function Attack(): JSX.Element {
                 },
             },
             title: {
-                text: 'Src Port',
+                text: 'Source Port',
                 align: 'left',
             },
             plotOptions: {
@@ -320,7 +322,7 @@ function Attack(): JSX.Element {
         },
         series: [
             {
-                name: 'Src Port',
+                name: 'Source Port',
                 data: [cnt80, cnt52684, cnt59011, cnt65419, cnt22, cnt3389],
             },
         ],
@@ -340,7 +342,7 @@ function Attack(): JSX.Element {
             },
             colors: ['#5B0888'],
             title: {
-                text: 'Dst IP',
+                text: 'Destination IP',
                 align: 'left',
             },
             plotOptions: {
@@ -403,7 +405,7 @@ function Attack(): JSX.Element {
             },
             colors: ['#DA0C81'],
             title: {
-                text: 'Dst Port',
+                text: 'Destination Port',
                 align: 'left',
             },
             plotOptions: {
@@ -502,7 +504,7 @@ function Attack(): JSX.Element {
                 },
             },
             title: {
-                text: 'Drop',
+                text: 'Attacks',
                 align: 'left',
             },
             xaxis: {
@@ -543,7 +545,7 @@ function Attack(): JSX.Element {
                 },
             ],
             title: {
-                text: 'TCP And UDP',
+                text: 'Protocol',
                 align: 'left',
             },
             labels: ['TCP', 'UDP'],
@@ -554,10 +556,11 @@ function Attack(): JSX.Element {
 
     return (
         <div id="layoutSidenav">
+            {loading ? <Loading /> : null}
             <div id="layoutSidenav_content">
                 <main>
                     <div className="container-fluid px-4">
-                        <h1 className="mt-4">Network Packet</h1>
+                        <h1 className="mt-4">Network Monitor</h1>
                         <ol className="breadcrumb mb-4"></ol>
                     </div>
                     <div id="conn">

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import './Css/pages.css';
+import Loading from '../../components/Loading';
 
 function Perfmon(): JSX.Element {
     const [host, setHost] = useState([]);
@@ -18,22 +19,21 @@ function Perfmon(): JSX.Element {
     const [command, setCommand] = useState([]);
     const [cpuTime, setCpuTime] = useState([]);
 
-    useEffect(() => {
-        const getData = async () => {
-            const url = '/fixedinfo';
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-                setHost(data?.map((item: any) => item.host));
-                setOsver(data?.map((item: any) => item.osver));
-                setKernelver(data?.map((item: any) => item.kernelver));
-                setTotaldisk(data?.map((item: any) => item.totaldisk));
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        getData();
+    const [loading, setLoading] = useState(true);
 
+    const callApi = async () => {
+        setLoading(true);
+        const url = '/fixedinfo';
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            setHost(data?.map((item: any) => item.host));
+            setOsver(data?.map((item: any) => item.osver));
+            setKernelver(data?.map((item: any) => item.kernelver));
+            setTotaldisk(data?.map((item: any) => item.totaldisk));
+        } catch (error) {
+            console.log(error);
+        }
         const eventSource1 = new EventSource('/cpuinfo');
         eventSource1.onmessage = (event) => {
             try {
@@ -66,10 +66,15 @@ function Perfmon(): JSX.Element {
                 setCpuUsageDetail(data?.map((item: any) => item.cpuUsageDetail));
                 setMemusagedetail(data?.map((item: any) => item.memUsageDetail));
                 setCommand(data?.map((item: any) => item.command));
+                setLoading(false);
             } catch (error) {
                 console.log(error);
             }
         };
+    };
+
+    useEffect(() => {
+        callApi();
     }, []);
 
     const cpuChart1: any = {
@@ -362,7 +367,7 @@ function Perfmon(): JSX.Element {
                 type: 'radialBar',
             },
             title: {
-                text: 'Disk Usage',
+                text: 'Disk',
                 align: 'left',
             },
             plotOptions: {
@@ -423,6 +428,7 @@ function Perfmon(): JSX.Element {
 
     return (
         <div id="layoutSidenav">
+            {loading ? <Loading /> : null}
             <div id="layoutSidenav_content">
                 <main>
                     <div className="container-fluid px-4">

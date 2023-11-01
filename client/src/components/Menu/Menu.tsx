@@ -13,14 +13,14 @@ function Menu(): JSX.Element {
                             <div className="sb-sidenav-menu-heading">core</div>
                             <a
                                 onClick={() => {
-                                    navigate('/');
+                                    window.location.replace('/');
                                 }}
                                 className="nav-link"
                             >
                                 <div className="sb-nav-link-icon">
                                     <i className="fa-brands fa-watchman-monitoring"></i>
                                 </div>
-                                Network Packet
+                                Network Monitor
                             </a>
                             {/* <a className="nav-link" href="/network">
                                 <div className="sb-nav-link-icon">
@@ -30,19 +30,21 @@ function Menu(): JSX.Element {
                             </a> */}
                             <a
                                 onClick={() => {
-                                    navigate('/realtime');
+                                    //navigate('/realtime');
+                                    window.location.replace('/realtime');
                                 }}
                                 className="nav-link"
                             >
                                 <div className="sb-nav-link-icon">
                                     <i className="fa-solid fa-circle-info"></i>
                                 </div>
-                                Real-time Notification
+                                Attack Notification
                             </a>
                             <div className="sb-sidenav-menu-heading">mantle</div>
                             <a
                                 onClick={() => {
-                                    navigate('/perfmon');
+                                    //navigate('/perfmon');
+                                    window.location.replace('/perfmon');
                                 }}
                                 className="nav-link"
                             >

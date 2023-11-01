@@ -76,7 +76,7 @@ export class IpsService {
 
   async getAttack() {
     let synScanCount = this.ipsRepository.count({
-      where: { signature: 'SYN Scanning' },
+      where: { signature: 'SYN Scanning Detection' },
     });
     let synFloodCount = this.ipsRepository.count({
       where: { signature: 'SYN Flooding' },
